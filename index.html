@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>פשוט להבין AI — סיכום סדנה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Frank+Ruhl+Libre:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #f3f5fb;
+  color: #161c2d;
+  font-family: 'Assistant', -apple-system, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
+}
+::selection { background: rgba(77,99,230,.16); }
+body::-webkit-scrollbar { width: 10px; }
+body::-webkit-scrollbar-thumb { background: #cdd3e7; border-radius: 999px; border: 3px solid #f3f5fb; }
+
+@keyframes orbFloat  { 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(-24px,26px) scale(1.08);} }
+@keyframes orbFloat2 { 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(30px,-22px) scale(1.06);} }
+@keyframes hintPulse { 0%,100%{opacity:.35;transform:translateY(0);} 50%{opacity:1;transform:translateY(6px);} }
+
+/* ===================== SCROLL PROGRESS ===================== */
+#pbar {
+  position: fixed; top: 0; right: 0; left: 0; height: 3px; z-index: 90;
+}
+#pbar-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #4d63e6, #8b5cf0);
+  transition: width .1s linear;
+}
+
+/* ===================== NAV ===================== */
+#mainnav {
+  position: fixed; top: 18px; left: 0; right: 0; z-index: 80;
+  display: flex; justify-content: center; pointer-events: none;
+}
+#mainnav > div {
+  pointer-events: auto;
+  display: flex; align-items: center; gap: 4px; padding: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow: 0 10px 34px -16px rgba(40,60,120,.35);
+}
+.nav-btn {
+  cursor: pointer; border: none;
+  font-family: 'Assistant', sans-serif;
+  font-size: 14.5px; font-weight: 600;
+  padding: 9px 17px; border-radius: 999px;
+  transition: all .25s ease; white-space: nowrap;
+  color: #4a5468; background: transparent; box-shadow: none;
+}
+.nav-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, #4d63e6, #8b5cf0);
+  box-shadow: 0 8px 18px -8px rgba(77,99,230,.6);
+}
+
+/* ===================== HERO ===================== */
+header {
+  position: relative; padding: 150px 24px 90px; overflow: hidden;
+}
+.orb1 {
+  position: absolute; top: -120px; right: -80px;
+  width: 520px; height: 520px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(77,99,230,.30), transparent 65%);
+  filter: blur(20px);
+  animation: orbFloat 16s ease-in-out infinite; pointer-events: none;
+}
+.orb2 {
+  position: absolute; top: 40px; left: -120px;
+  width: 480px; height: 480px; border-radius: 50%;
+  background: radial-gradient(circle at 60% 40%, rgba(139,92,240,.26), transparent 65%);
+  filter: blur(20px);
+  animation: orbFloat2 19s ease-in-out infinite; pointer-events: none;
+}
+.orb3 {
+  position: absolute; bottom: -160px; right: 30%;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(31,182,201,.18), transparent 65%);
+  filter: blur(20px);
+  animation: orbFloat 22s ease-in-out infinite; pointer-events: none;
+}
+header > .inner { position: relative; max-width: 920px; margin: 0 auto; text-align: center; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 8px 18px; border-radius: 999px;
+  background: rgba(255,255,255,.7); border: 1px solid #e6e9f2;
+  font-size: 14px; font-weight: 600; color: #4d63e6; letter-spacing: .02em;
+  margin-bottom: 30px;
+}
+.badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: linear-gradient(135deg, #4d63e6, #8b5cf0);
+}
+h1 {
+  font-family: 'Frank Ruhl Libre', serif; font-weight: 800;
+  font-size: clamp(48px, 8vw, 96px); line-height: 1.02; letter-spacing: -.01em;
+  margin: 0 0 22px;
+  background: linear-gradient(120deg, #161c2d 30%, #4d63e6 70%, #8b5cf0);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: clamp(19px, 2.4vw, 24px); line-height: 1.6;
+  color: #4a5468; max-width: 680px; margin: 0 auto 30px; font-weight: 400;
+}
+.chips {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  justify-content: center; margin-bottom: 54px;
+}
+.chip {
+  padding: 9px 18px; border-radius: 999px;
+  background: #fff; border: 1px solid #e6e9f2;
+  font-size: 14.5px; font-weight: 600; color: #36405a;
+}
+
+/* Workshop map */
+.workshop-map {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px; max-width: 760px; margin: 0 auto; text-align: right;
+}
+.map-card {
+  cursor: pointer; text-align: right;
+  background: #fff; border: 1px solid #e6e9f2; border-radius: 22px;
+  padding: 24px; display: flex; flex-direction: column; gap: 6px;
+  box-shadow: 0 1px 2px rgba(20,30,60,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+  text-decoration: none; color: inherit;
+}
+.map-card:hover { transform: translateY(-5px); box-shadow: 0 24px 44px -24px rgba(40,60,120,.30); }
+.map-num { font-family: 'Frank Ruhl Libre', serif; font-size: 15px; font-weight: 700; letter-spacing: .04em; }
+.map-title { font-size: 21px; font-weight: 700; color: #161c2d; }
+.map-desc { font-size: 15px; color: #717a90; line-height: 1.5; }
+
+.scroll-hint {
+  margin-top: 54px; display: flex; flex-direction: column;
+  align-items: center; gap: 6px; color: #9aa2b5; font-size: 13px;
+  font-weight: 600; letter-spacing: .06em;
+}
+.scroll-hint span { font-size: 18px; animation: hintPulse 2.2s ease-in-out infinite; }
+
+/* ===================== MAIN CONTENT ===================== */
+main { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+
+section { padding: 80px 0 30px; }
+
+.sec-num {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: clamp(40px, 6vw, 68px); font-weight: 800; line-height: .9;
+  color: transparent; -webkit-text-stroke: 1.4px #c6cdec;
+}
+.sec-num.purple { -webkit-text-stroke-color: #d6c8ec; }
+.sec-num.teal   { -webkit-text-stroke-color: #bfe0e6; }
+.sec-rule {
+  height: 1px; flex: 1;
+  background: linear-gradient(90deg, #d8ddf0, transparent);
+}
+.sec-rule.purple { background: linear-gradient(90deg, #e0d6f0, transparent); }
+.sec-rule.teal   { background: linear-gradient(90deg, #cfeaef, transparent); }
+.sec-header { display: flex; align-items: baseline; gap: 18px; margin-bottom: 14px; }
+
+h2 {
+  font-family: 'Frank Ruhl Libre', serif; font-weight: 800;
+  font-size: clamp(34px, 5vw, 52px); line-height: 1.08; margin: 0 0 18px; color: #161c2d;
+}
+.sec-lead {
+  font-size: clamp(18px, 2.2vw, 22px); line-height: 1.6;
+  color: #4a5468; max-width: 720px; margin: 0 0 44px;
+}
+.sec-label {
+  font-size: 15px; font-weight: 700; letter-spacing: .08em;
+  color: #8a92a8; text-transform: uppercase; margin: 0 0 20px;
+}
+
+/* ===================== CAPABILITY CARDS ===================== */
+.cards-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+  gap: 16px; margin-bottom: 56px;
+}
+.cap-card {
+  background: #fff; border: 1px solid #e6e9f2; border-radius: 22px;
+  padding: 26px 24px; box-shadow: 0 1px 2px rgba(20,30,60,.04);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.cap-card:hover { transform: translateY(-6px); box-shadow: 0 26px 46px -26px rgba(40,60,120,.32); }
+.cap-icon {
+  width: 48px; height: 48px; border-radius: 15px;
+  background: linear-gradient(135deg, #eef1fd, #f3edfd);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+}
+.cap-icon.bars { align-items: flex-end; gap: 3px; padding: 13px; }
+.cap-icon .bar { width: 5px; border-radius: 2px; background: #4d63e6; }
+.cap-icon .bar2 { background: #6a7ce9; }
+.cap-icon .bar3 { background: #8b5cf0; }
+.cap-card h4 { font-size: 19px; font-weight: 700; margin: 0 0 8px; color: #161c2d; }
+.cap-card p  { font-size: 15.5px; line-height: 1.6; color: #717a90; margin: 0; }
+
+/* ===================== DARK PANEL ===================== */
+.dark-panel {
+  background: linear-gradient(135deg, #1c2340, #2a2f5c);
+  border-radius: 28px; padding: clamp(28px, 4vw, 46px);
+  color: #fff; position: relative; overflow: hidden; margin-bottom: 56px;
+}
+.dark-panel-orb {
+  position: absolute; top: -80px; left: -40px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,92,240,.4), transparent 70%);
+  pointer-events: none;
+}
+.dark-panel > .inner { position: relative; }
+.dark-panel h3 {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: clamp(24px, 3.4vw, 34px); font-weight: 700; margin: 0 0 8px;
+}
+.dark-panel .sub { font-size: 16px; color: rgba(255,255,255,.7); margin: 0 0 30px; max-width: 560px; line-height: 1.6; }
+.principles-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;
+}
+.principle-item {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px; padding: 22px;
+}
+.principle-letter {
+  font-family: 'Frank Ruhl Libre', serif; font-size: 22px; font-weight: 700;
+  color: #9db0ff; margin-bottom: 8px;
+}
+.principle-item h4 { font-size: 17.5px; font-weight: 700; margin: 0 0 6px; }
+.principle-item p  { font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,.66); margin: 0; }
+
+/* ===================== TASK CARD ===================== */
+.task-card {
+  background: #fff; border: 1px solid #e6e9f2; border-radius: 28px;
+  padding: clamp(26px, 3.4vw, 40px);
+  box-shadow: 0 1px 2px rgba(20,30,60,.04), 0 30px 60px -40px rgba(40,60,120,.35);
+}
+.task-header {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 14px; margin-bottom: 8px;
+}
+.task-meta { display: flex; align-items: center; gap: 12px; }
+.task-badge-blue {
+  padding: 7px 14px; border-radius: 999px; background: #eef1fd;
+  color: #4d63e6; font-size: 13.5px; font-weight: 700; letter-spacing: .03em;
+}
+.task-badge-purple {
+  padding: 7px 14px; border-radius: 999px; background: #f3edfd;
+  color: #8b5cf0; font-size: 13.5px; font-weight: 700; letter-spacing: .03em;
+}
+.task-time { display: inline-flex; align-items: center; gap: 6px; color: #717a90; font-size: 14px; font-weight: 600; }
+.task-progress-label { font-size: 14px; font-weight: 700; }
+.task-card h3 { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(24px, 3.2vw, 32px); font-weight: 700; margin: 0 0 4px; color: #161c2d; }
+.task-card > .hint { font-size: 16px; color: #717a90; margin: 0 0 18px; line-height: 1.6; }
+.progress-bar { height: 6px; border-radius: 999px; overflow: hidden; margin-bottom: 28px; }
+.progress-bar.blue { background: #eef0f7; }
+.progress-bar.purple { background: #f1ecf9; }
+.progress-fill {
+  height: 100%; border-radius: 999px;
+  transition: width .4s cubic-bezier(.22,.61,.36,1);
+}
+.progress-fill.blue   { background: linear-gradient(90deg, #4d63e6, #6a7ce9); }
+.progress-fill.purple { background: linear-gradient(90deg, #8b5cf0, #a87bf3); }
+
+/* Checklist */
+.checklist { list-style: none; margin: 0 0 28px; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.checklist li { display: flex; gap: 14px; align-items: flex-start; }
+.check-btn {
+  flex: 0 0 auto; width: 27px; height: 27px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .25s ease; padding: 0; margin-top: 1px;
+  font-size: 14px; font-weight: 700; line-height: 1; color: #fff;
+  border: 1.5px solid #cdd3e3; background: #fff; box-shadow: none;
+}
+.check-btn.done {
+  border-color: transparent;
+  background: linear-gradient(135deg, #4d63e6, #8b5cf0);
+  box-shadow: 0 6px 16px -6px rgba(77,99,230,.65);
+}
+.check-text { margin: 0; font-size: 16.5px; line-height: 1.65; color: #36405a; transition: color .25s ease; }
+.check-text.done { color: #a7aebf; }
+
+/* Prompt example */
+.prompt-box { background: #f7f8fd; border: 1px solid #e6e9f2; border-radius: 18px; padding: 20px; }
+.prompt-box.purple { background: #f9f7fd; border-color: #ece6f6; }
+.prompt-box-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.prompt-label-blue   { font-size: 13px; font-weight: 700; letter-spacing: .06em; color: #8a92a8; text-transform: uppercase; }
+.prompt-label-purple { font-size: 13px; font-weight: 700; letter-spacing: .06em; color: #9b8ab8; text-transform: uppercase; }
+.copy-btn-blue {
+  cursor: pointer; border: 1px solid #d7dcef; background: #fff; color: #4d63e6;
+  font-family: inherit; font-size: 13.5px; font-weight: 700; padding: 7px 14px;
+  border-radius: 999px; transition: all .2s ease;
+}
+.copy-btn-blue:hover { background: #eef1fd; }
+.copy-btn-purple {
+  cursor: pointer; border: 1px solid #ddd2ef; background: #fff; color: #8b5cf0;
+  font-family: inherit; font-size: 13.5px; font-weight: 700; padding: 7px 14px;
+  border-radius: 999px; transition: all .2s ease;
+}
+.copy-btn-purple:hover { background: #f3edfd; }
+.prompt-text { margin: 0; font-size: 15.5px; line-height: 1.7; color: #36405a; }
+
+/* ===================== CAPABILITIES PILLS ===================== */
+.pills { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 56px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #fff; border: 1px solid #e6e9f2; border-radius: 999px;
+  padding: 13px 20px; font-size: 15.5px; font-weight: 600; color: #36405a;
+  box-shadow: 0 1px 2px rgba(20,30,60,.04);
+}
+.pill-dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, #4d63e6, #8b5cf0); }
+
+/* ===================== PRINCIPLES CARDS ===================== */
+.principles-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;
+}
+.prin-card {
+  background: #fff; border: 1px solid #e6e9f2; border-radius: 22px;
+  padding: 26px; display: flex; gap: 16px; align-items: flex-start;
+  box-shadow: 0 1px 2px rgba(20,30,60,.04);
+}
+.prin-num { font-family: 'Frank Ruhl Libre', serif; font-size: 26px; font-weight: 800; line-height: 1; }
+.prin-card h4 { font-size: 18px; font-weight: 700; margin: 0 0 5px; color: #161c2d; }
+.prin-card p  { font-size: 15px; color: #717a90; line-height: 1.55; margin: 0; }
+
+/* ===================== PROMPT BUILDER ===================== */
+.builder-wrap {
+  margin-top: 40px; background: #fff; border: 1px solid #e6e9f2;
+  border-radius: 28px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(20,30,60,.04), 0 30px 60px -40px rgba(40,60,120,.35);
+}
+.builder-header { padding: 26px clamp(22px, 3.4vw, 34px) 0; }
+.builder-kicker {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+}
+.builder-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: linear-gradient(135deg, #4d63e6, #8b5cf0);
+  box-shadow: 0 0 0 4px rgba(77,99,230,.12);
+}
+.builder-kicker-label { font-size: 13.5px; font-weight: 700; letter-spacing: .03em; color: #4d63e6; }
+.builder-wrap h3 { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(26px, 3.4vw, 36px); font-weight: 800; margin: 0 0 6px; color: #161c2d; }
+.builder-desc { font-size: 16px; color: #717a90; margin: 0 0 4px; line-height: 1.6; max-width: 640px; }
+.builder-fields {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(244px, 1fr));
+  gap: 16px; padding: 22px clamp(22px, 3.4vw, 34px);
+}
+.builder-fields label { display: block; font-size: 13px; color: #4d63e6; margin-bottom: 8px; font-weight: 700; }
+.builder-fields input {
+  font-family: 'Assistant', sans-serif; width: 100%;
+  background: #fbfcfe; border: 1.5px solid #e0e4f0; border-radius: 12px;
+  padding: 12px 14px; color: #161c2d; font-size: 15px; outline: none;
+  box-sizing: border-box; transition: border-color .2s ease;
+}
+.builder-fields input:focus { border-color: #4d63e6; }
+.builder-output { padding: 22px clamp(22px, 3.4vw, 34px) 28px; background: #f7f8fd; border-top: 1px solid #e6e9f2; }
+.builder-output-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.builder-output-label { font-size: 13px; letter-spacing: .06em; color: #8a92a8; text-transform: uppercase; font-weight: 700; }
+.prompt-preview {
+  white-space: pre-wrap; font-family: 'Assistant', sans-serif;
+  font-size: 15.5px; line-height: 1.8; color: #36405a;
+  background: #fff; border: 1px solid #e6e9f2; border-radius: 14px; padding: 18px 20px; margin: 0;
+}
+.prompt-empty {
+  font-size: 15px; color: #9aa2b5; background: #fff;
+  border: 1px dashed #d7dcef; border-radius: 14px; padding: 18px 20px;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  margin-top: 60px; padding: 60px 24px 70px;
+  background: linear-gradient(135deg, #1c2340, #2a2f5c);
+  color: #fff; position: relative; overflow: hidden;
+}
+.footer-orb {
+  position: absolute; top: -100px; right: 10%;
+  width: 340px; height: 340px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,92,240,.35), transparent 70%);
+  pointer-events: none;
+}
+footer > .inner {
+  position: relative; max-width: 1060px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
+}
+.footer-pre { font-size: 14.5px; color: rgba(255,255,255,.6); margin: 0 0 4px; font-weight: 600; letter-spacing: .06em; }
+.footer-name { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(36px, 6vw, 58px); font-weight: 800; margin: 0; line-height: 1.05; }
+.footer-role { font-size: 16px; color: rgba(255,255,255,.62); margin: 2px 0 22px; font-weight: 500; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.footer-link {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px; padding: 12px 22px; font-size: 16px; font-weight: 600;
+  color: #fff; text-decoration: none; transition: all .2s ease;
+}
+.footer-link:hover { background: rgba(255,255,255,.16); }
+.footer-link-dot { width: 7px; height: 7px; border-radius: 50%; background: linear-gradient(135deg, #9db0ff, #c4a5ff); }
+
+/* ===================== REVEAL ANIMATION ===================== */
+[data-reveal] {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+}
+[data-reveal].visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- Scroll progress bar -->
+<div id="pbar"><div id="pbar-fill"></div></div>
+
+<!-- Floating nav -->
+<nav id="mainnav">
+  <div>
+    <button class="nav-btn" id="nav-m1" onclick="navTo('m1')">ניתוח נתונים</button>
+    <button class="nav-btn" id="nav-m2" onclick="navTo('m2')">תקשורת עסקית</button>
+    <button class="nav-btn" id="nav-principles" onclick="navTo('principles')">עקרונות</button>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header id="top">
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+  <div class="orb3"></div>
+  <div class="inner">
+    <div data-reveal>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        סיכום סדנה אינטראקטיבי
+      </div>
+    </div>
+    <h1 data-reveal>פשוט להבין AI</h1>
+    <p class="hero-sub" data-reveal>
+      כל מה שעברנו בסדנה, במקום אחד. חזרו לכאן בכל רגע כדי להיזכר בכלים, בעקרונות ובמשימות — ולהמשיך להפוך את ה‑AI לעוזר היומיומי שלכם.
+    </p>
+    <div class="chips" data-reveal>
+      <span class="chip">Microsoft 365 Copilot</span>
+      <span class="chip">ניתוח נתונים</span>
+      <span class="chip">תקשורת עסקית</span>
+    </div>
+    <div class="workshop-map" data-reveal>
+      <button class="map-card" onclick="navTo('m1')">
+        <span class="map-num" style="color:#4d63e6;">01</span>
+        <span class="map-title">ניתוח נתונים</span>
+        <span class="map-desc">להבין נתונים בלי נוסחאות — עם Copilot כאנליסט שותף.</span>
+      </button>
+      <button class="map-card" onclick="navTo('m2')">
+        <span class="map-num" style="color:#8b5cf0;">02</span>
+        <span class="map-title">תקשורת עסקית</span>
+        <span class="map-desc">לנסח, לסכם ולתאם בקלות — פחות התעסקות, יותר זמן פנוי.</span>
+      </button>
+    </div>
+    <div class="scroll-hint" data-reveal>
+      גללו כדי להתחיל
+      <span>↓</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== MAIN ===================== -->
+<main>
+
+  <!-- ===== MODULE 1 ===== -->
+  <section id="m1">
+    <div class="sec-header" data-reveal>
+      <span class="sec-num">01</span>
+      <div class="sec-rule"></div>
+    </div>
+    <h2 data-reveal>כלי AI לניתוח נתונים</h2>
+    <p class="sec-lead" data-reveal>
+      כלי ה‑AI מאפשרים לנו להבין, לנתח ולחלץ תובנות מתוך נתונים —
+      <strong style="color:#4d63e6;font-weight:700;">בלי לכתוב נוסחאות ובלי להיות מומחי אקסל.</strong>
+    </p>
+
+    <p class="sec-label" data-reveal>מה Copilot יודע לעשות עם נתונים</p>
+    <div class="cards-grid">
+      <div class="cap-card" data-reveal>
+        <div class="cap-icon bars">
+          <span class="bar" style="height:10px;"></span>
+          <span class="bar bar2" style="height:18px;"></span>
+          <span class="bar bar3" style="height:14px;"></span>
+        </div>
+        <h4>אשף ויזואליזציה</h4>
+        <p>הופך שורות של נתונים לגרפים ותרשימים בלחיצת כפתור.</p>
+      </div>
+      <div class="cap-card" data-reveal>
+        <div class="cap-icon">
+          <span style="width:18px;height:18px;border-radius:50%;border:2.5px solid #4d63e6;"></span>
+        </div>
+        <h4>מנקה וצייד חריגות</h4>
+        <p>מארגן דאטה מלוכלך ומאתר שגיאות נסתרות שקל לפספס.</p>
+      </div>
+      <div class="cap-card" data-reveal>
+        <div class="cap-icon">
+          <span style="width:16px;height:16px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);transform:rotate(45deg);border-radius:3px;"></span>
+        </div>
+        <h4>אנליסט שותף</h4>
+        <p>מציף מגמות ועוזר להבין אילו שאלות בכלל כדאי לשאול.</p>
+      </div>
+      <div class="cap-card" data-reveal>
+        <div class="cap-icon" style="gap:4px;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#4d63e6;"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#8b5cf0;"></span>
+        </div>
+        <h4>תשובות עסקיות</h4>
+        <p>לא רק נוסחאות — מעבר משאילתות טכניות לפתרון בעיות בשפה טבעית.</p>
+      </div>
+    </div>
+
+    <!-- Prompt engineering panel -->
+    <div class="dark-panel" data-reveal>
+      <div class="dark-panel-orb"></div>
+      <div class="inner">
+        <h3>הנדסת הפרומפט הנכון</h3>
+        <p class="sub">ארבעה כללים שהופכים בקשה ממוצעת לתשובה שבאמת עוזרת.</p>
+        <div class="principles-grid">
+          <div class="principle-item">
+            <div class="principle-letter">א'</div>
+            <h4>פרקו בקשות מורכבות</h4>
+            <p>צעד אחר צעד עדיף על בקשה ענקית אחת.</p>
+          </div>
+          <div class="principle-item">
+            <div class="principle-letter">ב'</div>
+            <h4>פשטות ובהירות</h4>
+            <p>נסחו פשוט, אבל תנו מספיק הקשר.</p>
+          </div>
+          <div class="principle-item">
+            <div class="principle-letter">ג'</div>
+            <h4>התייחסו לתובנות</h4>
+            <p>בקשו משמעות עסקית, לא רק שורות נתונים.</p>
+          </div>
+          <div class="principle-item">
+            <div class="principle-letter">ד'</div>
+            <h4>בקשו פעולות</h4>
+            <p>"צור", "נקה", "השווה" — ולא רק "הצג".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task 1 -->
+    <div class="task-card" data-reveal>
+      <div class="task-header">
+        <div class="task-meta">
+          <span class="task-badge-blue">משימה עצמאית</span>
+          <span class="task-time">⏱ 15 דקות</span>
+        </div>
+        <span class="task-progress-label" id="m1-label" style="color:#4d63e6;">0 / 6</span>
+      </div>
+      <h3>עבודה עם Copilot באקסל</h3>
+      <p class="hint">סמנו כל שלב שהשלמתם — ההתקדמות נשמרת אצלכם בדפדפן.</p>
+      <div class="progress-bar blue">
+        <div class="progress-fill blue" id="m1-fill" style="width:0%;"></div>
+      </div>
+      <ul class="checklist" id="checklist-m1">
+        <li>
+          <button class="check-btn" id="btn-d1" onclick="toggleCheck('d1')"></button>
+          <p class="check-text" id="txt-d1">בחרו קובץ אקסל (או שניים) שאתם עובדים איתם הרבה — משהו רלוונטי שתרצו להתייעל מולו, כדי שההתנסות תהיה פרקטית.</p>
+        </li>
+        <li>
+          <button class="check-btn" id="btn-d2" onclick="toggleCheck('d2')"></button>
+          <p class="check-text" id="txt-d2">בחרו 3 שאלות עסקיות שהייתם רוצים לקבל עליהן תשובה מתוך הנתונים.</p>
+        </li>
+        <li>
+          <button class="check-btn" id="btn-d3" onclick="toggleCheck('d3')"></button>
+          <p class="check-text" id="txt-d3">השתמשו ב‑Copilot לבצע ניתוח על הקבצים ולייצר הנחות מבוססות נתונים לשאלות העסקיות.</p>
+        </li>
+        <li>
+          <button class="check-btn" id="btn-d4" onclick="toggleCheck('d4')"></button>
+          <p class="check-text" id="txt-d4">בקשו משימות: שינוי נתונים, זיהוי שגיאות, יצירת נתונים חדשים, גרפים, ויזואליזציות וזיהוי מגמות — עבדו עם Copilot כמו עוזר אישי.</p>
+        </li>
+        <li>
+          <button class="check-btn" id="btn-d5" onclick="toggleCheck('d5')"></button>
+          <p class="check-text" id="txt-d5">עקבו אחר כללי כתיבת ההנחיה והיו מפורטים — ככה תקבלו תשובות איכותיות יותר.</p>
+        </li>
+        <li>
+          <button class="check-btn" id="btn-d6" onclick="toggleCheck('d6')"></button>
+          <p class="check-text" id="txt-d6">שתפו את התוצאה עם חברים או קבוצת עבודה וקבלו פידבק — כדי להבין איך לשפר את הפרומפט עוד יותר.</p>
+        </li>
+      </ul>
+      <div class="prompt-box">
+        <div class="prompt-box-header">
+          <span class="prompt-label-blue">דוגמת פרומפט להתחלה</span>
+          <button class="copy-btn-blue" id="copy-data-btn" onclick="copyPrompt('prompt-data','copy-data-btn')">העתקה</button>
+        </div>
+        <p class="prompt-text" id="prompt-data">נתח את הקובץ המצורף, זהה את שלוש המגמות המשמעותיות ביותר במכירות לפי אזור, והצג אותן בגרף. לאחר מכן הצע שלוש שאלות עסקיות שכדאי לי לשאול על הנתונים האלה.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 2 ===== -->
+  <section id="m2">
+    <div class="sec-header" data-reveal>
+      <span class="sec-num purple">02</span>
+      <div class="sec-rule purple"></div>
+    </div>
+    <h2 data-reveal>כלי AI לניהול תקשורת עסקית</h2>
+    <p class="sec-lead" data-reveal>
+      הכלים מבינים את ההקשר ועוזרים לנו לנסח, לסכם ולתאם בקלות.
+    </p>
+    <p data-reveal style="font-size:18px;line-height:1.6;color:#8b5cf0;font-weight:600;margin:0 0 44px;">פחות התעסקות — יותר בהירות, דיוק וזמן פנוי.</p>
+
+    <p class="sec-label" data-reveal>איך Copilot עוזר לתקשורת היומיומית</p>
+    <div class="pills" data-reveal>
+      <span class="pill"><span class="pill-dot"></span>תקציר מהיר של שיחה</span>
+      <span class="pill"><span class="pill-dot"></span>סיכום מיילים ארוכים</span>
+      <span class="pill"><span class="pill-dot"></span>התאמה לטון ולסגנון</span>
+      <span class="pill"><span class="pill-dot"></span>ניסוח מיילים מקצועיים</span>
+      <span class="pill"><span class="pill-dot"></span>הצעות מענה מהירות ורלוונטיות</span>
+      <span class="pill"><span class="pill-dot"></span>תשובות חכמות</span>
+      <span class="pill"><span class="pill-dot"></span>זיהוי מיילים שדורשים מענה או פעולה</span>
+      <span class="pill"><span class="pill-dot"></span>מעקב אחר משימות</span>
+      <span class="pill"><span class="pill-dot"></span>שמירה ביומן בלחיצת כפתור</span>
+    </div>
+
+    <!-- Task 2 -->
+    <div class="task-card" data-reveal>
+      <div class="task-header">
+        <div class="task-meta">
+          <span class="task-badge-purple">משימה עצמאית</span>
+          <span class="task-time">⏱ 15 דקות</span>
+        </div>
+        <span class="task-progress-label" id="m2-label" style="color:#8b5cf0;">0 / 5</span>
+      </div>
+      <h3>עבודה עם Copilot ב‑Outlook</h3>
+      <p class="hint">סמנו כל שלב שהשלמתם — ההתקדמות נשמרת אצלכם בדפדפן.</p>
+      <div class="progress-bar purple">
+        <div class="progress-fill purple" id="m2-fill" style="width:0%;"></div>
+      </div>
+      <ul class="checklist">
+        <li>
+          <button class="check-btn" id="btn-c1" onclick="toggleCheck('c1')"></button>
+          <p class="check-text" id="txt-c1">היכנסו לאפליקציית Copilot בתוך Outlook ובקשו רשימת מיילים אחרונים שדורשים מכם מענה — עם הצעה לתשובה בכל אחד מהם.</p>
+        </li>
+        <li>
+          <button class="check-btn" id="btn-c2" onclick="toggleCheck('c2')"></button>
+          <p class="check-text" id="txt-c2">עבדו עם Copilot כעוזר חכם: מענה אוטומטי, סיכום שרשורים ומיילים ארוכים, ובקשת "אימון" על תשובות שאתם לא בטוחים בהן.</p>
+        </li>
+        <li>
+          <button class="check-btn" id="btn-c3" onclick="toggleCheck('c3')"></button>
+          <p class="check-text" id="txt-c3">בחרו קובץ או יותר מהאחסון שלכם ב‑OneDrive ובקשו מ‑Copilot לבצע עבודה — איחוד, יצירת עותק, שינוי לפי פרמטרים וכו'.</p>
+        </li>
+        <li>
+          <button class="check-btn" id="btn-c4" onclick="toggleCheck('c4')"></button>
+          <p class="check-text" id="txt-c4">לחצו על "הצג הנחיות", העמיקו ביכולות הנוספות, ומצאו לפחות 2 הנחיות שרלוונטיות לעבודה היום‑יומית שלכם.</p>
+        </li>
+        <li>
+          <button class="check-btn" id="btn-c5" onclick="toggleCheck('c5')"></button>
+          <p class="check-text" id="txt-c5">שתפו ופידבק: הראו את התוצאה לחבר או לקבוצה וקבלו רעיונות לשיפור הפרומפט.</p>
+        </li>
+      </ul>
+      <div class="prompt-box purple">
+        <div class="prompt-box-header">
+          <span class="prompt-label-purple">דוגמת פרומפט להתחלה</span>
+          <button class="copy-btn-purple" id="copy-comms-btn" onclick="copyPrompt('prompt-comms','copy-comms-btn')">העתקה</button>
+        </div>
+        <p class="prompt-text" id="prompt-comms">תן לי רשימה של 15 המיילים האחרונים שדורשים ממני תשובה או התייחסות, סדר אותם לפי דחיפות, והצע למענה קצר ומקצועי לכל אחד מהם.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRINCIPLES ===== -->
+  <section id="principles">
+    <div class="sec-header" data-reveal>
+      <span class="sec-num teal">03</span>
+      <div class="sec-rule teal"></div>
+    </div>
+    <h2 data-reveal>העקרונות שיעשו את ההבדל</h2>
+    <p class="sec-lead" data-reveal>שישה הרגלים שכדאי לקחת מהסדנה הביתה — נכונים לכל כלי AI, לא רק ל‑Copilot.</p>
+
+    <div class="principles-cards" data-reveal>
+      <div class="prin-card">
+        <span class="prin-num" style="color:#4d63e6;">01</span>
+        <div>
+          <h4>היו ספציפיים ומפורטים</h4>
+          <p>ככל שתפרטו יותר, התשובה תהיה מדויקת יותר.</p>
+        </div>
+      </div>
+      <div class="prin-card">
+        <span class="prin-num" style="color:#6470ea;">02</span>
+        <div>
+          <h4>תנו הקשר</h4>
+          <p>ספרו לכלי מי אתם, מה המטרה ומי הקהל.</p>
+        </div>
+      </div>
+      <div class="prin-card">
+        <span class="prin-num" style="color:#7466ea;">03</span>
+        <div>
+          <h4>פרקו משימות מורכבות</h4>
+          <p>שברו בקשה גדולה לכמה צעדים קטנים וברורים.</p>
+        </div>
+      </div>
+      <div class="prin-card">
+        <span class="prin-num" style="color:#845cf0;">04</span>
+        <div>
+          <h4>בקשו תובנות ופעולות</h4>
+          <p>לא רק מידע — בקשו משמעות וצעדים מעשיים.</p>
+        </div>
+      </div>
+      <div class="prin-card">
+        <span class="prin-num" style="color:#8b5cf0;">05</span>
+        <div>
+          <h4>עבדו בתהליך</h4>
+          <p>שאלו, קבלו, חדדו ושאלו שוב — זו שיחה.</p>
+        </div>
+      </div>
+      <div class="prin-card">
+        <span class="prin-num" style="color:#9a5cee;">06</span>
+        <div>
+          <h4>התייחסו אליו כעוזר אישי</h4>
+          <p>לא מנוע חיפוש — שותף שעוזר לכם לעבוד טוב יותר.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prompt builder -->
+    <div class="builder-wrap" data-reveal>
+      <div class="builder-header">
+        <div class="builder-kicker">
+          <span class="builder-dot"></span>
+          <span class="builder-kicker-label">תרגול חי</span>
+        </div>
+        <h3>בנו פרומפט מנצח</h3>
+        <p class="builder-desc">מלאו את השדות והפרומפט המורכב ייבנה למטה, מוכן להעתקה. לא חייבים למלא את כולם — קחו את מה שרלוונטי.</p>
+      </div>
+      <div class="builder-fields">
+        <div>
+          <label for="pRole">תפקיד</label>
+          <input id="pRole" dir="rtl" placeholder="לדוגמה: מומחה תוכן שיווקי B2B" oninput="buildPrompt()">
+        </div>
+        <div>
+          <label for="pContext">הקשר וקהל יעד</label>
+          <input id="pContext" dir="rtl" placeholder="לדוגמה: ניוזלטר אגפי למנהלי ביניים" oninput="buildPrompt()">
+        </div>
+        <div>
+          <label for="pTask">המשימה</label>
+          <input id="pTask" dir="rtl" placeholder="לדוגמה: נסח 3 פסקאות פתיחה" oninput="buildPrompt()">
+        </div>
+        <div>
+          <label for="pStyle">סגנון ופורמט</label>
+          <input id="pStyle" dir="rtl" placeholder="לדוגמה: טון מקצועי וקליל, בפסקאות קצרות" oninput="buildPrompt()">
+        </div>
+      </div>
+      <div class="builder-output">
+        <div class="builder-output-header">
+          <span class="builder-output-label">הפרומפט המורכב שלכם</span>
+          <button class="copy-btn-blue" id="copy-builder-btn" onclick="copyBuilder()">העתקה</button>
+        </div>
+        <pre class="prompt-preview" id="builder-preview" style="display:none;"></pre>
+        <div class="prompt-empty" id="builder-empty">מלאו את השדות למעלה והפרומפט המורכב יופיע כאן, מוכן להעתקה.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-orb"></div>
+  <div class="inner">
+    <p class="footer-pre">סוף הסדנה · נשמח להישאר בקשר</p>
+    <h3 class="footer-name">יפתח גפן</h3>
+    <p class="footer-role">מנחה הסדנה · פשוט להבין AI</p>
+    <div class="footer-links">
+      <a href="mailto:yiftahgeffen@gmail.com" class="footer-link">
+        <span class="footer-link-dot"></span>
+        yiftahgeffen@gmail.com
+      </a>
+      <a href="tel:0524663221" dir="ltr" class="footer-link">
+        <span class="footer-link-dot"></span>
+        052-466-3221
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===================== STATE ===================== */
+var checks = {};
+try { checks = JSON.parse(localStorage.getItem('aiws_checks_v1')) || {}; } catch(e) {}
+
+var m1ids = ['d1','d2','d3','d4','d5','d6'];
+var m2ids = ['c1','c2','c3','c4','c5'];
+
+/* ===================== INIT CHECKS ===================== */
+function initChecks() {
+  m1ids.concat(m2ids).forEach(function(id) {
+    if (checks[id]) setChecked(id, true, false);
+  });
+  updateProgress();
+}
+
+function setChecked(id, done, save) {
+  var btn = document.getElementById('btn-' + id);
+  var txt = document.getElementById('txt-' + id);
+  if (!btn || !txt) return;
+  if (done) { btn.classList.add('done'); btn.textContent = '✓'; txt.classList.add('done'); }
+  else       { btn.classList.remove('done'); btn.textContent = ''; txt.classList.remove('done'); }
+  if (save) {
+    checks[id] = done;
+    try { localStorage.setItem('aiws_checks_v1', JSON.stringify(checks)); } catch(e) {}
+  }
+}
+
+function toggleCheck(id) {
+  var done = !checks[id];
+  checks[id] = done;
+  try { localStorage.setItem('aiws_checks_v1', JSON.stringify(checks)); } catch(e) {}
+  setChecked(id, done, false);
+  updateProgress();
+}
+
+function updateProgress() {
+  var m1done = m1ids.filter(function(i){ return checks[i]; }).length;
+  var m2done = m2ids.filter(function(i){ return checks[i]; }).length;
+  var m1pct  = Math.round(m1done / m1ids.length * 100);
+  var m2pct  = Math.round(m2done / m2ids.length * 100);
+  var m1fill = document.getElementById('m1-fill');
+  var m2fill = document.getElementById('m2-fill');
+  var m1lbl  = document.getElementById('m1-label');
+  var m2lbl  = document.getElementById('m2-label');
+  if (m1fill) m1fill.style.width = m1pct + '%';
+  if (m2fill) m2fill.style.width = m2pct + '%';
+  if (m1lbl)  m1lbl.textContent  = m1done + ' / ' + m1ids.length;
+  if (m2lbl)  m2lbl.textContent  = m2done + ' / ' + m2ids.length;
+}
+
+/* ===================== COPY BUTTONS ===================== */
+function copyPrompt(elId, btnId) {
+  var el  = document.getElementById(elId);
+  var btn = document.getElementById(btnId);
+  if (!el || !btn) return;
+  var txt = (el.innerText || el.textContent || '').trim();
+  if (navigator.clipboard) navigator.clipboard.writeText(txt).catch(function(){});
+  btn.textContent = 'הועתק ✓';
+  setTimeout(function(){ btn.textContent = 'העתקה'; }, 1800);
+}
+
+function copyBuilder() {
+  var pre = document.getElementById('builder-preview');
+  var btn = document.getElementById('copy-builder-btn');
+  if (!pre || pre.style.display === 'none') return;
+  var txt = (pre.textContent || '').trim();
+  if (navigator.clipboard) navigator.clipboard.writeText(txt).catch(function(){});
+  btn.textContent = 'הועתק ✓';
+  setTimeout(function(){ btn.textContent = 'העתקה'; }, 1800);
+}
+
+/* ===================== PROMPT BUILDER ===================== */
+function buildPrompt() {
+  var parts = [];
+  var role    = document.getElementById('pRole').value.trim();
+  var context = document.getElementById('pContext').value.trim();
+  var task    = document.getElementById('pTask').value.trim();
+  var style   = document.getElementById('pStyle').value.trim();
+  if (role)    parts.push('תפקיד: ' + role + '.');
+  if (context) parts.push('הקשר וקהל יעד: ' + context + '.');
+  if (task)    parts.push('המשימה: ' + task + '.');
+  if (style)   parts.push('סגנון ופורמט: ' + style + '.');
+  var preview = document.getElementById('builder-preview');
+  var empty   = document.getElementById('builder-empty');
+  if (parts.length) {
+    preview.textContent  = parts.join('\n');
+    preview.style.display = 'block';
+    empty.style.display   = 'none';
+  } else {
+    preview.style.display = 'none';
+    empty.style.display   = 'block';
+  }
+}
+
+/* ===================== NAV ===================== */
+function navTo(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var offset = id === 'top' ? 0 : 78;
+  var y = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+var navIds = ['m1','m2','principles'];
+function updateNav(active) {
+  navIds.forEach(function(id) {
+    var btn = document.getElementById('nav-' + id);
+    if (!btn) return;
+    if (id === active) btn.classList.add('active');
+    else               btn.classList.remove('active');
+  });
+}
+
+/* ===================== SCROLL ===================== */
+function onScroll() {
+  var doc = document.documentElement;
+  var max = doc.scrollHeight - doc.clientHeight;
+  var pct = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+  var fill = document.getElementById('pbar-fill');
+  if (fill) fill.style.width = (pct * 100) + '%';
+
+  var sections = ['m1','m2','principles'];
+  var active = null;
+  sections.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= 140) active = id;
+  });
+  updateNav(active);
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll, { passive: true });
+
+/* ===================== REVEAL ON SCROLL ===================== */
+function initReveal() {
+  var els = Array.from(document.querySelectorAll('[data-reveal]'));
+  var reveal = function(el) { el.classList.add('visible'); };
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    els.forEach(function(el) { io.observe(el); });
+    setTimeout(function() { els.forEach(reveal); }, 3000);
+  } else {
+    els.forEach(reveal);
+  }
+}
+
+/* ===================== BOOT ===================== */
+document.addEventListener('DOMContentLoaded', function() {
+  initChecks();
+  initReveal();
+  onScroll();
+});
+</script>
+</body>
+</html>
