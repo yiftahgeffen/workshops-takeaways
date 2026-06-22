@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Frank+Ruhl+Libre:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:#eef1f9; font-family:'Assistant',sans-serif; color:#161c2d; -webkit-font-smoothing:antialiased; line-height:1.62; }
+  ::selection { background:rgba(77,99,230,.18); }
+  body::-webkit-scrollbar { width:11px; }
+  body::-webkit-scrollbar-thumb { background:#cdd3e7; border-radius:999px; border:3px solid #eef1f9; }
+  @keyframes floatOrb { 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(-26px,22px) scale(1.08);} }
+  @keyframes floatOrb2 { 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(30px,-18px) scale(1.1);} }
+  @keyframes softPulse { 0%,100%{ opacity:1;} 50%{ opacity:.4;} }
+  @keyframes scrollNudge { 0%,100%{ transform:translateY(0); opacity:.7;} 50%{ transform:translateY(7px); opacity:1;} }
+</style>
+</helmet>
+
+<div dir="rtl" style="position:relative;">
+
+<!-- soft gradient mesh + grain (page-wide tone-on-tone depth) -->
+<div style="position:fixed; inset:0; pointer-events:none; z-index:0; background:
+  radial-gradient(60% 50% at 82% 8%, rgba(77,99,230,.10), transparent 70%),
+  radial-gradient(55% 45% at 12% 32%, rgba(139,92,240,.09), transparent 70%),
+  radial-gradient(50% 40% at 88% 78%, rgba(77,99,230,.07), transparent 72%);"></div>
+<div style="position:fixed; inset:0; pointer-events:none; z-index:61; opacity:.04; mix-blend-mode:multiply; background-image:url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxODAnIGhlaWdodD0nMTgwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44NScgbnVtT2N0YXZlcz0nMicgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPScxODAnIGhlaWdodD0nMTgwJyBmaWx0ZXI9J3VybCgjbiknLz48L3N2Zz4=&quot;);"></div>
+
+<div id="pbar" style="position:fixed; top:0; right:0; height:3px; width:0%; background:linear-gradient(90deg,#8b5cf0,#4d63e6); z-index:100; box-shadow:0 0 12px rgba(77,99,230,.5);"></div>
+
+<div style="position:relative; z-index:1;">
+
+<!-- ===================== HERO ===================== -->
+<header data-screen-label="Hero" style="position:relative; padding:88px 24px 60px; overflow:hidden;">
+  <div style="position:absolute; top:-130px; left:-90px; width:440px; height:440px; border-radius:50%; background:radial-gradient(circle, rgba(77,99,230,.20), transparent 68%); filter:blur(8px); animation:floatOrb 16s ease-in-out infinite; pointer-events:none;"></div>
+  <div style="position:absolute; top:30px; right:-110px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,240,.18), transparent 68%); filter:blur(8px); animation:floatOrb2 19s ease-in-out infinite; pointer-events:none;"></div>
+
+  <div style="position:relative; max-width:1020px; margin:0 auto;">
+    <div style="display:flex; justify-content:center;">
+      <div style="display:inline-flex; align-items:center; gap:10px; padding:9px 19px; border-radius:999px; background:rgba(255,255,255,.72); backdrop-filter:blur(10px); border:1px solid #e6e9f2; box-shadow:0 2px 16px rgba(22,28,45,.06); font-size:13.5px; font-weight:600; color:#4a5468; letter-spacing:.3px;">
+        <span style="width:8px; height:8px; border-radius:50%; background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>
+        סיכום סדנה אינטראקטיבי · שלושה ימי הכשרה
+      </div>
+    </div>
+
+    <div style="text-align:center; position:relative; margin-top:30px;">
+      <div aria-hidden="true" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Frank Ruhl Libre',serif; font-weight:900; font-size:clamp(120px,22vw,260px); line-height:1; color:transparent; -webkit-text-stroke:1.5px rgba(77,99,230,.08); pointer-events:none; user-select:none; z-index:0;">AI</div>
+      <h1 style="position:relative; z-index:1; font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:clamp(44px,7vw,86px); line-height:1.04; letter-spacing:-1px;">
+        <span style="background:linear-gradient(135deg,#3a4fd6,#8b5cf0); -webkit-background-clip:text; background-clip:text; color:transparent;">עובדים חכם עם AI</span>
+      </h1>
+    </div>
+    <p style="text-align:center; font-family:'Frank Ruhl Libre',serif; font-weight:500; font-size:clamp(21px,2.7vw,32px); color:#2a3350; margin-top:8px;">ניתוח נתונים ושיפור תהליכים ברשויות</p>
+    <p style="text-align:center; max-width:600px; margin:20px auto 0; font-size:18px; color:#4a5468; text-wrap:pretty;">כל מה שעברנו לאורך שלושת הימים, במקום אחד. עברו על העקרונות, פתחו את הכרטיסים, ותרגלו שוב בקצב שלכם.</p>
+
+    <div style="display:flex; flex-wrap:wrap; gap:9px; justify-content:center; margin-top:24px;">
+      <span style="padding:8px 16px; border-radius:999px; background:#fff; border:1px solid #e6e9f2; box-shadow:0 1px 6px rgba(22,28,45,.04); font-size:14px; font-weight:600; color:#4a5468;">כתיבת Prompt</span>
+      <span style="padding:8px 16px; border-radius:999px; background:#fff; border:1px solid #e6e9f2; box-shadow:0 1px 6px rgba(22,28,45,.04); font-size:14px; font-weight:600; color:#4a5468;">החלטות מבוססות נתונים</span>
+      <span style="padding:8px 16px; border-radius:999px; background:#fff; border:1px solid #e6e9f2; box-shadow:0 1px 6px rgba(22,28,45,.04); font-size:14px; font-weight:600; color:#4a5468;">ויזואליזציה</span>
+      <span style="padding:8px 16px; border-radius:999px; background:#fff; border:1px solid #e6e9f2; box-shadow:0 1px 6px rgba(22,28,45,.04); font-size:14px; font-weight:600; color:#4a5468;">מצגות חכמות</span>
+    </div>
+
+    <!-- presenter card · RTL order: name → email → phone -->
+    <div style="display:flex; justify-content:center; margin-top:36px;">
+      <div style="display:inline-flex; flex-wrap:wrap; align-items:center; background:linear-gradient(135deg,#1c2340,#2a2f5c); border-radius:22px; padding:16px 8px; box-shadow:0 22px 50px rgba(28,35,64,.30); color:#fff;">
+        <div style="display:flex; align-items:center; gap:14px; padding:6px 22px;">
+          <div style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#4d63e6,#8b5cf0); display:flex; align-items:center; justify-content:center; font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:22px;">י</div>
+          <div style="text-align:right;">
+            <div style="font-size:12.5px; color:#aeb6d8; font-weight:500;">מנחה הסדנה</div>
+            <div style="font-size:19px; font-weight:700;">יפתח גפן</div>
+          </div>
+        </div>
+        <div style="width:1px; height:38px; background:rgba(255,255,255,.16);"></div>
+        <a href="mailto:yiftahgeffen@gmail.com" style="display:flex; align-items:center; gap:9px; padding:10px 22px; color:#fff; text-decoration:none; font-size:15px; font-weight:600;"><span style="opacity:.65;">✉</span> yiftahgeffen@gmail.com</a>
+        <div style="width:1px; height:38px; background:rgba(255,255,255,.16);"></div>
+        <a href="tel:0524663221" dir="ltr" style="display:flex; align-items:center; gap:9px; padding:10px 22px; color:#fff; text-decoration:none; font-size:15px; font-weight:600;"><span style="opacity:.65;">☎</span> 052-466-3221</a>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:center; margin-top:46px;">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:6px; color:#9aa2bd; font-size:12px; font-weight:600; letter-spacing:1px;">גללו<span style="font-size:18px; animation:scrollNudge 1.8s ease-in-out infinite;">↓</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== BODY: TOC + CONTENT ===================== -->
+<div style="max-width:1280px; margin:0 auto; padding:24px 24px 0; display:flex; gap:48px; align-items:flex-start;">
+
+  <!-- ============ STICKY TOC (right side in RTL) ============ -->
+  <nav id="toc" style="flex:none; width:212px; position:sticky; top:84px; align-self:flex-start;">
+    <div style="font-size:12px; font-weight:700; color:#9aa2bd; letter-spacing:1.5px; margin-bottom:14px; padding-inline-start:6px;">תוכן הסדנה</div>
+    <div style="display:flex; flex-direction:column; gap:3px;">
+      <button data-toc="ch1" style="display:flex; align-items:center; gap:11px; width:100%; text-align:right; border:none; background:transparent; cursor:pointer; padding:9px 10px; border-radius:11px; font-family:'Assistant',sans-serif; transition:background .25s;"><span data-bar style="width:3px; height:16px; border-radius:3px; background:#d4d9ef; transition:all .3s; flex:none;"></span><span data-num style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:13px; color:#9aa2bd; transition:color .3s;">01</span><span data-txt style="font-size:14px; font-weight:600; color:#4a5468; transition:color .3s;">כלים מבוססי טקסט</span></button>
+      <button data-toc="ch2" style="display:flex; align-items:center; gap:11px; width:100%; text-align:right; border:none; background:transparent; cursor:pointer; padding:9px 10px; border-radius:11px; font-family:'Assistant',sans-serif; transition:background .25s;"><span data-bar style="width:3px; height:16px; border-radius:3px; background:#d4d9ef; transition:all .3s; flex:none;"></span><span data-num style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:13px; color:#9aa2bd; transition:color .3s;">02</span><span data-txt style="font-size:14px; font-weight:600; color:#4a5468; transition:color .3s;">עקרונות Prompt</span></button>
+      <button data-toc="ch3" style="display:flex; align-items:center; gap:11px; width:100%; text-align:right; border:none; background:transparent; cursor:pointer; padding:9px 10px; border-radius:11px; font-family:'Assistant',sans-serif; transition:background .25s;"><span data-bar style="width:3px; height:16px; border-radius:3px; background:#d4d9ef; transition:all .3s; flex:none;"></span><span data-num style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:13px; color:#9aa2bd; transition:color .3s;">03</span><span data-txt style="font-size:14px; font-weight:600; color:#4a5468; transition:color .3s;">החלטות מבוססות נתונים</span></button>
+      <button data-toc="ch4" style="display:flex; align-items:center; gap:11px; width:100%; text-align:right; border:none; background:transparent; cursor:pointer; padding:9px 10px; border-radius:11px; font-family:'Assistant',sans-serif; transition:background .25s;"><span data-bar style="width:3px; height:16px; border-radius:3px; background:#d4d9ef; transition:all .3s; flex:none;"></span><span data-num style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:13px; color:#9aa2bd; transition:color .3s;">04</span><span data-txt style="font-size:14px; font-weight:600; color:#4a5468; transition:color .3s;">כלי AI לניתוח נתונים</span></button>
+      <button data-toc="ch5" style="display:flex; align-items:center; gap:11px; width:100%; text-align:right; border:none; background:transparent; cursor:pointer; padding:9px 10px; border-radius:11px; font-family:'Assistant',sans-serif; transition:background .25s;"><span data-bar style="width:3px; height:16px; border-radius:3px; background:#d4d9ef; transition:all .3s; flex:none;"></span><span data-num style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:13px; color:#9aa2bd; transition:color .3s;">05</span><span data-txt style="font-size:14px; font-weight:600; color:#4a5468; transition:color .3s;">ויזואליזציה</span></button>
+      <button data-toc="ch6" style="display:flex; align-items:center; gap:11px; width:100%; text-align:right; border:none; background:transparent; cursor:pointer; padding:9px 10px; border-radius:11px; font-family:'Assistant',sans-serif; transition:background .25s;"><span data-bar style="width:3px; height:16px; border-radius:3px; background:#d4d9ef; transition:all .3s; flex:none;"></span><span data-num style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:13px; color:#9aa2bd; transition:color .3s;">06</span><span data-txt style="font-size:14px; font-weight:600; color:#4a5468; transition:color .3s;">מצגות חכמות</span></button>
+    </div>
+  </nav>
+
+  <main style="flex:1; min-width:0; max-width:900px;">
+
+    <!-- ========== CH 1 ========== -->
+    <section id="ch1" data-screen-label="פרק 01" style="scroll-margin-top:80px; padding:30px 0 16px;">
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); position:relative;">
+        <div aria-hidden="true" style="position:absolute; top:-30px; left:0; font-family:'Frank Ruhl Libre',serif; font-size:140px; font-weight:800; line-height:.8; color:transparent; -webkit-text-stroke:1.5px #d2d8ee; z-index:0; pointer-events:none;">01</div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:inline-flex; align-items:center; gap:10px;"><span style="width:30px; height:2px; border-radius:2px; background:linear-gradient(90deg,#4d63e6,#8b5cf0);"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:2px; color:#4d63e6;">פרק 01 · יום 1</span></div>
+          <h2 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:clamp(30px,4vw,46px); margin-top:10px; line-height:1.1;">כלים מבוססי טקסט</h2>
+          <p style="color:#4a5468; font-size:18px; margin-top:8px; max-width:560px; text-wrap:pretty;">מחוללי תוכן מבוססי AI — הבסיס לכל מה שבא אחריו לאורך הסדנה.</p>
+        </div>
+      </div>
+
+      <div data-reveal data-lift style="opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.2,.7,.2,1) .05s, transform .7s cubic-bezier(.2,.7,.2,1) .05s; margin-top:28px; background:linear-gradient(135deg,#1c2340,#2a2f5c); border-radius:28px; padding:40px 36px; color:#fff; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-70px; right:-40px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,240,.42), transparent 70%);"></div>
+        <div style="position:relative;">
+          <div style="font-size:13px; font-weight:700; color:#aeb6d8; letter-spacing:1px;">מה זה בכלל AI?</div>
+          <p style="font-family:'Frank Ruhl Libre',serif; font-size:clamp(21px,2.7vw,30px); font-weight:500; line-height:1.5; margin-top:14px; max-width:760px;">"בינה מלאכותית היא היכולת של מחשבים ומכונות לבצע משימות שדורשות אינטליגנציה אנושית — הבנת שפה, זיהוי דפוסים, פתרון בעיות וקבלת החלטות."</p>
+        </div>
+      </div>
+
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.2,.7,.2,1) .1s, transform .7s cubic-bezier(.2,.7,.2,1) .1s; margin-top:18px;">
+        <div data-lift style="background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 6px 30px rgba(22,28,45,.06); padding:30px; transition:transform .3s, box-shadow .3s;">
+          <h3 style="font-size:21px; font-weight:700;">מחוללי תוכן מבוססי טקסט</h3>
+          <p style="color:#4a5468; margin-top:8px;">מערכות שמייצרות טקסט אוטומטית על בסיס הבקשות שלכם — Copilot, ChatGPT, NotebookLM ועוד. השימושים היומיומיים שחוסכים הכי הרבה זמן:</p>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-top:22px;">
+            <div style="padding:20px; border-radius:18px; background:linear-gradient(160deg,#f7f8fd,#eef1fb); border:1px solid #e8ebf6;"><div style="font-family:'Frank Ruhl Libre',serif; font-size:24px; font-weight:800; color:#c3cae6;">א</div><div style="font-weight:700; color:#34405c; margin-top:6px;">תמצות וסיכום</div><div style="font-size:14px; color:#4a5468; margin-top:4px;">קריאת עומק של מסמכים והפקת תובנות מהירה.</div></div>
+            <div style="padding:20px; border-radius:18px; background:linear-gradient(160deg,#f7f8fd,#eef1fb); border:1px solid #e8ebf6;"><div style="font-family:'Frank Ruhl Libre',serif; font-size:24px; font-weight:800; color:#c3cae6;">ב</div><div style="font-weight:700; color:#34405c; margin-top:6px;">ניסוח דוחות ותוצרים</div><div style="font-size:14px; color:#4a5468; margin-top:4px;">כולל הנגשה למקבלי ההחלטות בארגון.</div></div>
+            <div style="padding:20px; border-radius:18px; background:linear-gradient(160deg,#f7f8fd,#eef1fb); border:1px solid #e8ebf6;"><div style="font-family:'Frank Ruhl Libre',serif; font-size:24px; font-weight:800; color:#c3cae6;">ג</div><div style="font-weight:700; color:#34405c; margin-top:6px;">הפקת תובנות</div><div style="font-size:14px; color:#4a5468; margin-top:4px;">מיצוי מידע חדש מתוך טקסט קיים.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CH 2 ========== -->
+    <section id="ch2" data-screen-label="פרק 02" style="scroll-margin-top:80px; padding:46px 0 16px;">
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; position:relative;">
+        <div aria-hidden="true" style="position:absolute; top:-30px; left:0; font-family:'Frank Ruhl Libre',serif; font-size:140px; font-weight:800; line-height:.8; color:transparent; -webkit-text-stroke:1.5px #d2d8ee; z-index:0; pointer-events:none;">02</div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:inline-flex; align-items:center; gap:10px;"><span style="width:30px; height:2px; border-radius:2px; background:linear-gradient(90deg,#4d63e6,#8b5cf0);"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:2px; color:#4d63e6;">פרק 02 · יום 1</span></div>
+          <h2 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:clamp(30px,4vw,46px); margin-top:10px; line-height:1.1;">עקרונות לכתיבת Prompt</h2>
+          <p style="color:#4a5468; font-size:18px; margin-top:8px; max-width:600px; text-wrap:pretty;">חמישה עקרונות שהופכים בקשה כללית לתוצר מדויק. לחצו לפתיחה ולדוגמאות.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:26px; display:flex; flex-direction:column; gap:14px;">
+        <div data-reveal data-lift style="opacity:0; transform:translateY(24px); transition:opacity .6s, transform .6s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:20px; box-shadow:0 5px 26px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:20px 24px; cursor:pointer; user-select:none;"><span style="width:36px; height:36px; flex:none; border-radius:11px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:17px;">1</span><span style="font-size:19px; font-weight:700; flex:1;">ניסוח ברור ומפורט</span><span data-chev style="color:#9aa2bd; transition:transform .35s; font-size:18px;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s ease;"><div style="padding:0 24px 24px;"><p style="color:#4a5468;">הניסוח משפיע ישירות על איכות התוצאה. במקום בקשה כללית — פרטו את המשימה ואת התוצר שאתם רוצים.</p><div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;"><div style="padding:14px 16px; border-radius:14px; background:#fdf3f3; border:1px solid #f3dada;"><div style="font-size:12px; font-weight:700; color:#c0566a;">במקום ✕</div><div style="font-size:14px; color:#4a5468; margin-top:4px;">"סכם את המסמך"</div></div><div style="padding:14px 16px; border-radius:14px; background:#f1f8f3; border:1px solid #d6ebdd;"><div style="font-size:12px; font-weight:700; color:#2e8a5a;">כתבו ✓</div><div style="font-size:14px; color:#34405c; margin-top:4px;">"סכם את המסמך כך שיודגשו תובנות מרכזיות בדגש תפעולי, שדרכן נוכל לקבל החלטה על בחירת הספק"</div></div></div></div></div>
+        </div>
+
+        <div data-reveal data-lift style="opacity:0; transform:translateY(24px); transition:opacity .6s, transform .6s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:20px; box-shadow:0 5px 26px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:20px 24px; cursor:pointer; user-select:none;"><span style="width:36px; height:36px; flex:none; border-radius:11px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:17px;">2</span><span style="font-size:19px; font-weight:700; flex:1;">הקשר ושכבות מידע</span><span data-chev style="color:#9aa2bd; transition:transform .35s; font-size:18px;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s ease;"><div style="padding:0 24px 24px;"><p style="color:#4a5468;">ה-AI לא מנחש למה אתם מתכוונים. ככל שתספקו יותר הקשר — מטרה, קהל והשימוש בתוצר — התשובות יהיו טובות יותר.</p><div style="margin-top:16px; padding:14px 16px; border-radius:14px; background:#f1f8f3; border:1px solid #d6ebdd;"><div style="font-size:12px; font-weight:700; color:#2e8a5a;">מוסיפים הקשר ✓</div><div style="font-size:14px; color:#34405c; margin-top:4px;">"לצורך התכוננות לישיבה הקרובה שלי עם מנהלת מחלקת חינוך, סכם את המסמך כך ש…"</div></div></div></div>
+        </div>
+
+        <div data-reveal data-lift style="opacity:0; transform:translateY(24px); transition:opacity .6s, transform .6s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:20px; box-shadow:0 5px 26px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:20px 24px; cursor:pointer; user-select:none;"><span style="width:36px; height:36px; flex:none; border-radius:11px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:17px;">3</span><span style="font-size:19px; font-weight:700; flex:1;">הגדרת תפקיד</span><span data-chev style="color:#9aa2bd; transition:transform .35s; font-size:18px;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s ease;"><div style="padding:0 24px 24px;"><p style="color:#4a5468;">ה-AI מחליף כובעים בקלות. ברגע שתגדירו לו תפקיד, הוא יתאים את הטון, אוצר המילים והזווית המקצועית למשימה.</p><div style="margin-top:16px; padding:14px 16px; border-radius:14px; background:#f1f8f3; border:1px solid #d6ebdd;"><div style="font-size:12px; font-weight:700; color:#2e8a5a;">מגדירים תפקיד ✓</div><div style="font-size:14px; color:#34405c; margin-top:4px;">"פעל כמומחה לבניית תוכניות חינוכיות שבקיא היטב בתקנות משרד החינוך הישראלי…"</div></div></div></div>
+        </div>
+
+        <div data-reveal data-lift style="opacity:0; transform:translateY(24px); transition:opacity .6s, transform .6s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:20px; box-shadow:0 5px 26px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:20px 24px; cursor:pointer; user-select:none;"><span style="width:36px; height:36px; flex:none; border-radius:11px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:17px;">4</span><span style="font-size:19px; font-weight:700; flex:1;">סגנון ופורמט</span><span data-chev style="color:#9aa2bd; transition:transform .35s; font-size:18px;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s ease;"><div style="padding:0 24px 24px;"><p style="color:#4a5468;">אם יש סגנון או פורמט שאתם רוצים — תנו דוגמאות והנחיות ברורות. טיפ: אם יש לכם טקסט קיים, אפשר לבקש מה-AI ללמוד ממנו את הסגנון.</p><div style="margin-top:16px; padding:14px 16px; border-radius:14px; background:#f1f8f3; border:1px solid #d6ebdd;"><div style="font-size:12px; font-weight:700; color:#2e8a5a;">קובעים פורמט ✓</div><div style="font-size:14px; color:#34405c; margin-top:4px;">"…סכם את המסמך בשפה תמציתית וברורה, בנקודות, כך שיודגשו תובנות תפעוליות"</div></div></div></div>
+        </div>
+
+        <div data-reveal data-lift style="opacity:0; transform:translateY(24px); transition:opacity .6s, transform .6s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:20px; box-shadow:0 5px 26px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:20px 24px; cursor:pointer; user-select:none;"><span style="width:36px; height:36px; flex:none; border-radius:11px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:17px;">5</span><span style="font-size:19px; font-weight:700; flex:1;">חידוד ושיפור התשובות</span><span data-chev style="color:#9aa2bd; transition:transform .35s; font-size:18px;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s ease;"><div style="padding:0 24px 24px;"><p style="color:#4a5468;">אל תסתפקו בתשובה הראשונה — בקשו שיפורים. זה דיאלוג, לא בקשה חד-פעמית.</p><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(185px,1fr)); gap:12px; margin-top:16px;"><div style="padding:14px 16px; border-radius:14px; background:#f6f7fc; border:1px solid #eceef6;"><div style="font-weight:700; color:#4d63e6; font-size:14px;">שינוי טון</div><div style="font-size:13px; color:#4a5468; margin-top:4px;">"שנה לטון חם ובגובה העיניים"</div></div><div style="padding:14px 16px; border-radius:14px; background:#f6f7fc; border:1px solid #eceef6;"><div style="font-weight:700; color:#4d63e6; font-size:14px;">אופטימיזציה</div><div style="font-size:13px; color:#4a5468; margin-top:4px;">"קצר ב-50% וסדר בנקודות"</div></div><div style="padding:14px 16px; border-radius:14px; background:#f6f7fc; border:1px solid #eceef6;"><div style="font-weight:700; color:#4d63e6; font-size:14px;">חלופות</div><div style="font-size:13px; color:#4a5468; margin-top:4px;">"תן 3 אפשרויות שונות לכותרת"</div></div></div></div></div>
+        </div>
+      </div>
+
+      <!-- WINNING PROMPT BUILDER -->
+      <div data-reveal data-builder data-pb-empty="מלאו את השדות למעלה — והפרומפט יופיע כאן…" style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; margin-top:26px; background:#fff; border:1px solid #e6e9f2; border-radius:28px; box-shadow:0 12px 44px rgba(22,28,45,.09); padding:34px;">
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;"><h3 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:27px;">בנו פרומפט מנצח</h3><span style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:rgba(77,99,230,.1); color:#4d63e6; font-size:13px; font-weight:700;"><span style="width:7px; height:7px; border-radius:50%; background:#4d63e6; animation:softPulse 1.6s infinite;"></span>תרגול חי</span></div>
+        <p style="color:#4a5468; margin-top:8px;">חברו בין העקרונות. מלאו את השדות הרלוונטיים — לא חייבים את כולם — והפרומפט נבנה למטה בזמן אמת.</p>
+        <div style="margin-top:18px; padding:16px 18px; border-radius:16px; background:#f6f7fc; border:1px dashed #c8d0ea;"><div style="font-size:12px; font-weight:700; color:#717a90; letter-spacing:.3px;">דוגמה לפרומפט טוב</div><div style="font-size:14px; color:#34405c; margin-top:6px; line-height:1.7;">"פעל כמומחה לבניית תוכניות חינוכיות הבקיא בתקנות משרד החינוך. לצורך התכוננות לישיבה עם מנהלת מחלקת החינוך, סכם את המסמך בשפה תמציתית וברורה, כך שיודגשו תובנות תפעוליות מרכזיות לקבלת החלטה."</div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px;">
+          <div><label style="font-size:13px; font-weight:700; color:#34405c;">תפקיד</label><input data-pb data-pblabel="תפקיד" type="text" placeholder="פעל כ… (יועץ ארגוני)" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
+          <div><label style="font-size:13px; font-weight:700; color:#34405c;">הקשר וקהל יעד</label><input data-pb data-pblabel="הקשר וקהל יעד" type="text" placeholder="לצורך… עבור…" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
+          <div><label style="font-size:13px; font-weight:700; color:#34405c;">המשימה</label><input data-pb data-pblabel="המשימה" type="text" placeholder="מה בדיוק לעשות?" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
+          <div><label style="font-size:13px; font-weight:700; color:#34405c;">סגנון ופורמט</label><input data-pb data-pblabel="סגנון ופורמט" type="text" placeholder="אורך, טון ומבנה" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
+        </div>
+        <div style="margin-top:18px; background:linear-gradient(135deg,#1c2340,#2a2f5c); border-radius:18px; padding:20px 22px;"><div style="display:flex; align-items:center; justify-content:space-between; gap:12px;"><div style="font-size:12px; font-weight:700; color:#aeb6d8; letter-spacing:.3px;">הפרומפט שלכם</div><button data-pb-copy style="border:none; cursor:pointer; padding:7px 14px; border-radius:999px; background:rgba(255,255,255,.12); color:#fff; font-family:'Assistant',sans-serif; font-size:13px; font-weight:600;">העתקה</button></div><div data-pb-out style="margin-top:10px; color:#e8ebf7; font-size:15px; line-height:1.8; white-space:pre-wrap; min-height:24px;"></div></div>
+      </div>
+
+      <!-- PRACTICE -->
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s;">
+        <div data-checklist="ch2-practice" data-lift style="margin-top:22px; background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 5px 26px rgba(22,28,45,.05); padding:28px; transition:transform .3s, box-shadow .3s;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:13px; font-weight:700; color:#8b5cf0; letter-spacing:.3px;">תרגול מעשי</span><h3 style="font-size:20px; font-weight:700;">ניסוח Prompt</h3></div><span data-progress style="font-size:14px; font-weight:700; color:#4d63e6; background:rgba(77,99,230,.1); padding:5px 12px; border-radius:999px;">0 / 4</span></div>
+          <p style="color:#717a90; font-size:14px; margin-top:6px;">סמנו את השלבים שביצעתם · נשמר אוטומטית</p>
+          <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+            <div data-item="i1" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">בחרו 2 אתגרים טקסטואליים מהעבודה</span></div>
+            <div data-item="i2" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">השתמשו בכלי AI לייצר תוכן עבורם</span></div>
+            <div data-item="i3" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">קראו, ערכו ושפרו — הוסיפו את הסגנון האישי שלכם</span></div>
+            <div data-item="i4" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">שתפו וקבלו פידבק מעמיתים</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CH 3 ========== -->
+    <section id="ch3" data-screen-label="פרק 03" style="scroll-margin-top:80px; padding:46px 0 16px;">
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; position:relative;">
+        <div aria-hidden="true" style="position:absolute; top:-30px; left:0; font-family:'Frank Ruhl Libre',serif; font-size:140px; font-weight:800; line-height:.8; color:transparent; -webkit-text-stroke:1.5px #d2d8ee; z-index:0; pointer-events:none;">03</div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:inline-flex; align-items:center; gap:10px;"><span style="width:30px; height:2px; border-radius:2px; background:linear-gradient(90deg,#4d63e6,#8b5cf0);"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:2px; color:#4d63e6;">פרק 03 · יום 1</span></div>
+          <h2 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:clamp(30px,4vw,46px); margin-top:10px; line-height:1.1;">החלטות מבוססות נתונים</h2>
+          <p style="color:#4a5468; font-size:18px; margin-top:8px; max-width:600px; text-wrap:pretty;">תהליך מסודר ב-6 שלבים — דרך מקרה הבוחן של מוקד הפניות לתושב.</p>
+        </div>
+      </div>
+
+      <!-- case + funnel -->
+      <div data-reveal data-funnel data-lift style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s, box-shadow .3s; margin-top:28px; background:linear-gradient(135deg,#1c2340,#2a2f5c); border-radius:28px; padding:34px; color:#fff; position:relative; overflow:hidden;">
+        <div style="position:absolute; bottom:-80px; left:-50px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(77,99,230,.4), transparent 70%);"></div>
+        <div style="position:relative; display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px;">
+          <div style="flex:1; min-width:220px;">
+            <div style="font-size:13px; font-weight:700; color:#aeb6d8; letter-spacing:.6px;">מקרה בוחן · מוקד פניות לתושב</div>
+            <div style="display:flex; align-items:baseline; gap:12px; margin-top:10px;"><span style="font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:clamp(56px,9vw,90px); line-height:.9; background:linear-gradient(135deg,#9db0ff,#c4a9ff); -webkit-background-clip:text; background-clip:text; color:transparent;">45%</span><span style="font-size:17px; color:#cfd5ee; max-width:200px;">בלבד מהפניות מגיעות לכדי פתרון</span></div>
+            <p style="font-size:15px; color:#aeb6d8; margin-top:12px; max-width:300px;">לאורך המשפך, היכן בדיוק "נופלים" האחוזים? שם נמצא הכאב.</p>
+          </div>
+          <!-- mini funnel -->
+          <div style="flex:1; min-width:280px;">
+            <div style="display:flex; align-items:flex-end; gap:10px; height:180px;">
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;"><div style="font-size:13px; font-weight:700; color:#dfe4f7;">100%</div><div data-bar-h="100%" style="width:100%; height:0; background:linear-gradient(180deg,#6b7ff0,#4d63e6); border-radius:10px 10px 0 0; transition:height 1s cubic-bezier(.2,.7,.2,1); margin-top:6px;"></div><div style="font-size:11px; color:#aeb6d8; margin-top:8px; text-align:center; line-height:1.3;">פנייה<br>מתקבלת</div></div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;"><div style="font-size:13px; font-weight:700; color:#dfe4f7;">95%</div><div data-bar-h="92%" style="width:100%; height:0; background:linear-gradient(180deg,#6b7ff0,#4d63e6); border-radius:10px 10px 0 0; transition:height 1s cubic-bezier(.2,.7,.2,1) .08s; margin-top:6px;"></div><div style="font-size:11px; color:#aeb6d8; margin-top:8px; text-align:center; line-height:1.3;">נקלטת<br>אצל נציג</div></div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;"><div style="font-size:13px; font-weight:700; color:#dfe4f7;">90%</div><div data-bar-h="86%" style="width:100%; height:0; background:linear-gradient(180deg,#6b7ff0,#4d63e6); border-radius:10px 10px 0 0; transition:height 1s cubic-bezier(.2,.7,.2,1) .16s; margin-top:6px;"></div><div style="font-size:11px; color:#aeb6d8; margin-top:8px; text-align:center; line-height:1.3;">מועברת<br>למחלקה</div></div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;"><div style="font-size:13px; font-weight:700; color:#dfe4f7;">50%</div><div data-bar-h="48%" style="width:100%; height:0; background:linear-gradient(180deg,#6b7ff0,#4d63e6); border-radius:10px 10px 0 0; transition:height 1s cubic-bezier(.2,.7,.2,1) .24s; margin-top:6px;"></div><div style="font-size:11px; color:#aeb6d8; margin-top:8px; text-align:center; line-height:1.3;">מטופלת<br>בשטח</div></div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;"><div style="font-size:13px; font-weight:800; color:#c4a9ff;">45%</div><div data-bar-h="43%" style="width:100%; height:0; background:linear-gradient(180deg,#a98cf5,#8b5cf0); border-radius:10px 10px 0 0; box-shadow:0 0 18px rgba(139,92,240,.6); transition:height 1s cubic-bezier(.2,.7,.2,1) .32s; margin-top:6px;"></div><div style="font-size:11px; color:#c4a9ff; font-weight:700; margin-top:8px; text-align:center; line-height:1.3;">נסגרת<br>בהצלחה</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 steps accordion -->
+      <div style="margin-top:22px; display:flex; flex-direction:column; gap:12px;">
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">01</span><span style="font-size:18px; font-weight:700; flex:1;">הבנת הבעיה העסקית</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">בעיה עסקית היא פער בין המצב הרצוי למצוי. כדי להגדיר אותה נכון: זיהוי הפער ← הצגת ההשלכות ← ניסוח הבעיה והשאלה ← שאלת ה-WHY.<div style="margin-top:12px; padding:12px 14px; border-radius:12px; background:#f6f7fc; border-inline-start:3px solid #4d63e6; font-size:14px; color:#34405c;"><b>השאלה העסקית בבוחן:</b> האם שיפור הטיפול בפניות התושב יכול להפחית הגירה שלילית של אוכלוסייה איכותית מהעיר?</div></div></div>
+        </div>
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">02</span><span style="font-size:18px; font-weight:700; flex:1;">הגדרת יעדים</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">יעדים מספקים פוקוס, שקיפות ומחויבות, ונמדדים באמצעות KPIs. KPI טוב הוא <b>SMART</b>: פשוט, מדיד, בר-ביצוע, רלוונטי, תחום בזמן ותואם.<div style="margin-top:12px; padding:12px 14px; border-radius:12px; background:#f1f8f3; border-inline-start:3px solid #2e8a5a; font-size:14px; color:#34405c;"><b>היעד שנבחר:</b> הגדלת אחוז פניות התושב שנסגרות בהצלחה ל-60% ברבעון הקרוב.</div></div></div>
+        </div>
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">03</span><span style="font-size:18px; font-weight:700; flex:1;">העלאת השערה</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">ממפים את משפך השירות (תושב מצלצל ← נציג ← מחלקה מטפלת ← סגירה) ומאתרים היכן "נופלים" האחוזים. השערות אפשריות: עומס על המחלקה, דיווחי סרק, חוסר כלים/ידע, אי-איתור מיקום הליקוי, או משיכת קהל לא נכון לטופס.</div></div>
+        </div>
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">04</span><span style="font-size:18px; font-weight:700; flex:1;">זיהוי נתונים וביסוס השערה</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">אוספים נתונים ממערכות (ERP/CRM) כדי לאשש או להפריך. בבוחן התברר שאין עומס ואין דיווחי סרק נרחבים — אבל סקר חשף שב-<b>25%</b> מהמקרים המיקום מגיע ככתובת בלבד ואינו מאפשר איתור מדויק.<div style="margin-top:14px; padding:14px 16px; border-radius:12px; background:#f6f7fc; border:1px solid #eceef6;"><div style="font-weight:700; color:#4d63e6; font-size:14px; margin-bottom:8px;">כלי: 5 ה-"למה"</div><ol style="margin:0; padding-inline-start:20px; font-size:14px; color:#34405c; line-height:1.9;"><li>למה הפנייה לא טופלה? המחלקה לא איתרה את מקום הליקוי.</li><li>למה לא איתרה? דיווח המיקום לא ספציפי מספיק.</li><li>למה לא ספציפי? הדיווח מכיל כתובת בלבד.</li><li>למה רק כתובת? כך מוגדר ה-API בין המערכות.</li><li>למה? איש לא העריך שכתובת אינה ציון מיקום מספיק.</li></ol><div style="margin-top:8px; font-size:13px; color:#717a90;">→ פתרון אפשרי: סימון מיקום על מפה ו/או שדה הערות בדיווח.</div></div></div></div>
+        </div>
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">05</span><span style="font-size:18px; font-weight:700; flex:1;">בחירת חלופה וביצוע אנליזה</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">מגבשים חלופות פתרון — סימון נקודה על מפה, שדה הערות, טלפון המדווח, דירוג טופס הדיווח — ובוחנים אותן במבחן <b>A/B</b> מבוקר (A = המצב הקיים, B = הווריאציה החדשה).</div></div>
+        </div>
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
+          <div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">06</span><span style="font-size:18px; font-weight:700; flex:1;">הסקת מסקנות</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">מנתחים את תוצאות האנליזה ומחליטים. חשוב לזכור — זהו תהליך <b>מעגלי ואינסופי</b>: תוצאות החלטה אחת הן הבסיס לתהליך ההחלטה הבא.</div></div>
+        </div>
+      </div>
+
+      <!-- PRACTICE -->
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s;">
+        <div data-checklist="ch3-practice" data-lift style="margin-top:22px; background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 5px 26px rgba(22,28,45,.05); padding:28px; transition:transform .3s, box-shadow .3s;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:13px; font-weight:700; color:#8b5cf0; letter-spacing:.3px;">תרגול מעשי</span><h3 style="font-size:20px; font-weight:700;">גיבוש וביסוס השערה</h3></div><span data-progress style="font-size:14px; font-weight:700; color:#4d63e6; background:rgba(77,99,230,.1); padding:5px 12px; border-radius:999px;">0 / 4</span></div>
+          <p style="color:#717a90; font-size:14px; margin-top:6px;">על מקרה הבוחן שלכם · נשמר אוטומטית</p>
+          <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+            <div data-item="i1" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">העלו מספר השערות לנקודת המכאוב שמונעת השגת היעד</span></div>
+            <div data-item="i2" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">זהו אילו נתונים זמינים יכולים לאשש/להפריך כל השערה</span></div>
+            <div data-item="i3" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">אספו ונתחו את הנתונים (כלי AI, מערכות ארגוניות)</span></div>
+            <div data-item="i4" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">הגיעו לשורש הסיבה בעזרת שיטת "5 הלמה"</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CH 4 ========== -->
+    <section id="ch4" data-screen-label="פרק 04" style="scroll-margin-top:80px; padding:46px 0 16px;">
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; position:relative;">
+        <div aria-hidden="true" style="position:absolute; top:-30px; left:0; font-family:'Frank Ruhl Libre',serif; font-size:140px; font-weight:800; line-height:.8; color:transparent; -webkit-text-stroke:1.5px #d2d8ee; z-index:0; pointer-events:none;">04</div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:inline-flex; align-items:center; gap:10px;"><span style="width:30px; height:2px; border-radius:2px; background:linear-gradient(90deg,#4d63e6,#8b5cf0);"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:2px; color:#4d63e6;">פרק 04 · יום 2</span></div>
+          <h2 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:clamp(30px,4vw,46px); margin-top:10px; line-height:1.1;">כלי AI לניתוח נתונים</h2>
+          <p style="color:#4a5468; font-size:18px; margin-top:8px; max-width:600px; text-wrap:pretty;">לנתח, להבין ולחלץ תובנות מנתונים — בלי לכתוב נוסחאות ובלי להיות מומחי אקסל.</p>
+        </div>
+      </div>
+
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; margin-top:26px;">
+        <div data-lift style="background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 6px 30px rgba(22,28,45,.06); padding:30px; transition:transform .3s, box-shadow .3s;">
+          <h3 style="font-size:21px; font-weight:700;">מה הכלי (Claude · Copilot · Quadratic) יודע לעשות?</h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin-top:18px;">
+            <div style="padding:20px; border-radius:18px; background:linear-gradient(160deg,#f7f8fd,#eef1fb); border:1px solid #e8ebf6;"><div style="font-weight:700; color:#4d63e6;">אשף ויזואליזציה</div><div style="font-size:14px; color:#4a5468; margin-top:5px;">הופך שורות נתונים לגרפים ותרשימים בלחיצת כפתור.</div></div>
+            <div style="padding:20px; border-radius:18px; background:linear-gradient(160deg,#f7f8fd,#eef1fb); border:1px solid #e8ebf6;"><div style="font-weight:700; color:#4d63e6;">מנקה וצייד חריגות</div><div style="font-size:14px; color:#4a5468; margin-top:5px;">מארגן דאטה מלוכלך ומאתר שגיאות נסתרות.</div></div>
+            <div style="padding:20px; border-radius:18px; background:linear-gradient(160deg,#f7f8fd,#eef1fb); border:1px solid #e8ebf6;"><div style="font-weight:700; color:#4d63e6;">אנליסט שותף</div><div style="font-size:14px; color:#4a5468; margin-top:5px;">מציף מגמות ועוזר להבין אילו שאלות כדאי לשאול.</div></div>
+            <div style="padding:20px; border-radius:18px; background:linear-gradient(160deg,#f7f8fd,#eef1fb); border:1px solid #e8ebf6;"><div style="font-weight:700; color:#4d63e6;">תשובות עסקיות</div><div style="font-size:14px; color:#4a5468; margin-top:5px;">מעבר משאילתות טכניות לפתרון בעיות בשפה טבעית.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal data-lift style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s, box-shadow .3s; margin-top:18px; background:linear-gradient(135deg,#1c2340,#2a2f5c); border-radius:24px; padding:32px; color:#fff;">
+        <h3 style="font-size:20px; font-weight:700;">הנדסת הפרומפט הנכון לניתוח נתונים</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-top:18px;">
+          <div style="padding:18px; border-radius:14px; background:rgba(255,255,255,.07);"><div style="font-family:'Frank Ruhl Libre',serif; font-size:22px; font-weight:800; color:#7d8de0;">01</div><div style="font-weight:700; color:#dfe4f7; margin-top:4px;">פרקו בקשות מורכבות</div></div>
+          <div style="padding:18px; border-radius:14px; background:rgba(255,255,255,.07);"><div style="font-family:'Frank Ruhl Libre',serif; font-size:22px; font-weight:800; color:#7d8de0;">02</div><div style="font-weight:700; color:#dfe4f7; margin-top:4px;">פשטות ובהירות עם הקשר</div></div>
+          <div style="padding:18px; border-radius:14px; background:rgba(255,255,255,.07);"><div style="font-family:'Frank Ruhl Libre',serif; font-size:22px; font-weight:800; color:#7d8de0;">03</div><div style="font-weight:700; color:#dfe4f7; margin-top:4px;">התייחסו לתובנות, לא רק לנתונים</div></div>
+          <div style="padding:18px; border-radius:14px; background:rgba(255,255,255,.07);"><div style="font-family:'Frank Ruhl Libre',serif; font-size:22px; font-weight:800; color:#7d8de0;">04</div><div style="font-weight:700; color:#dfe4f7; margin-top:4px;">בקשו פעולות, לא רק תיאור</div></div>
+        </div>
+      </div>
+
+      <!-- PRACTICE -->
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s;">
+        <div data-checklist="ch4-practice" data-lift style="margin-top:22px; background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 5px 26px rgba(22,28,45,.05); padding:28px; transition:transform .3s, box-shadow .3s;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:13px; font-weight:700; color:#8b5cf0; letter-spacing:.3px;">תרגול מעשי</span><h3 style="font-size:20px; font-weight:700;">עבודה עם קבצי אקסל</h3></div><span data-progress style="font-size:14px; font-weight:700; color:#4d63e6; background:rgba(77,99,230,.1); padding:5px 12px; border-radius:999px;">0 / 4</span></div>
+          <p style="color:#717a90; font-size:14px; margin-top:6px;">בחרו קובץ שאתם עובדים איתו לעיתים קרובות · נשמר אוטומטית</p>
+          <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+            <div data-item="i1" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">בחרו קובץ/שני קבצי אקסל רלוונטיים לעבודה</span></div>
+            <div data-item="i2" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">בחרו 3 שאלות עסקיות שתרצו לענות מהנתונים</span></div>
+            <div data-item="i3" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">בקשו ניתוח, זיהוי שגיאות, גרפים וזיהוי מגמות</span></div>
+            <div data-item="i4" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">שתפו וקבלו פידבק מעמיתים</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CH 5 ========== -->
+    <section id="ch5" data-screen-label="פרק 05" style="scroll-margin-top:80px; padding:46px 0 16px;">
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; position:relative;">
+        <div aria-hidden="true" style="position:absolute; top:-30px; left:0; font-family:'Frank Ruhl Libre',serif; font-size:140px; font-weight:800; line-height:.8; color:transparent; -webkit-text-stroke:1.5px #d2d8ee; z-index:0; pointer-events:none;">05</div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:inline-flex; align-items:center; gap:10px;"><span style="width:30px; height:2px; border-radius:2px; background:linear-gradient(90deg,#4d63e6,#8b5cf0);"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:2px; color:#4d63e6;">פרק 05 · יום 2</span></div>
+          <h2 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:clamp(30px,4vw,46px); margin-top:10px; line-height:1.1;">ויזואליזציה של נתונים</h2>
+          <p style="color:#4a5468; font-size:18px; margin-top:8px; max-width:600px; text-wrap:pretty;">ייצוג גרפי של מידע — הדרך הברורה והמדויקת ביותר לספר את הסיפור שמאחורי הנתונים.</p>
+        </div>
+      </div>
+
+      <!-- preattentive 6s demo -->
+      <div data-reveal data-lift style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s, box-shadow .3s; margin-top:26px; background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 6px 30px rgba(22,28,45,.06); padding:30px; transition:transform .3s, box-shadow .3s;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+          <div><h3 style="font-size:21px; font-weight:700;">כמה פעמים מופיעה הספרה 6?</h3><p style="color:#4a5468; font-size:14.5px; margin-top:4px; max-width:440px;">נסו לספור במבט. עכשיו לחצו — וראו כמה מהר המוח קולט כשמוסיפים <b>ערוץ חזותי</b> אחד (צבע).</p></div>
+          <button data-six-toggle style="border:none; cursor:pointer; padding:11px 20px; border-radius:999px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; font-family:'Assistant',sans-serif; font-size:14px; font-weight:700; box-shadow:0 6px 18px rgba(77,99,230,.32); white-space:nowrap;">הדגישו את כל ה־6</button>
+        </div>
+        <div data-six-grid dir="ltr" style="margin-top:20px; display:grid; grid-template-columns:repeat(13,1fr); gap:6px; max-width:560px;"></div>
+      </div>
+
+      <div data-reveal data-lift style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s, box-shadow .3s; margin-top:18px; background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 6px 30px rgba(22,28,45,.06); padding:30px; transition:transform .3s, box-shadow .3s;">
+        <h3 style="font-size:21px; font-weight:700;">למה זה עובד?</h3>
+        <p style="color:#4a5468; margin-top:8px;">הויזואליזציה מתקשרת רעיונות במהירות ובאופן אינטואיטיבי, עוזרת להבין הקשר, מאפשרת לזהות דפוסים בקלות ומגדילה את מעורבות הקהל.</p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:18px;">
+          <div style="padding:16px; border-radius:14px; background:#f6f7fc; border:1px solid #eceef6; font-weight:600; color:#34405c; font-size:14px;">מהירות תפיסה</div>
+          <div style="padding:16px; border-radius:14px; background:#f6f7fc; border:1px solid #eceef6; font-weight:600; color:#34405c; font-size:14px;">זיהוי דפוסים</div>
+          <div style="padding:16px; border-radius:14px; background:#f6f7fc; border:1px solid #eceef6; font-weight:600; color:#34405c; font-size:14px;">הבנת הקשר</div>
+          <div style="padding:16px; border-radius:14px; background:#f6f7fc; border:1px solid #eceef6; font-weight:600; color:#34405c; font-size:14px;">מעורבות קהל</div>
+        </div>
+      </div>
+
+      <h3 data-reveal style="opacity:0; transform:translateY(20px); transition:opacity .6s, transform .6s; margin-top:30px; font-family:'Frank Ruhl Libre',serif; font-size:25px; font-weight:700;">ששת העקרונות</h3>
+      <div style="margin-top:16px; display:flex; flex-direction:column; gap:12px;">
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;"><div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="width:32px; height:32px; flex:none; border-radius:10px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">1</span><span style="font-size:18px; font-weight:700; flex:1;">תובנות לפני הוויזואליזציה</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div><div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">לפני שנוגעים בתרשים — סכמו מהן התובנות המרכזיות שאתם רוצים להעביר. התרשים משרת את המסר, לא להפך.</div></div></div>
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;"><div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="width:32px; height:32px; flex:none; border-radius:10px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">2</span><span style="font-size:18px; font-weight:700; flex:1;">הסירו את הרעש החזותי</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div><div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">הורידו את כל האלמנטים החזותיים, ואז "בחרו בקפידה" אילו מהם להחזיר — רק אם הם תומכים בתובנה. צירים, רשתות וצבעים מיותרים מסיחים את הדעת.</div></div></div>
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;"><div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="width:32px; height:32px; flex:none; border-radius:10px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">3</span><span style="font-size:18px; font-weight:700; flex:1;">פצלו / אחדו את הסיפור</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div><div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">האם אתם מנסים לספר יותר מדי או מעט מדי בתרשים אחד? פצלו לכמה גרפים או אחדו לאחד — לפי מה שמשרת את המסר.</div></div></div>
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;"><div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="width:32px; height:32px; flex:none; border-radius:10px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">4</span><span style="font-size:18px; font-weight:700; flex:1;">בחרו את התרשים המתאים</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div><div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">האם התרשים עוזר להעביר את המסר הנכון? היעזרו ב<b>דיאגרמת אבלה (Abela)</b> לבחירת הגרף — לפי מה שאתם רוצים להראות: השוואה, התפלגות, הרכב או קשר. (ושכחו מגרפים תלת-מימדיים…)<a data-openimg href="assets/abela-diagram.png" target="_blank" rel="noopener" style="display:block; margin-top:16px; border-radius:14px; overflow:hidden; border:1px solid #e6e9f2; box-shadow:0 5px 20px rgba(22,28,45,.08); cursor:zoom-in; position:relative;"><img src="assets/abela-diagram.png" alt="דיאגרמת אבלה לבחירת הגרף המתאים" style="display:block; width:100%; height:auto;"><span style="position:absolute; bottom:10px; inset-inline-start:10px; background:rgba(28,35,64,.84); color:#fff; font-size:12px; font-weight:600; padding:6px 12px; border-radius:999px;">דיאגרמת אבלה · לחצו לפתיחה במסך מלא ↗</span></a></div></div></div>
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;"><div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="width:32px; height:32px; flex:none; border-radius:10px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">5</span><span style="font-size:18px; font-weight:700; flex:1;">שאלו על מרווחי הזמן</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div><div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">האם אתם מציגים את מרווחי הזמן שמשרתים את המסר בצורה הטובה ביותר? אתגרו את עצמכם ואל תחששו לשנות אותם.</div></div></div>
+        <div data-reveal data-lift style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;"><div data-acc style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="width:32px; height:32px; flex:none; border-radius:10px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">6</span><span style="font-size:18px; font-weight:700; flex:1;">בחרו את הצבעים הנכונים (הדגשה)</span><span data-chev style="color:#9aa2bd; transition:transform .35s;">▾</span></div><div data-acc-body style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">האם הצבעים מכוונים את תשומת הלב לנקודות המרכזיות? קחו בחשבון פסיכולוגיית צבעים, צבעי המותג, ניגודיות, ושמרו על שפת צבעים עקבית — צבע אחד בולט להדגשה עושה את ההבדל.<a data-openimg href="assets/color-psychology.webp" target="_blank" rel="noopener" style="display:block; margin-top:16px; border-radius:14px; overflow:hidden; border:1px solid #e6e9f2; box-shadow:0 5px 20px rgba(22,28,45,.08); cursor:zoom-in; position:relative;"><img src="assets/color-psychology.webp" alt="פסיכולוגיית הצבעים — משמעות רגשית של כל צבע" style="display:block; width:100%; height:auto;"><span style="position:absolute; bottom:10px; inset-inline-start:10px; background:rgba(28,35,64,.84); color:#fff; font-size:12px; font-weight:600; padding:6px 12px; border-radius:999px;">פסיכולוגיית הצבעים · לחצו לפתיחה במסך מלא ↗</span></a></div></div></div>
+      </div>
+
+      <!-- PRACTICE -->
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s;">
+        <div data-checklist="ch5-practice" data-lift style="margin-top:22px; background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 5px 26px rgba(22,28,45,.05); padding:28px; transition:transform .3s, box-shadow .3s;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:13px; font-weight:700; color:#8b5cf0; letter-spacing:.3px;">תרגול מסכם</span><h3 style="font-size:20px; font-weight:700;">ממספרים למשמעות</h3></div><span data-progress style="font-size:14px; font-weight:700; color:#4d63e6; background:rgba(77,99,230,.1); padding:5px 12px; border-radius:999px;">0 / 4</span></div>
+          <p style="color:#717a90; font-size:14px; margin-top:6px;">שפרו את הגרפים שלכם כך שיעבירו את התובנה המרכזית · נשמר אוטומטית</p>
+          <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+            <div data-item="i1" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">נסחו את התובנה המרכזית שהגרף צריך להעביר</span></div>
+            <div data-item="i2" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">בחרו סוג תרשים מתאים והסירו רעש חזותי</span></div>
+            <div data-item="i3" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">השתמשו בצבע ובטקסט להדגשת המסר</span></div>
+            <div data-item="i4" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">שאלו: האם הגרף מספר סיפור וממקד את הצופה?</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CH 6 ========== -->
+    <section id="ch6" data-screen-label="פרק 06" style="scroll-margin-top:80px; padding:46px 0 16px;">
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; position:relative;">
+        <div aria-hidden="true" style="position:absolute; top:-30px; left:0; font-family:'Frank Ruhl Libre',serif; font-size:140px; font-weight:800; line-height:.8; color:transparent; -webkit-text-stroke:1.5px #d2d8ee; z-index:0; pointer-events:none;">06</div>
+        <div style="position:relative; z-index:1;">
+          <div style="display:inline-flex; align-items:center; gap:10px;"><span style="width:30px; height:2px; border-radius:2px; background:linear-gradient(90deg,#4d63e6,#8b5cf0);"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:2px; color:#4d63e6;">פרק 06 · יום 3</span></div>
+          <h2 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:clamp(30px,4vw,46px); margin-top:10px; line-height:1.1;">מצגות חכמות בעידן ה-AI</h2>
+          <p style="color:#4a5468; font-size:18px; margin-top:8px; max-width:600px; text-wrap:pretty;">מיומיים של עבודה למשימה של שעה וחצי — ומ"תסמונת הדף הריק" לטיוטה ראשונה שרק משפרים.</p>
+        </div>
+      </div>
+
+      <!-- transform stat -->
+      <div data-reveal data-lift style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s, box-shadow .3s; margin-top:26px; background:linear-gradient(135deg,#1c2340,#2a2f5c); border-radius:28px; padding:34px; color:#fff; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-70px; left:-40px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,240,.4), transparent 70%);"></div>
+        <div style="position:relative;">
+          <div style="font-size:13px; font-weight:700; color:#aeb6d8; letter-spacing:.6px;">השינוי התפיסתי</div>
+          <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:14px;">
+            <span style="font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:clamp(28px,5vw,46px);">יומיים עבודה</span>
+            <span style="font-size:30px; color:#8b5cf0;">→</span>
+            <span style="font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:clamp(28px,5vw,46px); background:linear-gradient(135deg,#9db0ff,#c4a9ff); -webkit-background-clip:text; background-clip:text; color:transparent;">שעה וחצי</span>
+          </div>
+          <p style="font-size:17px; color:#cfd5ee; margin-top:14px; max-width:640px;">הרעיון תחילה, העיצוב משרת, החוויה מדברת. אל תזרקו ל-AI פקודות — נהלו איתו שיחה ובריף מפורט, כמו עם אסיסטנט גאון.</p>
+        </div>
+      </div>
+
+      <!-- workflow -->
+      <div data-reveal data-lift style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s, box-shadow .3s; margin-top:18px; background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 6px 30px rgba(22,28,45,.06); padding:30px; transition:transform .3s, box-shadow .3s;">
+        <h3 style="font-size:21px; font-weight:700;">זרימת העבודה: ככה יוצרים מצגת בעידן החדש</h3>
+        <div style="display:flex; flex-wrap:wrap; align-items:stretch; gap:10px; margin-top:20px;">
+          <div style="flex:1; min-width:150px; padding:20px 16px; border-radius:18px; background:linear-gradient(160deg,#f7f8fd,#eef1fb); border:1px solid #e8ebf6;"><div style="font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:20px; color:#c3cae6;">01</div><div style="font-weight:700; color:#4d63e6; margin-top:4px;">NotebookLM</div><div style="font-size:13px; color:#4a5468; margin-top:5px;">פיצוח תוכן ובניית שלד מחומרי הגלם שלכם.</div></div>
+          <div style="display:flex; align-items:center; color:#c3cae6; font-size:22px;">←</div>
+          <div style="flex:1; min-width:150px; padding:20px 16px; border-radius:18px; background:linear-gradient(160deg,#f7f8fd,#eef1fb); border:1px solid #e8ebf6;"><div style="font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:20px; color:#c3cae6;">02</div><div style="font-weight:700; color:#4d63e6; margin-top:4px;">Master Prompt</div><div style="font-size:13px; color:#4a5468; margin-top:5px;">הנחיה מפורטת שמתרגמת את המסר למבנה שקפים.</div></div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px; margin-top:18px; margin-bottom:4px;"><span style="width:26px; height:2px; border-radius:2px; background:linear-gradient(90deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px; font-weight:700; color:#34405c;">מכאן — שתי דרכים להמשך:</span></div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-top:6px;">
+          <div style="padding:20px; border-radius:18px; background:#fff; border:1px solid #e6e9f2; box-shadow:0 4px 18px rgba(22,28,45,.05);"><div style="display:inline-flex; align-items:center; gap:8px; padding:4px 11px; border-radius:999px; background:rgba(77,99,230,.1); color:#4d63e6; font-size:12px; font-weight:700;">דרך א</div><div style="font-weight:700; color:#34405c; margin-top:10px;">עיצוב בסטודיו של NotebookLM</div><div style="font-size:13.5px; color:#4a5468; margin-top:5px;">ממשיכים את העיצוב וההפקה ישירות בתוך הסטודיו — בלי לצאת לכלי נוסף.</div></div>
+          <div style="padding:20px; border-radius:18px; background:#fff; border:1px solid #e6e9f2; box-shadow:0 4px 18px rgba(22,28,45,.05);"><div style="display:inline-flex; align-items:center; gap:8px; padding:4px 11px; border-radius:999px; background:rgba(139,92,240,.12); color:#8b5cf0; font-size:12px; font-weight:700;">דרך ב</div><div style="font-weight:700; color:#34405c; margin-top:10px;">כלי עיצוב חיצוני (Gamma)</div><div style="font-size:13.5px; color:#4a5468; margin-top:5px;">שולחים את ה-Master Prompt לכלי כמו Gamma — הפקה ועיצוב אוטומטי ועריכה גמישה.</div></div>
+        </div>
+        <div style="margin-top:14px; padding:16px 18px; border-radius:14px; background:#faf7fe; border:1px solid #ece3fb;"><div style="font-weight:700; color:#8b5cf0; font-size:14px;">העשרה</div><div style="font-size:14px; color:#4a5468; margin-top:4px;">מחוללי תמונות (DALL·E, Ideogram) ומחוללי דיאגרמות (Napkin) להמחשה ולשקפים מותאמים אישית.</div></div>
+      </div>
+
+      <!-- DESIGN-PROMPT BUILDER -->
+      <div data-reveal data-builder data-pb-empty="מלאו את השדות הרלוונטיים — והבריף לכלי העיצוב יופיע כאן…" style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; margin-top:18px; background:#fff; border:1px solid #e6e9f2; border-radius:28px; box-shadow:0 12px 44px rgba(22,28,45,.09); padding:34px;">
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;"><h3 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:27px;">בנו הנחיה לכלי העיצוב</h3><span style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:rgba(139,92,240,.12); color:#8b5cf0; font-size:13px; font-weight:700;"><span style="width:7px; height:7px; border-radius:50%; background:#8b5cf0; animation:softPulse 1.6s infinite;"></span>תרגול חי</span></div>
+        <p style="color:#4a5468; margin-top:8px;">בריף מפורט מפיק מצגת טובה יותר. מלאו את הרכיבים הרלוונטיים — והבריף נבנה למטה בזמן אמת.</p>
+        <div style="margin-top:18px; padding:16px 18px; border-radius:16px; background:#f6f7fc; border:1px dashed #c8d0ea;"><div style="font-size:12px; font-weight:700; color:#717a90; letter-spacing:.3px;">דוגמה לבריף טוב</div><div style="font-size:14px; color:#34405c; margin-top:6px; line-height:1.7;">"צור מצגת בת 10 שקפים עבור הנהלת הרשות, שמטרתה לאשר תקציב לשיפור המוקד. המסר המרכזי: שיפור איתור המיקום יעלה את אחוז הסגירה מ-45% ל-60%. בסס על נתוני הסקר המצורפים. סגנון נקי ומקצועי בגווני כחול: שקף שער, גוף ושקף סיכום."</div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px;">
+          <div><label style="font-size:13px; font-weight:700; color:#34405c;">קהל היעד</label><input data-pb data-pblabel="קהל היעד" type="text" placeholder="עבור מי המצגת?" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
+          <div><label style="font-size:13px; font-weight:700; color:#34405c;">ההקשר</label><input data-pb data-pblabel="ההקשר" type="text" placeholder="לאיזו מטרה / אירוע?" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
+          <div><label style="font-size:13px; font-weight:700; color:#34405c;">המסר המרכזי</label><input data-pb data-pblabel="המסר המרכזי" type="text" placeholder="מה הנקודה האחת שחייבת לעבור?" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
+          <div><label style="font-size:13px; font-weight:700; color:#34405c;">חומר גולמי</label><input data-pb data-pblabel="חומר גולמי" type="text" placeholder="על אילו מקורות להתבסס?" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
+          <div><label style="font-size:13px; font-weight:700; color:#34405c;">סגנון ונראות</label><input data-pb data-pblabel="סגנון ונראות" type="text" placeholder="צבעוניות, טון, אווירה" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
+          <div><label style="font-size:13px; font-weight:700; color:#34405c;">מבנה</label><input data-pb data-pblabel="מבנה" type="text" placeholder="כמה שקפים? אילו חלקים?" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
+        </div>
+        <div style="margin-top:18px; background:linear-gradient(135deg,#1c2340,#2a2f5c); border-radius:18px; padding:20px 22px;"><div style="display:flex; align-items:center; justify-content:space-between; gap:12px;"><div style="font-size:12px; font-weight:700; color:#aeb6d8; letter-spacing:.3px;">הבריף שלכם</div><button data-pb-copy style="border:none; cursor:pointer; padding:7px 14px; border-radius:999px; background:rgba(255,255,255,.12); color:#fff; font-family:'Assistant',sans-serif; font-size:13px; font-weight:600;">העתקה</button></div><div data-pb-out style="margin-top:10px; color:#e8ebf7; font-size:15px; line-height:1.8; white-space:pre-wrap; min-height:24px;"></div></div>
+      </div>
+
+      <!-- PRACTICE -->
+      <div data-reveal style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s;">
+        <div data-checklist="ch6-practice" data-lift style="margin-top:22px; background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 5px 26px rgba(22,28,45,.05); padding:28px; transition:transform .3s, box-shadow .3s;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:13px; font-weight:700; color:#8b5cf0; letter-spacing:.3px;">תרגול מסכם</span><h3 style="font-size:20px; font-weight:700;">מצגת אישית ב-AI</h3></div><span data-progress style="font-size:14px; font-weight:700; color:#4d63e6; background:rgba(77,99,230,.1); padding:5px 12px; border-radius:999px;">0 / 5</span></div>
+          <p style="color:#717a90; font-size:14px; margin-top:6px;">מקצה לקצה — מ-NotebookLM ועד Gamma · נשמר אוטומטית</p>
+          <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+            <div data-item="i1" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">בחרו נושא והזינו את המקורות ל-NotebookLM</span></div>
+            <div data-item="i2" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">בנו הנחיה מדויקת (Master Prompt) למבנה המצגת</span></div>
+            <div data-item="i3" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">הפיקו ועצבו את המצגת ב-Gamma</span></div>
+            <div data-item="i4" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">שלבו תמונות ודיאגרמות שיצרתם (Napkin / מחולל תמונות)</span></div>
+            <div data-item="i5" style="display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid #eceef6; background:#fafbfe; cursor:pointer; transition:background .2s;"><span data-box style="width:24px; height:24px; flex:none; border-radius:8px; border:2px solid #cdd3e7; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; transition:all .2s;"></span><span data-label style="font-size:15px; color:#34405c;">שתפו וקבלו פידבק מעמיתים</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="margin-top:64px; background:linear-gradient(135deg,#1c2340,#2a2f5c); color:#fff; position:relative; overflow:hidden;">
+  <div style="position:absolute; top:-80px; left:10%; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,240,.3), transparent 70%); animation:floatOrb 18s ease-in-out infinite;"></div>
+  <div style="position:absolute; bottom:-100px; right:5%; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle, rgba(77,99,230,.28), transparent 70%); animation:floatOrb2 21s ease-in-out infinite;"></div>
+  <div style="position:relative; max-width:1020px; margin:0 auto; padding:60px 24px; text-align:center;">
+    <div style="font-family:'Frank Ruhl Libre',serif; font-size:clamp(28px,4.4vw,42px); font-weight:700;">תודה רבה — ובהצלחה!</div>
+    <p style="color:#aeb6d8; margin-top:10px; max-width:520px; margin-inline:auto;">מוזמנים להיות בקשר בכל שאלה, התלבטות או רעיון להמשך.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:30px;">
+      <div style="display:flex; align-items:center; gap:11px; padding:14px 22px; border-radius:16px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);"><div style="width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,#4d63e6,#8b5cf0); display:flex; align-items:center; justify-content:center; font-family:'Frank Ruhl Libre',serif; font-weight:800;">י</div><div style="text-align:right;"><div style="font-size:12px; color:#aeb6d8;">מנחה</div><div style="font-weight:700;">יפתח גפן</div></div></div>
+      <a href="mailto:yiftahgeffen@gmail.com" style="display:flex; align-items:center; gap:9px; padding:14px 22px; border-radius:16px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); color:#fff; text-decoration:none; font-weight:600;"><span style="opacity:.65;">✉</span> yiftahgeffen@gmail.com</a>
+      <a href="tel:0524663221" dir="ltr" style="display:flex; align-items:center; gap:9px; padding:14px 22px; border-radius:16px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); color:#fff; text-decoration:none; font-weight:600;"><span style="opacity:.65;">☎</span> 052-466-3221</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="tgmb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4d63e6"></stop><stop offset="1" stop-color="#8b5cf0"></stop></linearGradient></defs>
+  <rect width="1200" height="800" fill="#eef1f9"></rect>
+  <circle cx="600" cy="360" r="160" fill="url(#tgmb)" opacity="0.16"></circle>
+  <text x="600" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="190" font-weight="800" fill="url(#tgmb)">AI</text>
+  <rect x="470" y="560" width="260" height="16" rx="8" fill="#cdd3e3"></rect>
+</svg>
+</template>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+
+  componentDidMount() {
+    const root = (this.el && this.el.querySelector) ? this.el : document;
+    const $$ = (s, c) => Array.from((c || root).querySelectorAll(s));
+
+    // ---------- progress bar ----------
+    const pbar = root.querySelector('#pbar');
+    const onScroll = () => {
+      const h = document.documentElement;
+      const sh = (h.scrollHeight - h.clientHeight) || 1;
+      const p = Math.min(100, Math.max(0, (h.scrollTop || document.body.scrollTop) / sh * 100));
+      if (pbar) pbar.style.width = p + '%';
+      this.spy();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ---------- scrollspy ----------
+    this.sections = ['ch1','ch2','ch3','ch4','ch5','ch6'].map(id => root.querySelector('#' + id)).filter(Boolean);
+    this.tocBtns = $$('[data-toc]');
+    this.spy = () => {
+      const y = (window.scrollY || document.documentElement.scrollTop) + 140;
+      let cur = this.sections[0] ? this.sections[0].id : null;
+      this.sections.forEach(s => { if (s.offsetTop <= y) cur = s.id; });
+      this.tocBtns.forEach(b => {
+        const on = b.getAttribute('data-toc') === cur;
+        const bar = b.querySelector('[data-bar]');
+        const num = b.querySelector('[data-num]');
+        const txt = b.querySelector('[data-txt]');
+        b.style.background = on ? 'rgba(77,99,230,.08)' : 'transparent';
+        if (bar) { bar.style.height = on ? '26px' : '16px'; bar.style.background = on ? 'linear-gradient(180deg,#4d63e6,#8b5cf0)' : '#d4d9ef'; bar.style.boxShadow = on ? '0 0 8px rgba(77,99,230,.5)' : 'none'; }
+        if (num) num.style.color = on ? '#4d63e6' : '#9aa2bd';
+        if (txt) { txt.style.color = on ? '#161c2d' : '#4a5468'; txt.style.fontWeight = on ? '700' : '600'; }
+      });
+    };
+
+    // ---------- TOC click ----------
+    this.tocBtns.forEach(b => b.addEventListener('click', () => {
+      const t = root.querySelector('#' + b.getAttribute('data-toc'));
+      if (t) window.scrollTo({ top: t.offsetTop - 70, behavior: 'smooth' });
+    }));
+
+    // ---------- responsive TOC ----------
+    const toc = root.querySelector('#toc');
+    const applyResp = () => { if (toc) toc.style.display = window.innerWidth >= 1000 ? 'block' : 'none'; };
+    applyResp(); window.addEventListener('resize', applyResp);
+
+    // ---------- accordions ----------
+    $$('[data-acc]').forEach(head => {
+      head.addEventListener('click', () => {
+        const body = head.nextElementSibling;
+        const chev = head.querySelector('[data-chev]');
+        const open = body.style.maxHeight && body.style.maxHeight !== '0px';
+        if (open) { body.style.maxHeight = '0px'; body.style.opacity = '0'; if (chev) chev.style.transform = 'rotate(0deg)'; }
+        else { body.style.maxHeight = body.scrollHeight + 40 + 'px'; body.style.opacity = '1'; if (chev) chev.style.transform = 'rotate(180deg)'; }
+      });
+    });
+
+    // ---------- hover lift ----------
+    $$('[data-lift]').forEach(el => {
+      const baseShadow = el.style.boxShadow;
+      el.addEventListener('mouseenter', () => { el.style.transform = 'translateY(-4px)'; el.style.boxShadow = '0 18px 50px rgba(22,28,45,.13)'; });
+      el.addEventListener('mouseleave', () => { el.style.transform = 'translateY(0)'; el.style.boxShadow = baseShadow; });
+    });
+
+    // ---------- checklists ----------
+    $$('[data-checklist]').forEach(list => {
+      const id = list.getAttribute('data-checklist');
+      const items = $$('[data-item]', list);
+      const prog = list.querySelector('[data-progress]');
+      let saved = {};
+      try { saved = JSON.parse(localStorage.getItem('wsai-' + id) || '{}'); } catch (e) {}
+      const paint = (it, on) => {
+        const box = it.querySelector('[data-box]');
+        const lab = it.querySelector('[data-label]');
+        if (on) { box.style.background = 'linear-gradient(135deg,#4d63e6,#8b5cf0)'; box.style.borderColor = 'transparent'; box.textContent = '✓'; it.style.background = '#f3f1fd'; lab.style.color = '#717a90'; lab.style.textDecoration = 'line-through'; }
+        else { box.style.background = 'transparent'; box.style.borderColor = '#cdd3e7'; box.textContent = ''; it.style.background = '#fafbfe'; lab.style.color = '#34405c'; lab.style.textDecoration = 'none'; }
+      };
+      const updateProg = () => {
+        const done = items.filter(it => saved[it.getAttribute('data-item')]).length;
+        if (prog) prog.textContent = done + ' / ' + items.length;
+      };
+      items.forEach(it => {
+        const k = it.getAttribute('data-item');
+        paint(it, !!saved[k]);
+        it.addEventListener('click', () => {
+          saved[k] = !saved[k];
+          paint(it, saved[k]);
+          try { localStorage.setItem('wsai-' + id, JSON.stringify(saved)); } catch (e) {}
+          updateProg();
+        });
+      });
+      updateProg();
+    });
+
+    // ---------- prompt builders (generic) ----------
+    $$('[data-builder]').forEach(b => {
+      const out = b.querySelector('[data-pb-out]');
+      const empty = b.getAttribute('data-pb-empty') || 'מלאו את השדות…';
+      const ins = $$('[data-pb]', b);
+      const build = () => {
+        const lines = ins.filter(i => i.value.trim()).map(i => i.getAttribute('data-pblabel') + ': ' + i.value.trim());
+        if (out) { out.textContent = lines.length ? lines.join('\n') : empty; out.style.opacity = lines.length ? '1' : '.5'; }
+      };
+      ins.forEach(i => i.addEventListener('input', build));
+      build();
+      const cp = b.querySelector('[data-pb-copy]');
+      if (cp) cp.addEventListener('click', () => {
+        const t = (out && out.textContent !== empty) ? out.textContent : '';
+        if (!t) return;
+        const done = () => { const o = cp.textContent; cp.textContent = 'הועתק ✓'; setTimeout(() => cp.textContent = o, 1600); };
+        if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, done); else done();
+      });
+    });
+
+    // ---------- preattentive "6s" grid ----------
+    const grid = root.querySelector('[data-six-grid]');
+    if (grid) {
+      const rows = [
+        [1,5,8,6,0,4,2,9,1,3,3,8,1],
+        [2,3,9,1,8,2,6,4,3,6,6,5,8],
+        [2,6,9,4,8,2,0,2,4,6,7,1,4],
+        [0,3,6,9,1,4,6,5,8,7,6,9,2],
+        [1,6,2,6,9,8,3,8,4,5,7,0,4],
+        [1,3,9,9,9,4,2,4,4,7,6,9,4]
+      ];
+      const sixes = [];
+      rows.forEach(r => r.forEach(d => {
+        const c = document.createElement('div');
+        c.textContent = d;
+        c.style.cssText = 'aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-radius:8px; font-family:ui-monospace,monospace; font-size:clamp(13px,2.4vw,18px); font-weight:600; color:#aab1c8; background:#f4f6fc; transition:all .35s cubic-bezier(.2,.7,.2,1);';
+        if (d === 6) { c.setAttribute('data-six', '1'); sixes.push(c); }
+        grid.appendChild(c);
+      }));
+      const sixBtn = root.querySelector('[data-six-toggle]');
+      if (sixBtn) {
+        let on = false;
+        sixBtn.addEventListener('click', () => {
+          on = !on;
+          sixes.forEach(c => {
+            if (on) { c.style.background = 'linear-gradient(135deg,#4d63e6,#8b5cf0)'; c.style.color = '#fff'; c.style.transform = 'scale(1.12)'; c.style.boxShadow = '0 4px 12px rgba(77,99,230,.4)'; }
+            else { c.style.background = '#f4f6fc'; c.style.color = '#aab1c8'; c.style.transform = 'none'; c.style.boxShadow = 'none'; }
+          });
+          sixBtn.textContent = on ? 'אפסו' : 'הדגישו את כל ה־6';
+        });
+      }
+    }
+
+    // ---------- clickable images: open embedded src in new tab ----------
+    $$('[data-openimg]').forEach(a => {
+      const img = a.querySelector('img');
+      const sync = () => { a.href = (img && (img.currentSrc || img.src)) || a.href; };
+      if (img) { sync(); img.addEventListener('load', sync); }
+    });
+
+    // ---------- recompute accordion height when inner images load ----------
+    $$('[data-acc-body] img').forEach(img => {
+      img.addEventListener('load', () => {
+        const body = img.closest('[data-acc-body]');
+        if (body && body.style.maxHeight && body.style.maxHeight !== '0px') {
+          body.style.maxHeight = body.scrollHeight + 60 + 'px';
+        }
+      });
+    });
+
+    // ---------- reveal on scroll (+ funnel animate) ----------
+    const reveals = $$('[data-reveal]');
+    const show = el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      if (el.hasAttribute('data-funnel')) $$('[data-bar-h]', el).forEach(bar => { bar.style.height = bar.getAttribute('data-bar-h'); });
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((ents) => {
+        ents.forEach(e => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      reveals.forEach(el => io.observe(el));
+      setTimeout(() => reveals.forEach(el => { const r = el.getBoundingClientRect(); if (r.top < window.innerHeight) show(el); }), 200);
+    } else {
+      reveals.forEach(show);
+    }
+
+    onScroll();
+    this._cleanup = () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', applyResp); };
+  }
+
+  componentWillUnmount() { if (this._cleanup) this._cleanup(); }
+}
+</script>
+</body>
+</html>
