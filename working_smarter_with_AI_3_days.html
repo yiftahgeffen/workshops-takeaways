@@ -284,6 +284,29 @@ a{color:inherit;}
 @keyframes floatOrb2{0%,100%{transform:translate(0,0) scale(1);}40%{transform:translate(16px,20px) scale(1.03);}70%{transform:translate(-14px,-18px) scale(.98);}}
 @keyframes softPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.85);}}
 @keyframes scrollNudge{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+@media(max-width:640px){
+  /* Hero subtitle */
+  header p { max-width:100% !important; }
+  /* Presenter card dividers hidden when wrapped */
+  header [style*="width:1px; height:38px"] { display:none !important; }
+  /* Presenter card full width */
+  header [style*="inline-flex"] { width:100%; border-radius:16px !important; justify-content:flex-start !important; }
+  /* Chips row wraps tightly */
+  header [style*="flex-wrap:wrap"] { gap:6px !important; }
+  /* Cards reduce padding */
+  [style*="border-radius:28px"][style*="padding:40px"] { padding:24px 20px !important; }
+  [style*="border-radius:24px"][style*="padding:30px"] { padding:20px 16px !important; }
+  [style*="border-radius:28px"][style*="padding:34px"] { padding:22px 18px !important; }
+  /* Section number watermark smaller */
+  [aria-hidden="true"][style*="font-size:140px"] { font-size:80px !important; }
+  /* Funnel bars container */
+  [data-funnel] { padding:24px 16px !important; }
+  /* Main content padding */
+  main { padding:0 !important; }
+  /* Outer container padding */
+  body > div > div[style*="display:flex; gap"] { padding:16px 12px 0 !important; gap:0 !important; }
+}
 </style>
 </head>
 <body>
@@ -355,7 +378,7 @@ a{color:inherit;}
 </header>
 
 <!-- ===================== BODY: TOC + CONTENT ===================== -->
-<div style="max-width:1280px; margin:0 auto; padding:24px 24px 0; display:flex; gap:48px; align-items:flex-start;">
+<div style="max-width:1280px; margin:0 auto; padding:24px 16px 0; display:flex; gap:32px; align-items:flex-start; overflow-x:hidden;">
 
   <!-- ============ STICKY TOC (right side in RTL) ============ -->
   <nav id="toc" style="flex:none; width:212px; position:sticky; top:84px; align-self:flex-start;">
@@ -418,7 +441,7 @@ a{color:inherit;}
       <div style="margin-top:26px; display:flex; flex-direction:column; gap:14px;">
         <div data-reveal="" data-lift="" style="opacity:0; transform:translateY(24px); transition:opacity .6s, transform .6s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:20px; box-shadow:0 5px 26px rgba(22,28,45,.05); overflow:hidden;">
           <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:20px 24px; cursor:pointer; user-select:none;"><span style="width:36px; height:36px; flex:none; border-radius:11px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:17px;">1</span><span style="font-size:19px; font-weight:700; flex:1;">ניסוח ברור ומפורט</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s; font-size:18px;">▾</span></div>
-          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s ease;"><div style="padding:0 24px 24px;"><p style="color:#4a5468;">הניסוח משפיע ישירות על איכות התוצאה. במקום בקשה כללית — פרטו את המשימה ואת התוצר שאתם רוצים.</p><div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;"><div style="padding:14px 16px; border-radius:14px; background:#fdf3f3; border:1px solid #f3dada;"><div style="font-size:12px; font-weight:700; color:#c0566a;">במקום ✕</div><div style="font-size:14px; color:#4a5468; margin-top:4px;">"סכם את המסמך"</div></div><div style="padding:14px 16px; border-radius:14px; background:#f1f8f3; border:1px solid #d6ebdd;"><div style="font-size:12px; font-weight:700; color:#2e8a5a;">כתבו ✓</div><div style="font-size:14px; color:#34405c; margin-top:4px;">"סכם את המסמך כך שיודגשו תובנות מרכזיות בדגש תפעולי, שדרכן נוכל לקבל החלטה על בחירת הספק"</div></div></div></div></div>
+          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s ease;"><div style="padding:0 24px 24px;"><p style="color:#4a5468;">הניסוח משפיע ישירות על איכות התוצאה. במקום בקשה כללית — פרטו את המשימה ואת התוצר שאתם רוצים.</p><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-top:16px;"><div style="padding:14px 16px; border-radius:14px; background:#fdf3f3; border:1px solid #f3dada;"><div style="font-size:12px; font-weight:700; color:#c0566a;">במקום ✕</div><div style="font-size:14px; color:#4a5468; margin-top:4px;">"סכם את המסמך"</div></div><div style="padding:14px 16px; border-radius:14px; background:#f1f8f3; border:1px solid #d6ebdd;"><div style="font-size:12px; font-weight:700; color:#2e8a5a;">כתבו ✓</div><div style="font-size:14px; color:#34405c; margin-top:4px;">"סכם את המסמך כך שיודגשו תובנות מרכזיות בדגש תפעולי, שדרכן נוכל לקבל החלטה על בחירת הספק"</div></div></div></div></div>
         </div>
 
         <div data-reveal="" data-lift="" style="opacity:0; transform:translateY(24px); transition:opacity .6s, transform .6s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:20px; box-shadow:0 5px 26px rgba(22,28,45,.05); overflow:hidden;">
@@ -447,7 +470,7 @@ a{color:inherit;}
         <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;"><h3 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:27px;">בנו פרומפט מנצח</h3><span style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:rgba(77,99,230,.1); color:#4d63e6; font-size:13px; font-weight:700;"><span style="width:7px; height:7px; border-radius:50%; background:#4d63e6; animation:softPulse 1.6s infinite;"></span>תרגול חי</span></div>
         <p style="color:#4a5468; margin-top:8px;">חברו בין העקרונות. מלאו את השדות הרלוונטיים — לא חייבים את כולם — והפרומפט נבנה למטה בזמן אמת.</p>
         <div style="margin-top:18px; padding:16px 18px; border-radius:16px; background:#f6f7fc; border:1px dashed #c8d0ea;"><div style="font-size:12px; font-weight:700; color:#717a90; letter-spacing:.3px;">דוגמה לפרומפט טוב</div><div style="font-size:14px; color:#34405c; margin-top:6px; line-height:1.7;">"פעל כמומחה לבניית תוכניות חינוכיות הבקיא בתקנות משרד החינוך. לצורך התכוננות לישיבה עם מנהלת מחלקת החינוך, סכם את המסמך בשפה תמציתית וברורה, כך שיודגשו תובנות תפעוליות מרכזיות לקבלת החלטה."</div></div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; margin-top:20px;">
           <div><label style="font-size:13px; font-weight:700; color:#34405c;">תפקיד</label><input data-pb="" data-pblabel="תפקיד" type="text" placeholder="פעל כ… (יועץ ארגוני)" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
           <div><label style="font-size:13px; font-weight:700; color:#34405c;">הקשר וקהל יעד</label><input data-pb="" data-pblabel="הקשר וקהל יעד" type="text" placeholder="לצורך… עבור…" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
           <div><label style="font-size:13px; font-weight:700; color:#34405c;">המשימה</label><input data-pb="" data-pblabel="המשימה" type="text" placeholder="מה בדיוק לעשות?" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
@@ -612,7 +635,7 @@ a{color:inherit;}
           <div><h3 style="font-size:21px; font-weight:700;">כמה פעמים מופיעה הספרה 6?</h3><p style="color:#4a5468; font-size:14.5px; margin-top:4px; max-width:440px;">נסו לספור במבט. עכשיו לחצו — וראו כמה מהר המוח קולט כשמוסיפים <b>ערוץ חזותי</b> אחד (צבע).</p></div>
           <button data-six-toggle="" style="border:none; cursor:pointer; padding:11px 20px; border-radius:999px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; font-family:'Assistant',sans-serif; font-size:14px; font-weight:700; box-shadow:0 6px 18px rgba(77,99,230,.32); white-space:nowrap;">הדגישו את כל ה־6</button>
         </div>
-        <div data-six-grid="" dir="ltr" style="margin-top:20px; display:grid; grid-template-columns:repeat(13,1fr); gap:6px; max-width:560px;"></div>
+        <div data-six-grid="" dir="ltr" style="margin-top:20px; display:grid; grid-template-columns:repeat(13,1fr); gap:6px; max-width:min(560px,100%);"></div>
       </div>
 
       <div data-reveal="" data-lift="" style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s, box-shadow .3s; margin-top:18px; background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 6px 30px rgba(22,28,45,.06); padding:30px; transition:transform .3s, box-shadow .3s;">
@@ -698,7 +721,7 @@ a{color:inherit;}
         <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;"><h3 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:27px;">בנו הנחיה לכלי העיצוב</h3><span style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:rgba(139,92,240,.12); color:#8b5cf0; font-size:13px; font-weight:700;"><span style="width:7px; height:7px; border-radius:50%; background:#8b5cf0; animation:softPulse 1.6s infinite;"></span>תרגול חי</span></div>
         <p style="color:#4a5468; margin-top:8px;">בריף מפורט מפיק מצגת טובה יותר. מלאו את הרכיבים הרלוונטיים — והבריף נבנה למטה בזמן אמת.</p>
         <div style="margin-top:18px; padding:16px 18px; border-radius:16px; background:#f6f7fc; border:1px dashed #c8d0ea;"><div style="font-size:12px; font-weight:700; color:#717a90; letter-spacing:.3px;">דוגמה לבריף טוב</div><div style="font-size:14px; color:#34405c; margin-top:6px; line-height:1.7;">"צור מצגת בת 10 שקפים עבור הנהלת הרשות, שמטרתה לאשר תקציב לשיפור המוקד. המסר המרכזי: שיפור איתור המיקום יעלה את אחוז הסגירה מ-45% ל-60%. בסס על נתוני הסקר המצורפים. סגנון נקי ומקצועי בגווני כחול: שקף שער, גוף ושקף סיכום."</div></div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; margin-top:20px;">
           <div><label style="font-size:13px; font-weight:700; color:#34405c;">קהל היעד</label><input data-pb="" data-pblabel="קהל היעד" type="text" placeholder="עבור מי המצגת?" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
           <div><label style="font-size:13px; font-weight:700; color:#34405c;">ההקשר</label><input data-pb="" data-pblabel="ההקשר" type="text" placeholder="לאיזו מטרה / אירוע?" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
           <div><label style="font-size:13px; font-weight:700; color:#34405c;">המסר המרכזי</label><input data-pb="" data-pblabel="המסר המרכזי" type="text" placeholder="מה הנקודה האחת שחייבת לעבור?" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:15px; color:#161c2d; outline:none;"></div>
@@ -861,22 +884,33 @@ a{color:inherit;}
       });
     }
   });
+
+  // Six-digit demo — responsive columns & cell size
   var sixData=[3,1,6,8,2,9,4,6,7,3,5,1,6,2,8,4,6,9,1,3,7,6,5,2,4,8,6,1,9,3,6,2,7,5,4,1,8,6,3,9,2,6,4,7,1,5,8,3,6,9,2,4,6,1,7,3,5,8,6,2,9,4,1,6,3,7,5,2,8,6,4,9,1,6,3,7,5];
   var sixHighlight=false, sixGrid=document.querySelector('[data-six-grid]'), sixBtn=document.querySelector('[data-six-toggle]');
+  function isMobile(){ return window.innerWidth < 520; }
   function renderSix(){
     if(!sixGrid) return;
+    var mobile = isMobile();
+    var cols = mobile ? 9 : 13;
+    var cellSize = mobile ? '28px' : '36px';
+    var fontSize = mobile ? '14px' : '17px';
+    sixGrid.style.gridTemplateColumns = 'repeat('+cols+',1fr)';
+    sixGrid.style.maxWidth = mobile ? '100%' : '560px';
     sixGrid.innerHTML='';
     sixData.forEach(function(d){
       var s=document.createElement('span');
       s.textContent=d;
-      s.style.cssText='display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;font-family:"Assistant",sans-serif;font-size:17px;font-weight:600;transition:all .3s;';
+      s.style.cssText='display:flex;align-items:center;justify-content:center;width:'+cellSize+';height:'+cellSize+';border-radius:8px;font-family:"Assistant",sans-serif;font-size:'+fontSize+';font-weight:600;transition:all .3s;';
       if(sixHighlight&&d===6){ s.style.background='linear-gradient(135deg,#4d63e6,#8b5cf0)'; s.style.color='#fff'; s.style.fontWeight='800'; s.style.transform='scale(1.12)'; }
       else { s.style.background=sixHighlight?'rgba(22,28,45,.06)':'rgba(22,28,45,.08)'; s.style.color=sixHighlight?'#b0b8d4':'#34405c'; }
       sixGrid.appendChild(s);
     });
   }
   if(sixBtn){ sixBtn.addEventListener('click', function(){ sixHighlight=!sixHighlight; sixBtn.textContent=sixHighlight?'חזרה למצב רגיל':'הדגישו את כל ה־6'; renderSix(); }); }
+  window.addEventListener('resize', function(){ renderSix(); });
   renderSix();
+
   if('IntersectionObserver' in window){
     var fio=new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.querySelectorAll('[data-bar-h]').forEach(function(b){ setTimeout(function(){ b.style.height=b.getAttribute('data-bar-h'); },100); }); fio.unobserve(e.target); } });
