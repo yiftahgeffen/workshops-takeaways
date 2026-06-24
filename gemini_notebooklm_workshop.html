@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ידע, להפוך לתוצרים — סיכום סדנה GWS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;800;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;}
+  ::selection{background:#d7ddfb;}
+  @keyframes floatOrb{0%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-25px) scale(1.08);}100%{transform:translate(0,0) scale(1);}}
+  @media (max-width:999px){#toc{display:none!important;}}
+  @media (hover:none) and (pointer:coarse){#toc{display:none!important;}}
+  @media (max-width:760px){.heroTitle{font-size:44px!important;}.chTitle{font-size:34px!important;}.watermark{font-size:120px!important;}}
+  input::placeholder,textarea::placeholder{color:#9aa3ba;}
+</style>
+</head>
+<body>
+
+<div dir="rtl" style="position:relative;font-family:'Assistant',sans-serif;color:#161c2d;background:#f3f5fb;min-height:100vh;overflow-x:clip;">
+
+  <!-- grain -->
+  <svg style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04;z-index:9999;mix-blend-mode:multiply;" xmlns="http://www.w3.org/2000/svg"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#grainf)"></rect></svg>
+
+  <!-- scroll progress -->
+  <div id="progwrap" style="position:fixed;top:0;right:0;left:0;height:4px;background:transparent;z-index:10000;"><div id="prog" style="height:100%;width:0%;background:linear-gradient(90deg,#4d63e6,#8b5cf0);box-shadow:0 0 12px rgba(123,99,230,.5);"></div></div>
+
+  <!-- ===================== HERO ===================== -->
+  <header style="position:relative;overflow:hidden;padding:96px 24px 80px;">
+    <div style="position:absolute;top:-120px;right:-80px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(77,99,230,.22),transparent 65%);animation:floatOrb 14s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-160px;left:-100px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,240,.18),transparent 65%);animation:floatOrb 18s ease-in-out infinite reverse;pointer-events:none;"></div>
+
+    <div style="position:relative;max-width:1060px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+        <span style="width:42px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>
+        <span style="font-size:14px;font-weight:600;letter-spacing:.22em;color:#717a90;">סיכום סדנה · GWS יום א׳</span>
+      </div>
+
+      <h1 class="heroTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(46px,7vw,76px);line-height:1.05;margin:0 0 8px;background:linear-gradient(135deg,#1c2340 0%,#4d63e6 55%,#8b5cf0 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">ידע, להפוך לתוצרים</h1>
+      <p style="font-size:clamp(20px,3vw,28px);font-weight:500;color:#4a5468;margin:0 0 26px;max-width:640px;">שני כלים, שתי מיומנויות — לסגור את הפער שבין מידע ליישום עם <b style="color:#4d63e6;">Gemini</b> ו־<b style="color:#8b5cf0;">NotebookLM</b>.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px;">
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">אומנות הפרומפט</span>
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">Canvas</span>
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">סביבת ידע</span>
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">הסטודיו</span>
+      </div>
+
+      <!-- presenter card -->
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:22px;padding:20px 28px;box-shadow:0 22px 50px -20px rgba(28,35,64,.6);max-width:100%;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4d63e6,#8b5cf0);display:flex;align-items:center;justify-content:center;font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;flex:none;">י</div>
+          <div>
+            <div style="font-size:12px;letter-spacing:.16em;color:#aeb6e0;font-weight:600;">מנחה הסדנה</div>
+            <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:22px;">יפתח גפן</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;">
+          <a id="heroEmail" href="#" style="display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;text-decoration:none;font-weight:500;font-size:14.5px;" dir="ltr"><span style="opacity:.7;">✉</span><span data-email-text="">&nbsp;</span></a>
+          <a href="tel:0524663221" style="display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;" dir="ltr"><span style="opacity:.85;">✆</span>052-466-3221</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== BODY ===================== -->
+  <div style="max-width:1320px;margin:0 auto;padding:0 24px 40px;display:flex;gap:34px;align-items:flex-start;flex-direction:row-reverse;">
+
+    <!-- main column -->
+    <main style="flex:1 1 auto;min-width:0;max-width:1060px;margin:0 auto;">
+
+      <!-- ===== CH 01 ===== -->
+      <section id="ch1" data-screen-label="01" data-reveal="" style="position:relative;padding:56px 0 70px;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(77,99,230,.12);pointer-events:none;z-index:0;">01</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">נקודת הפתיחה</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">שני כלים, שתי מיומנויות</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:680px;margin:0 0 36px;">מידע הוא לא הכוח. <b>סגירת הפער בין הידע ליישום — זה הכוח האמיתי.</b>&nbsp;הסדנה נשענת על שני כלים משלימים ושתי מיומנויות שמחברות ביניהם.</p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:26px;padding:30px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:transform .25s,box-shadow .25s;">
+              <div style="font-size:13px;font-weight:700;letter-spacing:.12em;color:#4d63e6;margin-bottom:8px;">כלי 01</div>
+              <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:26px;margin:0 0 10px;">Google Gemini</h3>
+              <p style="color:#4a5468;margin:0;">מחולל תוכן מבוסס בינה מלאכותית — מייצר טקסט, מעבד מסמכים ועובד לצידכם ב־Canvas. המיומנות: <b>יצירתיות, סיעור מוחות ואסיסטנט אישי.</b></p>
+            </div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:26px;padding:30px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:transform .25s,box-shadow .25s;">
+              <div style="font-size:13px;font-weight:700;letter-spacing:.12em;color:#8b5cf0;margin-bottom:8px;">כלי 02</div>
+              <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:26px;margin:0 0 10px;">NotebookLM</h3>
+              <p style="color:#4a5468;margin:0;">מוח AI שמבוסס <b>רק על החומרים שלכם</b> — תשאול חכם, ציטוטים, והפקת תוצרים בסטודיו. המיומנות: <b>בניית סביבת ידע מבוססת מקורות.</b></p>
+            </div>
+          </div>
+
+          <div style="margin-top:24px;background:linear-gradient(135deg,#1c2340,#2a2f5c);border-radius:26px;padding:34px 36px;color:#fff;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-60px;left:-40px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,240,.4),transparent 65%);"></div>
+            <div style="position:relative;font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,3.4vw,34px);font-weight:700;line-height:1.3;max-width:760px;">"מידע הוא לא הכוח. סגירת הפער בין ידע ליישום — זה הכוח האמיתי."</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CH 02 ===== -->
+      <section id="ch2" data-screen-label="02" data-reveal="" style="position:relative;padding:56px 0 70px;border-top:1px solid #e6e9f2;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(77,99,230,.12);pointer-events:none;z-index:0;">02</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">Gemini</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">אומנות הפרומפט המדויק</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:700px;margin:0 0 36px;">Gemini מאפשר להפסיק לקרוא מסמכים ולהתחיל "לדבר" איתם. אבל איכות התוצאה נקבעת באיכות הניסוח — ככל שתהיו ברורים ומפורטים יותר, התשובות איכותיות יותר.</p>
+
+          <!-- 6 value cards -->
+          <p style="font-size:15px;color:#717a90;margin:-22px 0 18px;font-weight:600;">הערך המרכזי: להפוך מסמך גולמי לתוצר תפעולי מוכן לשימוש —</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:42px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:18px;padding:20px;transition:transform .25s,box-shadow .25s;">
+              <div style="font-weight:700;color:#6d5ce6;margin-bottom:5px;font-size:15.5px;">המרת פורמט</div>
+              <p style="margin:0;color:#4a5468;font-size:14px;">נוהל ארוך → צ׳ק־ליסט אופרטיבי לביצוע.</p>
+            </div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:18px;padding:20px;transition:transform .25s,box-shadow .25s;">
+              <div style="font-weight:700;color:#7a55e3;margin-bottom:5px;font-size:15.5px;">שינוי שפה וטון</div>
+              <p style="margin:0;color:#4a5468;font-size:14px;">ממסמך משפטי/טכני להודעה ברורה לציבור.</p>
+            </div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:18px;padding:20px;transition:transform .25s,box-shadow .25s;">
+              <div style="font-weight:700;color:#8b5cf0;margin-bottom:5px;font-size:15.5px;">ניסוח וכתיבה</div>
+              <p style="margin:0;color:#4a5468;font-size:14px;">טיוטת מייל, מכתב או הודעה רשמית בדקות.</p>
+            </div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:18px;padding:20px;transition:transform .25s,box-shadow .25s;">
+              <div style="font-weight:700;color:#9a52ec;margin-bottom:5px;font-size:15.5px;">שותף לחשיבה</div>
+              <p style="margin:0;color:#4a5468;font-size:14px;">סיעור מוחות, חידוד טיעונים ובדיקת זוויות.</p>
+            </div>
+          </div>
+
+          <!-- principles accordion -->
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:26px;margin:0 0 6px;">5 עקרונות לכתיבת Prompt</h3>
+          <p style="color:#717a90;margin:0 0 20px;">לחצו על כל עיקרון כדי לראות דוגמה — איך אותה בקשה משתפרת שלב אחר שלב.</p>
+          <div id="principles" style="display:flex;flex-direction:column;gap:12px;"></div>
+        </div>
+      </section>
+
+      <!-- prompt builder -->
+      <section data-reveal="" style="padding:0 0 70px;">
+        <div style="background:#fff;border:1px solid #e6e9f2;border-radius:28px;padding:34px;box-shadow:0 16px 44px -26px rgba(28,35,64,.4);">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
+            <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:28px;margin:0;">בנו פרומפט מנצח</h3>
+            <span style="padding:5px 14px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;">תרגול חי</span>
+          </div>
+          <p style="color:#4a5468;margin:0 0 22px;">חברו את ארבע השכבות. לא חייבים למלא הכל — מלאו את מה שמתאים להנחיה שלכם.</p>
+
+          <div style="background:#f3f5fb;border:1px dashed #c8cfeb;border-radius:18px;padding:18px 20px;margin-bottom:26px;">
+            <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#717a90;margin-bottom:6px;">דוגמה לפרומפט מלא</div>
+            <p style="margin:0;color:#2a3350;font-size:15.5px;line-height:1.7;">"פעל כמומחה לבניית תוכניות חינוכיות שבקיא היטב בתקנות משרד החינוך הישראלי. לצורך התכוננות לישיבה הקרובה שלי עם מנהלת מחלקת חינוך, סכם את המסמך בשפה תמציתית וברורה, כך שיודגשו תובנות מרכזיות בדגש תפעולי שדרכן נוכל לקבל החלטה על בחירת הספק המתאים."</p>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;">
+            <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#4d63e6;">תפקיד</span><input id="pf_role" type="text" placeholder="פעל כמומחה ל…" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+            <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#6d5ce6;">הקשר וקהל יעד</span><input id="pf_ctx" type="text" placeholder="לצורך… עבור…" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+            <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#7d52e0;">המשימה</span><input id="pf_task" type="text" placeholder="סכם / נסח / הפוך…" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+            <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#8b5cf0;">סגנון ופורמט</span><input id="pf_style" type="text" placeholder="בשפה תמציתית, בנקודות…" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+          </div>
+
+          <div style="margin-top:22px;background:linear-gradient(135deg,#1c2340,#2a2f5c);border-radius:18px;padding:22px 24px;color:#fff;position:relative;">
+            <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#aeb6e0;margin-bottom:8px;">הפרומפט שלכם</div>
+            <div id="pf_out" style="font-size:16px;line-height:1.8;white-space:pre-wrap;min-height:28px;color:#e8ebfb;">מלאו את השדות כדי לבנות את הפרומפט…</div>
+            <button id="pf_copy" style="margin-top:16px;padding:10px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;">העתקה</button>
+          </div>
+        </div>
+
+        <!-- practice 1 -->
+        <div data-checklist="p1" style="margin-top:26px;"></div>
+      </section>
+
+      <!-- ===== CH 03 ===== -->
+      <section id="ch3" data-screen-label="03" data-reveal="" style="position:relative;padding:56px 0 70px;border-top:1px solid #e6e9f2;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(139,92,240,.12);pointer-events:none;z-index:0;">03</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">Gemini · Canvas</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">Canvas — ממרחב רעיונות לתוצר</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:700px;margin:0 0 36px;">סביבת עבודה צד־לצד עם המודל. עורכים נקודתית בלי לאבד את ההקשר של כל המסמך — הפתרון האולטימטיבי לדוחות, נהלים, דפי אינטרנט, אינפוגרפיקות ומצגות.</p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:40px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:26px;transition:transform .25s,box-shadow .25s;">
+              <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:22px;margin:0 0 12px;">פיצ׳רים מתקדמים</h3>
+              <ul style="margin:0;padding-inline-start:18px;color:#4a5468;line-height:1.9;font-size:15px;"><li>סביבת עבודה צד־לצד</li><li>עריכה נקודתית בלי לאבד הקשר</li><li>הפתרון למסמכים ארוכים, דוחות ונהלים</li><li>דף אינטרנט, אינפוגרפיקה ועוד</li></ul>
+            </div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:26px;transition:transform .25s,box-shadow .25s;">
+              <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:22px;margin:0 0 12px;">בניית מצגות</h3>
+              <ul style="margin:0;padding-inline-start:18px;color:#4a5468;line-height:1.9;font-size:15px;"><li><b>הנדסת הסיפור:</b> בניית הנרטיב, המסר והשלד הלוגי</li><li><b>תכנון קונספטואלי:</b> ארגון המידע בשקפים לפני העיצוב</li><li><b>שותף חשיבה אסטרטגי:</b> סיעור מוחות וגיבוש תוכן</li></ul>
+            </div>
+          </div>
+
+          <!-- design prompt structure -->
+          <div style="background:linear-gradient(135deg,#1c2340,#2a2f5c);border-radius:26px;padding:34px 36px;color:#fff;position:relative;overflow:hidden;">
+            <div style="position:absolute;bottom:-70px;right:-40px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(77,99,230,.4),transparent 65%);"></div>
+            <div style="position:relative;">
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
+                <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:24px;margin:0;">בניית הנחיה לכלי AI לעיצוב</h3>
+                <span style="padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;">שלד מצגת</span>
+              </div>
+              <p style="color:#aeb6e0;margin:0 0 22px;">השלב הראשון — תפקיד ומשימה — כמעט זהה בכל הנחיית עיצוב, אז הנה אותו מוכן להעתקה. את שאר השכבות מתאימים בכל פעם בבונה שמתחת.</p>
+
+              <!-- fixed presentation prompt -->
+              <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:20px 22px;margin-bottom:14px;">
+                <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#aeb6e0;margin-bottom:8px;">תפקיד · משימה — קבוע (העתיקו והדביקו)</div>
+                <div id="deck_prompt" style="font-size:15.5px;line-height:1.8;color:#eef0fb;">פעל כמומחה לבניית מצגות המתמחה בשימוש בכלי AI. המטרה שלך היא ליצור שלד (טקסט בלבד!) למצגת שעל בסיסו אוכל לאחר מכן להכין את העיצוב. השלד צריך להיות בנוי במבנה של "Slide by Slide breakdown". עבור כל שקף, הגדר את הנראות, מה לכתוב בכותרת, בגוף השקף, ואיזו תמונה ליצור.</div>
+                <button id="deck_copy" style="margin-top:14px;padding:9px 18px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.1);color:#fff;font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;">העתקת שלב התפקיד</button>
+              </div>
+              <div style="text-align:center;color:#8a92c4;font-size:22px;line-height:1;margin:2px 0 6px;">+</div>
+            </div>
+          </div>
+
+          <!-- design prompt builder (variable layers) -->
+          <div data-reveal="" style="background:#fff;border:1px solid #e6e9f2;border-radius:26px;padding:30px;margin-top:14px;box-shadow:0 16px 44px -26px rgba(28,35,64,.4);">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
+              <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:24px;margin:0;">השלימו את שאר שכבות ההנחיה</h3>
+              <span style="padding:5px 14px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;">תרגול חי</span>
+            </div>
+            <p style="color:#4a5468;margin:0 0 22px;">מלאו את מה שרלוונטי — הפרומפט המלא נבנה למטה, כולל שלב התפקיד הקבוע.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;">
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#4d63e6;">נושא המצגת</span><input id="df_topic" type="text" placeholder="על מה המצגת?" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#6d5ce6;">הקשר וקהל יעד</span><input id="df_ctx" type="text" placeholder="למי מציגים? באיזה הקשר?" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#7a55e3;">מבנה</span><input id="df_struct" type="text" placeholder="כמה שקפים? אילו חלקים?" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#8b5cf0;">סגנון ונראות</span><input id="df_style" type="text" placeholder="טון, צבעוניות, סוג תמונות" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+            </div>
+            <div style="margin-top:22px;background:linear-gradient(135deg,#1c2340,#2a2f5c);border-radius:18px;padding:22px 24px;color:#fff;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#aeb6e0;margin-bottom:8px;">ההנחיה המלאה שלכם</div>
+              <div id="df_out" style="font-size:15.5px;line-height:1.85;white-space:pre-wrap;min-height:28px;color:#e8ebfb;"></div>
+              <button id="df_copy" style="margin-top:16px;padding:10px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;">העתקת ההנחיה המלאה</button>
+            </div>
+          </div>
+
+          <div data-checklist="p2" style="margin-top:26px;"></div>
+        </div>
+      </section>
+
+      <!-- ===== CH 04 ===== -->
+      <section id="ch4" data-screen-label="04" data-reveal="" style="position:relative;padding:56px 0 70px;border-top:1px solid #e6e9f2;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(139,92,240,.12);pointer-events:none;z-index:0;">04</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">NotebookLM</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">בניית סביבת ידע מבוססת מקורות</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:700px;margin:0 0 36px;"><b>NotebookLM הוא מוח AI שמבוסס רק על החומרים שלכם.</b> מעלים מקורות — קבצי PDF, מצגות, לינקים — ושואלים שאלות ממוקדות שהתשובות עליהן מעוגנות במסמכים שלכם בלבד.</p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:26px;transition:transform .25s,box-shadow .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-size:40px;font-weight:800;background:linear-gradient(135deg,#4d63e6,#8b5cf0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:10px;">01</div><div style="font-weight:700;margin-bottom:4px;">העלאת מקורות</div><p style="margin:0;color:#4a5468;font-size:15px;">PDF, מצגות ולינקים מהרשת — הכל למחברת אחת.</p></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:26px;transition:transform .25s,box-shadow .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-size:40px;font-weight:800;background:linear-gradient(135deg,#4d63e6,#8b5cf0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:10px;">02</div><div style="font-weight:700;margin-bottom:4px;">תשאול חכם</div><p style="margin:0;color:#4a5468;font-size:15px;">שאלות ממוקדות שמעוגנות אך ורק במקורות שהעליתם.</p></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:26px;transition:transform .25s,box-shadow .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-size:40px;font-weight:800;background:linear-gradient(135deg,#4d63e6,#8b5cf0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:10px;">03</div><div style="font-weight:700;margin-bottom:4px;">ציטוטים ואימות</div><p style="margin:0;color:#4a5468;font-size:15px;">לחיצה על מספר הציטוט מקפיצה למקור לאימות אמינות.</p></div>
+          </div>
+
+          <div data-checklist="p3" style="margin-top:26px;"></div>
+        </div>
+      </section>
+
+      <!-- ===== CH 05 ===== -->
+      <section id="ch5" data-screen-label="05" data-reveal="" style="position:relative;padding:56px 0 70px;border-top:1px solid #e6e9f2;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(139,92,240,.12);pointer-events:none;z-index:0;">05</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">NotebookLM · הסטודיו</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">הפקת תוצרים ממקורות</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:700px;margin:0 0 36px;">הסטודיו הופך מידע גולמי לתוצר ניהולי — הפקה אוטומטית בשניות, ומגוון פורמטים בלחיצת כפתור.</p>
+
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px;">
+            <span style="padding:12px 22px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;box-shadow:0 4px 14px -8px rgba(28,35,64,.3);">תקציר מנהלים</span>
+            <span style="padding:12px 22px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;box-shadow:0 4px 14px -8px rgba(28,35,64,.3);">אינפוגרפיקה / דשבורד</span>
+            <span style="padding:12px 22px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;box-shadow:0 4px 14px -8px rgba(28,35,64,.3);">טבלת נתונים</span>
+            <span style="padding:12px 22px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;box-shadow:0 4px 14px -8px rgba(28,35,64,.3);">דוחות</span>
+          </div>
+
+          <!-- studio illustration -->
+          <div style="background:#fff;border:1px solid #e6e9f2;border-radius:26px;padding:30px;margin-bottom:30px;box-shadow:0 16px 44px -26px rgba(28,35,64,.4);">
+            <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:24px;margin:0 0 4px;">איפה ללחוץ — לשונית "סטודיו"</h3>
+            <p style="color:#717a90;margin:0 0 24px;font-size:15.5px;">כך נראית לשונית הסטודיו ב-NotebookLM. כל כרטיס הוא סוג תוצר; <b style="color:#4d63e6;">החץ הקטן ‹ בצד הכרטיס</b> פותח את ההתאמה האישית של אותו תוצר.</p>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;align-items:center;">
+
+              <!-- studio panel mock -->
+              <div style="border:1px solid #e6e9f2;border-radius:20px;padding:18px;background:#fcfcfe;max-width:430px;width:100%;margin:0 auto;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                  <span style="width:30px;height:30px;border-radius:8px;border:1.5px solid #c8cdda;display:flex;align-items:center;justify-content:center;color:#717a90;font-size:15px;">◧</span>
+                  <span style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:24px;color:#2a3350;">סטודיו</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;background:#ecedfb;border-radius:14px;padding:12px 12px;"><span style="width:34px;height:34px;border-radius:50%;background:#e0e2f3;display:flex;align-items:center;justify-content:center;color:#7b82a6;font-size:14px;">‹</span><span style="text-align:left;line-height:1.1;"><span style="display:block;font-size:15px;color:#3b5bd6;">⋮⋮</span><span style="font-size:13.5px;font-weight:600;color:#3b5bd6;">סקירה…</span></span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;background:#eef0dd;border-radius:14px;padding:12px 12px;"><span style="width:34px;height:34px;border-radius:50%;background:#e3e5cf;display:flex;align-items:center;justify-content:center;color:#9a9d7a;font-size:14px;">‹</span><span style="text-align:left;line-height:1.1;"><span style="display:inline-block;background:#1c2340;color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;margin-bottom:3px;">בטא</span><span style="font-size:13.5px;font-weight:600;color:#5f6347;display:block;">מצגת</span></span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;background:#e4f3ea;border-radius:14px;padding:12px 12px;"><span style="width:34px;height:34px;border-radius:50%;background:#d4eadd;display:flex;align-items:center;justify-content:center;color:#6fa080;font-size:14px;">‹</span><span style="text-align:left;line-height:1.1;"><span style="display:block;font-size:14px;color:#2e9c5e;">▦</span><span style="font-size:13.5px;font-weight:600;color:#2e9c5e;">סרטון…</span></span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;background:#efe6f1;border-radius:14px;padding:12px 12px;"><span style="width:34px;height:34px;border-radius:50%;background:#e4d6e7;display:flex;align-items:center;justify-content:center;color:#a07fa6;font-size:14px;">‹</span><span style="text-align:left;line-height:1.1;"><span style="display:block;font-size:14px;color:#8b5cf0;">⊹</span><span style="font-size:13.5px;font-weight:600;color:#8b5cf0;">מפת…</span></span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;background:#f6f1de;border-radius:14px;padding:12px 12px;"><span style="width:34px;height:34px;border-radius:50%;background:#ebe5ca;display:flex;align-items:center;justify-content:center;color:#a79d6e;font-size:14px;">‹</span><span style="text-align:left;line-height:1.1;"><span style="display:block;font-size:14px;color:#9a8a2e;">▤</span><span style="font-size:13.5px;font-weight:600;color:#9a8a2e;">דוחות</span></span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;background:#fbe9ec;border-radius:14px;padding:12px 12px;"><span style="width:34px;height:34px;border-radius:50%;background:#f2d8de;display:flex;align-items:center;justify-content:center;color:#c98a98;font-size:14px;">‹</span><span style="text-align:left;line-height:1.1;"><span style="display:block;font-size:14px;color:#d05c72;">◰</span><span style="font-size:13.5px;font-weight:600;color:#d05c72;">כרטיסי עזר</span></span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;background:#dcf0f3;border-radius:14px;padding:12px 12px;"><span style="width:34px;height:34px;border-radius:50%;background:#cae6ea;display:flex;align-items:center;justify-content:center;color:#6ca6ad;font-size:14px;">‹</span><span style="text-align:left;line-height:1.1;"><span style="display:block;font-size:14px;color:#2a96a3;">?</span><span style="font-size:13.5px;font-weight:600;color:#2a96a3;">בוחן</span></span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;background:#efe6f1;border-radius:14px;padding:12px 12px;"><span style="width:34px;height:34px;border-radius:50%;background:#e4d6e7;display:flex;align-items:center;justify-content:center;color:#a07fa6;font-size:14px;">‹</span><span style="text-align:left;line-height:1.1;"><span style="display:inline-block;background:#1c2340;color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;margin-bottom:3px;">בטא</span><span style="font-size:13.5px;font-weight:600;color:#9a52ec;display:block;">אינפוגרפי…</span></span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;background:#ecedfb;border-radius:14px;padding:12px 12px;grid-column:1 / -1;max-width:calc(50% - 6px);margin-inline-start:auto;"><span style="width:34px;height:34px;border-radius:50%;background:#e0e2f3;display:flex;align-items:center;justify-content:center;color:#7b82a6;font-size:14px;">‹</span><span style="text-align:left;line-height:1.1;"><span style="display:block;font-size:14px;color:#3b5bd6;">▦</span><span style="font-size:13.5px;font-weight:600;color:#3b5bd6;">טבלת…</span></span></div>
+                </div>
+              </div>
+
+              <!-- single-card zoom callout -->
+              <div>
+                <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#717a90;margin-bottom:12px;">זום על כרטיס אחד</div>
+                <div style="position:relative;display:flex;align-items:center;justify-content:space-between;background:#ecedfb;border-radius:16px;padding:16px 16px;border:1px solid #dfe2f5;">
+                  <span style="position:relative;width:42px;height:42px;border-radius:50%;background:#fff;border:2px solid #4d63e6;display:flex;align-items:center;justify-content:center;color:#4d63e6;font-size:18px;font-weight:700;box-shadow:0 0 0 5px rgba(77,99,230,.18);">‹</span>
+                  <span style="text-align:left;line-height:1.15;"><span style="display:block;font-size:18px;color:#3b5bd6;">⋮⋮</span><span style="font-size:16px;font-weight:700;color:#3b5bd6;">סקירה…</span></span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;margin-top:14px;color:#4d63e6;font-weight:700;font-size:14px;">
+                  <span style="font-size:20px;">↖</span><span>החץ המשולש הקטן</span>
+                </div>
+                <p style="color:#4a5468;font-size:14.5px;margin:8px 2px 0;line-height:1.7;">לוחצים על <b style="color:#4d63e6;">החץ ‹</b> שבצד הכרטיס כדי להיכנס להתאמה האישית של התוצר — שם מגדירים שפה, רמת פירוט, תצוגה וטון, <b>לפני</b> ההפקה. כך התוצר יוצא מדויק ולא גנרי.</p>
+              </div>
+            </div>
+          </div>
+
+          <div data-checklist="p4"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- TOC -->
+    <nav id="toc" style="flex:0 0 210px;width:210px;position:sticky;top:80px;align-self:flex-start;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.16em;color:#9aa3ba;margin-bottom:16px;padding-inline-start:14px;">תוכן הסדנה</div>
+      <ul id="toclist" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;"></ul>
+    </nav>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer style="position:relative;overflow:hidden;margin-top:20px;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;padding:70px 24px 60px;">
+    <div style="position:absolute;top:-120px;right:10%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,240,.3),transparent 65%);animation:floatOrb 16s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:relative;max-width:1060px;margin:0 auto;text-align:center;">
+      <div style="font-size:13px;letter-spacing:.2em;color:#aeb6e0;font-weight:600;margin-bottom:12px;">תודה רבה — מוזמנים להישאר בקשר</div>
+      <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:40px;margin-bottom:20px;">יפתח גפן</div>
+      <div style="display:inline-flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+        <a id="footEmail" href="#" style="padding:12px 24px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;text-decoration:none;font-weight:500;" dir="ltr"><span data-email-text="">&nbsp;</span></a>
+        <a href="tel:0524663221" style="padding:12px 24px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;text-decoration:none;font-weight:700;" dir="ltr">052-466-3221</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const $ = (s, c) => (c || document).querySelector(s);
+  const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+  const LS = 'gwsSummary_v1_';
+
+  // ---------- email ----------
+  const emailAddr = ['yiftahgeffen', 'gmail.com'].join('@');
+  $$('#heroEmail, #footEmail').forEach(a => {
+    a.setAttribute('href', 'mailto:' + emailAddr);
+    const span = a.querySelector('[data-email-text]');
+    if (span) span.textContent = emailAddr;
+  });
+
+  // ---------- TOC ----------
+  const chapters = [
+    { id: 'ch1', n: '01', t: 'שני כלים, שתי מיומנויות' },
+    { id: 'ch2', n: '02', t: 'אומנות הפרומפט' },
+    { id: 'ch3', n: '03', t: 'Canvas' },
+    { id: 'ch4', n: '04', t: 'סביבת ידע' },
+    { id: 'ch5', n: '05', t: 'הפקת תוצרים' },
+  ];
+  const toclist = $('#toclist');
+  if (toclist) {
+    toclist.innerHTML = chapters.map(c =>
+      `<li><a href="#${c.id}" data-toc="${c.id}" style="display:flex;align-items:center;gap:10px;text-decoration:none;padding:9px 14px;border-radius:12px;color:#717a90;font-weight:600;font-size:14px;transition:all .2s;">
+        <span class="tocbar" style="width:3px;height:16px;border-radius:2px;background:#d8ddf0;transition:all .25s;flex:none;"></span>
+        <span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:13px;opacity:.7;">${c.n}</span>
+        <span>${c.t}</span>
+      </a></li>`).join('');
+    $$('#toclist a').forEach(a => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const t = $('#' + a.dataset.toc);
+      if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
+    }));
+  }
+  const setActive = (id) => {
+    $$('#toclist a').forEach(a => {
+      const on = a.dataset.toc === id;
+      a.style.background = on ? 'rgba(77,99,230,.08)' : 'transparent';
+      a.style.color = on ? '#1c2340' : '#717a90';
+      const bar = a.querySelector('.tocbar');
+      if (bar) { bar.style.height = on ? '26px' : '16px'; bar.style.background = on ? 'linear-gradient(#4d63e6,#8b5cf0)' : '#d8ddf0'; bar.style.boxShadow = on ? '0 0 8px rgba(77,99,230,.5)' : 'none'; }
+    });
+  };
+
+  // ---------- progress + scrollspy ----------
+  const prog = $('#prog');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    if (prog) prog.style.width = (max > 0 ? (h.scrollTop || window.scrollY) / max * 100 : 0) + '%';
+    let cur = chapters[0].id;
+    for (const c of chapters) { const el = $('#' + c.id); if (el && el.getBoundingClientRect().top <= 140) cur = c.id; }
+    setActive(cur);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ---------- reveal ----------
+  const reveals = $$('[data-reveal]');
+  reveals.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity .7s ease, transform .7s ease'; });
+  const show = el => { el.style.opacity = '1'; el.style.transform = 'none'; };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((ents) => ents.forEach(e => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } }), { threshold: 0.08 });
+    reveals.forEach(el => io.observe(el));
+  } else reveals.forEach(show);
+  setTimeout(() => reveals.forEach(el => { if (getComputedStyle(el).opacity === '0') show(el); }), 2500);
+
+  // ---------- lift hover ----------
+  $$('.lift').forEach(el => {
+    el.addEventListener('mouseenter', () => { el.style.transform = 'translateY(-4px)'; el.style.boxShadow = '0 22px 44px -22px rgba(28,35,64,.45)'; });
+    el.addEventListener('mouseleave', () => { el.style.transform = 'none'; el.style.boxShadow = '0 10px 30px -18px rgba(28,35,64,.25)'; });
+  });
+
+  // ---------- principles accordion ----------
+  const principles = [
+    { t: 'ניסוח ברור ומדויק', d: 'הניסוח משפיע ישירות על איכות התוצאה. במקום בקשה כללית — פרטו את המשימה.', bad: 'סכם את המסמך', good: 'סכם את המסמך, כך שיודגשו תובנות מרכזיות בדגש תפעולי שדרכן נוכל לקבל החלטה על בחירת הספק המתאים.' },
+    { t: 'הקשר ושכבות מידע', d: 'AI לא מנחש למה אתם מתכוונים — ספקו רקע רלוונטי: מטרה, קהל ושימוש.', bad: 'סכם את המסמך', good: 'לצורך התכוננות לישיבה הקרובה שלי עם מנהלת מחלקת חינוך, סכם את המסמך כך שיודגשו תובנות מרכזיות בדגש תפעולי.' },
+    { t: 'תפקיד', d: 'הגדירו ל-AI תפקיד — והוא יתאים את הטון, אוצר המילים והזווית המקצועית.', bad: 'לצורך ההתכוננות לישיבה, סכם את המסמך כך שיודגשו תובנות מרכזיות.', good: 'פעל כמומחה לבניית תוכניות חינוכיות שבקיא בתקנות משרד החינוך הישראלי. לצורך ההתכוננות לישיבה, סכם את המסמך כך שיודגשו תובנות מרכזיות בדגש תפעולי.' },
+    { t: 'סגנון ופורמט', d: 'יש סגנון או פורמט שאתם רוצים? תנו דוגמאות והנחיות ברורות. טיפ: אפשר לבקש מה-AI ללמוד מטקסט קיים.', bad: 'סכם את המסמך והדגש תובנות מרכזיות.', good: 'סכם את המסמך בשפה תמציתית וברורה, בנקודות מודגשות, כך שכל תובנה תופיע כשורה נפרדת עם המלצה תפעולית.' },
+    { t: 'חידוד ושיפור התשובות', d: 'אל תסתפקו בתשובה הראשונה — בקשו שיפורים: אופטימיזציה, שינוי טון, או חלופות.', bad: 'התשובה הראשונה כמו שהיא', good: '"קצר ב-50% וסדר בנקודות" · "שנה לטון חם ונגיש" · "תן לי עוד 3 אפשרויות לכותרת".' },
+  ];
+  const pc = $('#principles');
+  if (pc) {
+    pc.innerHTML = principles.map((p, i) =>
+      `<div data-acc style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;overflow:hidden;box-shadow:0 6px 20px -16px rgba(28,35,64,.3);">
+        <button data-acc-btn style="width:100%;display:flex;align-items:center;gap:14px;background:none;border:none;cursor:pointer;padding:20px 24px;text-align:right;font-family:inherit;">
+          <span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;flex:none;">0${i + 1}</span>
+          <span style="flex:1;font-weight:700;font-size:18px;color:#161c2d;">${p.t}</span>
+          <span data-chev style="flex:none;color:#8b5cf0;font-size:20px;transition:transform .3s;">+</span>
+        </button>
+        <div data-acc-body style="max-height:0;overflow:hidden;transition:max-height .35s ease;">
+          <div style="padding:0 24px 22px;">
+            <p style="margin:0 0 16px;color:#4a5468;">${p.d}</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+              <div style="background:#fdf2f4;border:1px solid #f6d6dd;border-radius:14px;padding:14px 16px;"><div style="font-size:12px;font-weight:700;color:#d05c72;margin-bottom:5px;">✕ במקום</div><div style="font-size:14.5px;color:#7a4451;">${p.bad}</div></div>
+              <div style="background:#eef7f1;border:1px solid #cde8d6;border-radius:14px;padding:14px 16px;"><div style="font-size:12px;font-weight:700;color:#2e9c5e;margin-bottom:5px;">✓ כתבו</div><div style="font-size:14.5px;color:#2c5e44;">${p.good}</div></div>
+            </div>
+          </div>
+        </div>
+      </div>`).join('');
+    $$('[data-acc]', pc).forEach(acc => {
+      const btn = $('[data-acc-btn]', acc), body = $('[data-acc-body]', acc), chev = $('[data-chev]', acc);
+      btn.addEventListener('click', () => {
+        const open = body.style.maxHeight && body.style.maxHeight !== '0px';
+        body.style.maxHeight = open ? '0px' : body.scrollHeight + 'px';
+        chev.style.transform = open ? 'none' : 'rotate(45deg)';
+      });
+    });
+  }
+
+  // ---------- prompt builder ----------
+  const fields = [
+    { id: 'pf_role', label: 'תפקיד' },
+    { id: 'pf_ctx', label: 'הקשר וקהל יעד' },
+    { id: 'pf_task', label: 'המשימה' },
+    { id: 'pf_style', label: 'סגנון ופורמט' },
+  ];
+  const out = $('#pf_out');
+  const buildPrompt = () => {
+    const lines = fields.map(f => { const v = ($('#' + f.id) || {}).value; return v && v.trim() ? `${f.label}: ${v.trim()}` : null; }).filter(Boolean);
+    if (out) out.textContent = lines.length ? lines.join('\n') : 'מלאו את השדות כדי לבנות את הפרומפט…';
+  };
+  fields.forEach(f => { const el = $('#' + f.id); if (el) { el.value = localStorage.getItem(LS + f.id) || ''; el.addEventListener('input', () => { localStorage.setItem(LS + f.id, el.value); buildPrompt(); }); } });
+  buildPrompt();
+  const copyBtn = $('#pf_copy');
+  if (copyBtn) copyBtn.addEventListener('click', () => {
+    const txt = out.textContent;
+    navigator.clipboard && navigator.clipboard.writeText(txt);
+    const o = copyBtn.textContent; copyBtn.textContent = 'הועתק ✓';
+    setTimeout(() => copyBtn.textContent = o, 1600);
+  });
+
+  // ---------- design prompt: fixed copy + builder ----------
+  const copyWithFeedback = (btn, txt, label) => {
+    navigator.clipboard && navigator.clipboard.writeText(txt);
+    const o = btn.textContent; btn.textContent = label || 'הועתק ✓';
+    setTimeout(() => btn.textContent = o, 1600);
+  };
+  const DECK_FIXED = 'פעל כמומחה לבניית מצגות המתמחה בשימוש בכלי AI. המטרה שלך היא ליצור שלד (טקסט בלבד!) למצגת שעל בסיסו אוכל לאחר מכן להכין את העיצוב. השלד צריך להיות בנוי במבנה של "Slide by Slide breakdown". עבור כל שקף, הגדר את הנראות, מה לכתוב בכותרת, בגוף השקף, ואיזו תמונה ליצור.';
+  const deckCopy = $('#deck_copy');
+  if (deckCopy) deckCopy.addEventListener('click', () => copyWithFeedback(deckCopy, DECK_FIXED));
+
+  const dfFields = [
+    { id: 'df_topic', label: 'נושא המצגת' },
+    { id: 'df_ctx', label: 'הקשר וקהל יעד' },
+    { id: 'df_struct', label: 'מבנה' },
+    { id: 'df_style', label: 'סגנון ונראות' },
+  ];
+  const dfOut = $('#df_out');
+  const buildDeck = () => {
+    const extra = dfFields.map(f => { const v = ($('#' + f.id) || {}).value; return v && v.trim() ? `${f.label}: ${v.trim()}` : null; }).filter(Boolean);
+    if (dfOut) dfOut.textContent = DECK_FIXED + (extra.length ? '\n\n' + extra.join('\n') : '');
+  };
+  dfFields.forEach(f => { const el = $('#' + f.id); if (el) { el.value = localStorage.getItem(LS + f.id) || ''; el.addEventListener('input', () => { localStorage.setItem(LS + f.id, el.value); buildDeck(); }); } });
+  buildDeck();
+  const dfCopy = $('#df_copy');
+  if (dfCopy) dfCopy.addEventListener('click', () => copyWithFeedback(dfCopy, dfOut.textContent));
+
+  // ---------- checklists ----------
+  const lists = {
+    p1: { title: 'תרגול מעשי: ניסוח Prompt', time: '10 דק׳', items: [
+      'בחרו 2 אתגרים טקסטואליים מהעבודה שלכם',
+      'עבדו עם Google Gemini לקבלת תוצר טקסטואלי לכל אתגר',
+      'שתפו את הטקסטים עם חברים וקבלו פידבק לשיפור',
+    ] },
+    p2: { title: 'תרגול מעשי: יצירת הנחיה מותאמת לעיצוב', time: '15 דק׳', items: [
+      'בצ׳אט Gemini צרו הנחיה מדויקת לאינפוגרפיקה / מצגת / דף',
+      'עברו ל-Canvas ושפרו את השלד עד שהמילוי מדויק',
+      'בנו את התוצר הסופי מהשלד המילולי שיצרתם',
+    ] },
+    p3: { title: 'תרגול מעשי: בונים "מוח" לפרויקטים', time: '10 דק׳', items: [
+      'בחרו פרויקט / נוהל / משימה אגפית מהעבודה השוטפת',
+      'פתחו מחברת ב-NotebookLM והעלו את המקורות הרלוונטיים',
+      'אתגרו את המחברת בשאלה ממוקדת ובדקו ציטוטים מול המקור',
+    ] },
+    p4: { title: 'תרגול מעשי: מפיקים תוצר בסטודיו', time: '10 דק׳', items: [
+      'בחרו את סוג התוצר שמשרת אתכם הכי טוב (תקציר / אינפוגרפיקה / טבלה)',
+      'הזינו הנחיה ממוקדת בחלונית התיאור והפיקו את התוצר',
+      'שתפו וקבלו פידבק — האם התוצר ממוקד, ברור ומוכן להצגה',
+    ] },
+  };
+  $$('[data-checklist]').forEach(holder => {
+    const key = holder.dataset.checklist;
+    const cfg = lists[key];
+    if (!cfg) return;
+    holder.innerHTML =
+      `<div style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:28px 30px;box-shadow:0 12px 36px -24px rgba(28,35,64,.4);">
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:4px;">
+          <span style="width:30px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>
+          <span style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#717a90;">תרגול לחזרה</span>
+          <span style="margin-inline-start:auto;padding:5px 14px;border-radius:999px;background:#eef0fb;color:#4d63e6;font-size:13px;font-weight:700;">⏱ ${cfg.time}</span>
+        </div>
+        <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:23px;margin:6px 0 16px;">${cfg.title}</h3>
+        <div data-items style="display:flex;flex-direction:column;gap:10px;"></div>
+        <div style="margin-top:18px;display:flex;align-items:center;gap:12px;">
+          <div style="flex:1;height:8px;border-radius:999px;background:#eef0fb;overflow:hidden;"><div data-bar style="height:100%;width:0%;background:linear-gradient(90deg,#4d63e6,#8b5cf0);transition:width .35s;"></div></div>
+          <span data-count style="font-weight:700;font-size:14px;color:#4a5468;white-space:nowrap;">0 / ${cfg.items.length}</span>
+        </div>
+      </div>`;
+    const itemsWrap = $('[data-items]', holder), bar = $('[data-bar]', holder), count = $('[data-count]', holder);
+    const update = () => {
+      const boxes = $$('[data-cb]', holder);
+      const done = boxes.filter(b => b.dataset.on === '1').length;
+      bar.style.width = (done / cfg.items.length * 100) + '%';
+      count.textContent = done + ' / ' + cfg.items.length;
+    };
+    itemsWrap.innerHTML = cfg.items.map((t, i) => {
+      const on = localStorage.getItem(LS + key + '_' + i) === '1';
+      return `<button data-cb data-i="${i}" data-on="${on ? '1' : '0'}" style="display:flex;align-items:flex-start;gap:14px;text-align:right;width:100%;background:${on ? '#eef7f1' : '#fbfcff'};border:1px solid ${on ? '#cde8d6' : '#e6e9f2'};border-radius:16px;padding:15px 18px;cursor:pointer;font-family:inherit;transition:all .2s;">
+        <span data-tick style="flex:none;width:24px;height:24px;border-radius:8px;border:2px solid ${on ? '#2e9c5e' : '#c8cfeb'};background:${on ? '#2e9c5e' : '#fff'};color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;transition:all .2s;">${on ? '✓' : ''}</span>
+        <span style="font-size:16px;color:${on ? '#2c5e44' : '#2a3350'};font-weight:500;${on ? 'text-decoration:line-through;opacity:.7;' : ''}">${t}</span>
+      </button>`;
+    }).join('');
+    $$('[data-cb]', holder).forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = btn.dataset.i;
+        const on = btn.dataset.on !== '1';
+        btn.dataset.on = on ? '1' : '0';
+        localStorage.setItem(LS + key + '_' + i, on ? '1' : '0');
+        const tick = $('[data-tick]', btn), label = btn.querySelector('span:last-child');
+        btn.style.background = on ? '#eef7f1' : '#fbfcff';
+        btn.style.borderColor = on ? '#cde8d6' : '#e6e9f2';
+        tick.style.border = '2px solid ' + (on ? '#2e9c5e' : '#c8cfeb');
+        tick.style.background = on ? '#2e9c5e' : '#fff';
+        tick.textContent = on ? '✓' : '';
+        label.style.color = on ? '#2c5e44' : '#2a3350';
+        label.style.textDecoration = on ? 'line-through' : 'none';
+        label.style.opacity = on ? '.7' : '1';
+        update();
+      });
+    });
+    update();
+  });
+});
+</script>
+</body>
+</html>
