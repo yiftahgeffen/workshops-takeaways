@@ -706,7 +706,7 @@ a{color:inherit;}
       </div>
 
       <!-- DESIGN-PROMPT BUILDER -->
-      <div data-reveal="" data-builder="" data-pb-empty="מלאו את השדות הרלוונטיים — והבריף לכלי העיצוב יופיע כאן…" style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; margin-top:18px; background:#fff; border:1px solid #e6e9f2; border-radius:28px; box-shadow:0 12px 44px rgba(22,28,45,.09); padding:34px;">
+      <div data-reveal="" data-builder="" data-pb-prefix='אתה מומחה לבניית מצגות (Presentation Architect) המתמחה בשימוש בכלי AI ליצירת מצגות. המטרה שלך היא לכתוב עבורי הנחיה (Prompt) מפורטת ומדויקת בעברית, שאותה אעתיק לתוך הכלי כדי ליצור מצגת מנצחת. הפרומפט צריך להיות בנוי במבנה של "Slide by Slide breakdown". עבור כל שקף, הגדר לכלי בדיוק מה לכתוב בכותרת, בנקודות (Bullets), ואיזו תמונה ליצור.' data-pb-empty="מלאו את השדות הרלוונטיים — והבריף לכלי העיצוב יופיע כאן…" style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; margin-top:18px; background:#fff; border:1px solid #e6e9f2; border-radius:28px; box-shadow:0 12px 44px rgba(22,28,45,.09); padding:34px;">
         <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;"><h3 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:27px;">בנו הנחיה לכלי העיצוב</h3><span style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:rgba(139,92,240,.12); color:#8b5cf0; font-size:13px; font-weight:700;"><span style="width:7px; height:7px; border-radius:50%; background:#8b5cf0; animation:softPulse 1.6s infinite;"></span>תרגול חי</span></div>
         <p style="color:#4a5468; margin-top:8px;">בריף מפורט מפיק מצגת טובה יותר. מלאו את הרכיבים הרלוונטיים — והבריף נבנה למטה בזמן אמת.</p>
         <div style="margin-top:18px; padding:16px 18px; border-radius:16px; background:#f6f7fc; border:1px dashed #c8d0ea;"><div style="font-size:12px; font-weight:700; color:#717a90; letter-spacing:.3px;">דוגמה לבריף טוב</div><div style="font-size:14px; color:#34405c; margin-top:6px; line-height:1.7;">"צור מצגת בת 10 שקפים עבור הנהלת הרשות, שמטרתה לאשר תקציב לשיפור המוקד. המסר המרכזי: שיפור איתור המיקום יעלה את אחוז הסגירה מ-45% ל-60%. בסס על נתוני הסקר המצורפים. סגנון נקי ומקצועי בגווני כחול: שקף שער, גוף ושקף סיכום."</div></div>
@@ -855,10 +855,11 @@ a{color:inherit;}
     var out = builder.querySelector('[data-pb-out]');
     var copyBtn = builder.querySelector('[data-pb-copy]');
     var emptyMsg = builder.getAttribute('data-pb-empty') || 'מלאו את השדות למעלה…';
+    var prefix = builder.getAttribute('data-pb-prefix') || '';
     function buildPrompt(){
       var lines = [];
       inputs.forEach(function(inp){ var v=inp.value.trim(); if(v) lines.push(inp.getAttribute('data-pblabel')+': '+v); });
-      if(out){ if(!lines.length){ out.style.color='#6b7280'; out.textContent=emptyMsg; } else { out.style.color='#e8ebf7'; out.textContent=lines.join('\n'); } }
+      if(out){ if(!lines.length && !prefix){ out.style.color='#6b7280'; out.textContent=emptyMsg; } else { out.style.color='#e8ebf7'; out.textContent=(prefix ? prefix+'\n\n' : '')+lines.join('\n'); } }
     }
     inputs.forEach(function(inp){ inp.addEventListener('input', buildPrompt); });
     buildPrompt();
