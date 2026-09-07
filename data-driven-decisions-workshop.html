@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>קבלת החלטות מבוססות נתונים — סיכום סדנה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Frank+Ruhl+Libre:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;}
+  ::selection{background:#d7ddfb;}
+  a{color:#4d63e6;}
+  a:hover{color:#8b5cf0;}
+  @keyframes floatOrb{0%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-25px) scale(1.08);}100%{transform:translate(0,0) scale(1);}}
+  @media (max-width:999px){#toc{display:none!important;}}
+  @media (hover:none) and (pointer:coarse){#toc{display:none!important;}}
+  @media (max-width:560px){.grid2{grid-template-columns:1fr!important;}}
+  @media (max-width:760px){.heroTitle{font-size:42px!important;}.chTitle{font-size:32px!important;}.watermark{font-size:118px!important;}.bigNum{font-size:76px!important;}}
+  input::placeholder,textarea::placeholder{color:#9aa3ba;}
+</style>
+</head>
+<body>
+<div dir="rtl" style="position:relative;font-family:'Assistant',sans-serif;color:#161c2d;background:#f3f5fb;min-height:100vh;">
+
+  <svg style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04;z-index:9999;mix-blend-mode:multiply;" xmlns="http://www.w3.org/2000/svg"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#grainf)"></rect></svg>
+
+  <div id="progwrap" style="position:fixed;top:0;right:0;left:0;height:4px;background:transparent;z-index:10000;"><div id="prog" style="height:100%;width:0%;background:linear-gradient(90deg,#4d63e6,#8b5cf0);box-shadow:0 0 12px rgba(123,99,230,.5);"></div></div>
+
+  <header style="position:relative;overflow:hidden;padding:96px 24px 80px;">
+    <div style="position:absolute;top:-120px;right:-80px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(77,99,230,.22),transparent 65%);animation:floatOrb 14s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-160px;left:-100px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,240,.18),transparent 65%);animation:floatOrb 18s ease-in-out infinite reverse;pointer-events:none;"></div>
+
+    <div style="position:relative;max-width:1060px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+        <span style="width:42px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>
+        <span style="font-size:14px;font-weight:600;letter-spacing:.22em;color:#717a90;">סיכום סדנה</span>
+      </div>
+
+      <h1 class="heroTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(44px,7vw,74px);line-height:1.05;margin:0 0 10px;background:linear-gradient(135deg,#1c2340 0%,#4d63e6 55%,#8b5cf0 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">קבלת החלטות<br>מבוססות נתונים</h1>
+      <p style="font-size:clamp(20px,3vw,27px);font-weight:500;color:#4a5468;margin:0 0 26px;max-width:700px;">מזהים הטיות קוגניטיביות, פונים לנתונים, ומקבלים החלטות מדויקות יותר — בשישה שלבים.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px;">
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">הטיות קוגניטיביות</span>
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">שישה שלבים</span>
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">מקרה בוחן מלא</span>
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">AI לניתוח נתונים</span>
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">יעדי הצלחה SMART</span>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:22px;padding:20px 28px;box-shadow:0 22px 50px -20px rgba(28,35,64,.6);">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4d63e6,#8b5cf0);display:flex;align-items:center;justify-content:center;font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;flex:none;">י</div>
+          <div>
+            <div style="font-size:12px;letter-spacing:.16em;color:#aeb6e0;font-weight:600;">מנחה הסדנה</div>
+            <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:22px;">יפתח גפן</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;">
+          <a id="heroEmail" href="#" style="display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;text-decoration:none;font-weight:500;font-size:14.5px;" dir="ltr"><span style="opacity:.7;">✉</span><span data-email-text="">&nbsp;</span></a>
+          <a href="tel:0524663221" style="display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;" dir="ltr"><span style="opacity:.85;">✆</span>052-466-3221</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width:1320px;margin:0 auto;padding:0 24px 40px;display:flex;gap:34px;align-items:flex-start;flex-direction:row-reverse;">
+    <main style="flex:1 1 auto;min-width:0;max-width:1060px;margin:0 auto;">
+
+      <!-- ===== CH 01 ===== -->
+      <section id="ch1" data-screen-label="01" data-reveal="" style="position:relative;padding:56px 0 70px;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(77,99,230,.12);pointer-events:none;z-index:0;">01</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">איך אנחנו מחליטים</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">לא רציונלי ולא במקרה</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:730px;margin:0 0 26px;">הטיה קוגניטיבית היא נטייה שיטתית לסטות מהנורמה או מהשיקול הדעת הרציונלי במהלך שיפוט. אנשים בונים "מציאות אישית" משלהם בהתבסס על האופן שבו הם תופסים את המידע שנמצא לפניהם. במילים אחרות: החלטות מתקבלות על פי תחושות אישיות ולא על פי נתונים אובייקטיביים.</p>
+
+          <div style="position:relative;overflow:hidden;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:28px;padding:44px 40px;margin-bottom:34px;box-shadow:0 26px 60px -30px rgba(28,35,64,.7);">
+            <div style="position:absolute;top:-90px;left:-40px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,240,.28),transparent 65%);pointer-events:none;"></div>
+            <div style="position:relative;">
+              <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(24px,3.4vw,36px);line-height:1.35;max-width:760px;">"בני האדם אמוציונליים, מוטים ולעיתים קרובות מדי מקבלים החלטות נגד האינטרס האישי שלהם"</div>
+              <div style="margin-top:20px;font-size:15px;color:#aeb6e0;">פרופ׳ דן אריאלי · פרופסור ישראלי לפסיכולוגיה וכלכלה התנהגותית</div>
+            </div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 6px;">שש ההטיות שפגשנו</h3>
+          <p style="color:#717a90;margin:0 0 20px;">כל אחת מהן מרגישה בזמן אמת כמו שיקול דעת בריא.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:34px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:18px;margin-bottom:6px;color:#4d63e6;">עוגן</div><div style="color:#4a5468;font-size:15.5px;">מידע ראשוני כהנחת מוצא.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:18px;margin-bottom:6px;color:#5a5ee4;">יוריסטיקת זמינות</div><div style="color:#4a5468;font-size:15.5px;">הסתמכות על המידע הזמין בלבד.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:18px;margin-bottom:6px;color:#6a5ae6;">מומנטום דיאגנוסטי</div><div style="color:#4a5468;font-size:15.5px;">הערכת יתר על סמך חשיפה.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:18px;margin-bottom:6px;color:#7a58e8;">תפיסה סלקטיבית</div><div style="color:#4a5468;font-size:15.5px;">תפיסת המצב רק באמצעות מסגרת ההתייחסות שלנו.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:18px;margin-bottom:6px;color:#8355ec;">סטטוס קוו</div><div style="color:#4a5468;font-size:15.5px;">אנשים נוטים להעדיף את המצב כפי שהוא.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:18px;margin-bottom:6px;color:#8b5cf0;">הטיית ההישרדות</div><div style="color:#4a5468;font-size:15.5px;">מחליטים כי כולם עושים אותו דבר.</div></div>
+          </div>
+
+          <div data-reveal="" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:28px;padding:40px;margin-bottom:14px;box-shadow:0 26px 60px -30px rgba(28,35,64,.7);">
+            <div style="position:absolute;bottom:-140px;right:-60px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(77,99,230,.3),transparent 65%);pointer-events:none;"></div>
+            <div style="position:relative;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.18em;color:#aeb6e0;margin-bottom:22px;">היתרון של ארגון מונע נתונים</div>
+              <div style="display:flex;flex-wrap:wrap;gap:36px 60px;">
+                <div><div class="bigNum" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(64px,9vw,104px);line-height:.9;background:linear-gradient(135deg,#8ea2ff,#c9a5ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">×23</div><div style="font-size:16.5px;color:#dfe3fb;max-width:230px;margin-top:8px;">סיכוי גבוה יותר לגייס לקוחות</div></div>
+                <div><div class="bigNum" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(64px,9vw,104px);line-height:.9;background:linear-gradient(135deg,#8ea2ff,#c9a5ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">×6</div><div style="font-size:16.5px;color:#dfe3fb;max-width:230px;margin-top:8px;">סיכוי גבוה יותר לשמר לקוחות</div></div>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;">
+                <span style="padding:9px 18px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-weight:600;font-size:14.5px;">ארגון ממוקד</span>
+                <span style="padding:9px 18px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-weight:600;font-size:14.5px;">יעילות מוגברת</span>
+                <span style="padding:9px 18px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-weight:600;font-size:14.5px;">שיפור חוויית הלקוח</span>
+              </div>
+              <div style="margin-top:18px;font-size:13px;color:#8b93c4;" dir="ltr">source: keboola.com</div>
+            </div>
+          </div>
+
+          <div data-checklist="p1" style="margin-top:26px;"></div>
+        </div>
+      </section>
+
+      <!-- ===== CH 02 ===== -->
+      <section id="ch2" data-screen-label="02" data-reveal="" style="position:relative;padding:56px 0 70px;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(77,99,230,.12);pointer-events:none;z-index:0;">02</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">שלבים 1–2</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">מבעיה עסקית ליעד SMART</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:730px;margin:0 0 26px;">תהליך קבלת החלטות מבוססות נתונים בנוי משישה שלבים. לחצו על כל שלב כדי לראות את השאלה המנחה שלו ואת מה שקרה בו במקרה הבוחן.</p>
+
+          <div style="background:#fff;border:1px solid #e6e9f2;border-radius:28px;padding:26px;margin-bottom:36px;box-shadow:0 16px 44px -26px rgba(28,35,64,.4);">
+            <div id="steptabs" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;"></div>
+            <div id="steppanels"></div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 6px;">שלב 1 · זיהוי הבעיה העסקית</h3>
+          <p style="color:#717a90;margin:0 0 20px;">בעיה עסקית היא פער בין המצב הרצוי למצוי — תוצאה של מגבלות, שינויים או הזדמנויות. זיהוי נכון חוסך זמן ומשאבים וממקד את הארגון בפתרונות רלוונטיים.</p>
+
+          <div class="grid2" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:30px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;color:#4d63e6;margin-bottom:8px;">01</div><div style="font-weight:700;font-size:17px;margin-bottom:5px;">זיהוי הפער</div><div style="color:#4a5468;font-size:15.5px;">מה המצב הרצוי ומה המצב בפועל?</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;color:#6a5ae6;margin-bottom:8px;">02</div><div style="font-weight:700;font-size:17px;margin-bottom:5px;">הצגת השלכות</div><div style="color:#4a5468;font-size:15.5px;">איך הפער משפיע על הארגון?</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;color:#7d52e0;margin-bottom:8px;">03</div><div style="font-weight:700;font-size:17px;margin-bottom:5px;">הגדרת הבעיה</div><div style="color:#4a5468;font-size:15.5px;">ניסוח הבעיה באופן ברור וממוקד.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;color:#8b5cf0;margin-bottom:8px;">04</div><div style="font-weight:700;font-size:17px;margin-bottom:5px;">שאלת WHY</div><div style="color:#4a5468;font-size:15.5px;">למה זה קורה?</div></div>
+          </div>
+
+          <div style="background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:24px;padding:32px 34px;margin-bottom:34px;box-shadow:0 22px 50px -28px rgba(28,35,64,.65);">
+            <div style="font-size:12px;font-weight:700;letter-spacing:.16em;color:#aeb6e0;margin-bottom:12px;">הבעיה העסקית במקרה הבוחן</div>
+            <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(21px,2.8vw,29px);line-height:1.45;max-width:820px;">חוסר ההצלחה לשווק את שירותי הביטוח המשלים למגזר הערבי מתורגם ישירות לפספוס של קהל יעד ענק ואובדן רווחיות שוטפת.</div>
+          </div>
+
+          <div data-reveal="" style="background:#fff;border:1px solid #e6e9f2;border-radius:28px;padding:34px;margin-bottom:36px;box-shadow:0 16px 44px -26px rgba(28,35,64,.4);">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
+              <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:28px;margin:0;">בנו פרומפט מנצח</h3>
+              <span style="padding:5px 14px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;">תרגול חי</span>
+            </div>
+            <p style="color:#4a5468;margin:0 0 18px;">כשמבקשים מ-AI לעזור בניסוח הבעיה, ביעדים או בניתוח — איכות התשובה נגזרת מאיכות ההנחיה. אלה העקרונות שעברנו:</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+              <span style="padding:8px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:600;font-size:14.5px;">תפקיד</span>
+              <span style="padding:8px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:600;font-size:14.5px;">הקשר</span>
+              <span style="padding:8px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:600;font-size:14.5px;">סגנון ופורמט</span>
+              <span style="padding:8px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:600;font-size:14.5px;">מידע ושכבות</span>
+              <span style="padding:8px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:600;font-size:14.5px;">ניסוח ברור ומדויק של הבקשה</span>
+            </div>
+
+            <div style="background:#f3f5fb;border:1px dashed #c8cfeb;border-radius:18px;padding:18px 20px;margin-bottom:26px;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#717a90;margin-bottom:6px;">דוגמה לפרומפט טוב</div>
+              <p style="margin:0;color:#2a3350;font-size:15.5px;line-height:1.7;">"פעל כאנליסט/ית עסקי/ת. ההקשר: אני מנהל/ת שיווק בקופת חולים, וקהל היעד להחלטה הוא הנהלת החטיבה. המשימה: נסח את הבעיה העסקית שמאחורי הנתון שרק ל-38% מהחברה הערבית יש ביטוח משלים, והצע שלוש שאלות עסקיות לבדיקה. סגנון ופורמט: עברית עניינית, עד 150 מילים, בנקודות."</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;">
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#4d63e6;">תפקיד</span><input id="pb_role" type="text" placeholder="פעל כ…" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#6d5ce6;">הקשר וקהל יעד</span><input id="pb_ctx" type="text" placeholder="הרקע, הארגון, למי התוצר מיועד" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#7d52e0;">המשימה</span><input id="pb_task" type="text" placeholder="מה בדיוק צריך לקבל" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#8b5cf0;">סגנון ופורמט</span><input id="pb_style" type="text" placeholder="אורך, טון, מבנה הפלט" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+            </div>
+
+            <div style="margin-top:22px;background:linear-gradient(135deg,#1c2340,#2a2f5c);border-radius:18px;padding:22px 24px;color:#fff;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#aeb6e0;margin-bottom:8px;">הפרומפט שלכם</div>
+              <div id="pb_out_box" style="font-size:16px;line-height:1.8;white-space:pre-wrap;min-height:28px;color:#e8ebfb;">מלאו את השדות כדי לבנות את הפרומפט…</div>
+              <button id="pb_copy" style="margin-top:16px;padding:10px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;">העתקה</button>
+            </div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 18px;">שלב 2 · הגדרת יעדי הצלחה</h3>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-bottom:28px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:17.5px;color:#4d63e6;margin-bottom:5px;">פשוט <span dir="ltr" style="color:#9aa3ba;font-size:14px;">(Simple)</span></div><div style="color:#4a5468;font-size:15.5px;">ישיר, מעודד החלטות ולא שאלות נוספות.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:17.5px;color:#5f5ce5;margin-bottom:5px;">מדיד <span dir="ltr" style="color:#9aa3ba;font-size:14px;">(Measurable)</span></div><div style="color:#4a5468;font-size:15.5px;">ניתן למדידה כמותית.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:17.5px;color:#7156e8;margin-bottom:5px;">בר ביצוע <span dir="ltr" style="color:#9aa3ba;font-size:14px;">(Achievable)</span></div><div style="color:#4a5468;font-size:15.5px;">ניתן ליישום.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:17.5px;color:#8055ec;margin-bottom:5px;">רלוונטי <span dir="ltr" style="color:#9aa3ba;font-size:14px;">(Relevant)</span></div><div style="color:#4a5468;font-size:15.5px;">מחובר לעבודה השוטפת של הצוות או הארגון.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-weight:700;font-size:17.5px;color:#8b5cf0;margin-bottom:5px;">תחום בזמן <span dir="ltr" style="color:#9aa3ba;font-size:14px;">(Timely)</span></div><div style="color:#4a5468;font-size:15.5px;">ניתן ליישם אותו תוך זמן סביר.</div></div>
+          </div>
+
+          <div style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:30px 32px;margin-bottom:10px;box-shadow:0 12px 34px -22px rgba(28,35,64,.3);">
+            <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#717a90;margin-bottom:18px;">איך יעד מתחדד — שלושה סבבים</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:flex-start;gap:14px;"><span style="flex:none;padding:5px 12px;border-radius:999px;background:#fbf1ea;color:#a35c2a;font-weight:700;font-size:13px;">ניסוח 1</span><span style="font-size:17px;color:#4a5468;">לא מספיק אנשים מהחברה הערבית רוכשים ביטוח משלים.</span></div>
+              <div style="display:flex;align-items:flex-start;gap:14px;"><span style="flex:none;padding:5px 12px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:700;font-size:13px;">ניסוח 2</span><span style="font-size:17px;color:#4a5468;">הגדלת אחוז האנשים בקרב החברה הערבית שיש להם ביטוח משלים <b style="color:#4d63e6;">בשנה הקרובה</b>.</span></div>
+              <div style="display:flex;align-items:flex-start;gap:14px;"><span style="flex:none;padding:5px 12px;border-radius:999px;background:#eef7f1;color:#2e9c5e;font-weight:700;font-size:13px;">יעד סופי</span><span style="font-size:17px;color:#161c2d;font-weight:600;">הגדלת אחוז האנשים בקרב החברה הערבית שיש להם ביטוח משלים בשנה הקרובה <b style="color:#8b5cf0;">ב-3%</b>.</span></div>
+            </div>
+          </div>
+
+          <div data-checklist="p2" style="margin-top:26px;"></div>
+        </div>
+      </section>
+
+      <!-- ===== CH 03 ===== -->
+      <section id="ch3" data-screen-label="03" data-reveal="" style="position:relative;padding:56px 0 70px;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(77,99,230,.12);pointer-events:none;z-index:0;">03</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">שלבים 3–4</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">השערה ופנייה לנתונים</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:730px;margin:0 0 26px;">שלב ההשערה שואל מה הסיבה לבעיה. הוא מתחיל בשאלה עסקית טובה — ונגמר רק כשהנתונים אישרו או הפריכו אותה.</p>
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:28px;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:26px;padding:34px;margin-bottom:26px;box-shadow:0 22px 50px -28px rgba(28,35,64,.65);">
+            <div class="bigNum" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(70px,11vw,124px);line-height:.85;background:linear-gradient(135deg,#8ea2ff,#c9a5ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;flex:none;">38%</div>
+            <div style="flex:1;min-width:250px;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.16em;color:#aeb6e0;margin-bottom:10px;">השאלה העסקית</div>
+              <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(21px,2.7vw,30px);line-height:1.4;">למה רק ל-38% מהחברה הערבית יש ביטוח משלים?</div>
+            </div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 6px;">ארבע ההשערות שהעלינו</h3>
+          <p style="color:#717a90;margin:0 0 18px;">לאלו מההשערות כדאי לפנות? זו שאלה שאי אפשר להכריע בה בלי נתונים.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:24px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;font-size:16.5px;color:#2a3350;font-weight:600;">חוסר מודעות לביטוחים משלימים</div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;font-size:16.5px;color:#2a3350;font-weight:600;">תפיסה שאין מספיק ערך לביטוח המשלים</div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;font-size:16.5px;color:#2a3350;font-weight:600;">נגישות פחותה להטבות ביטוח משלים</div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;font-size:16.5px;color:#2a3350;font-weight:600;">תמחור שאינו מעודד הצטרפות</div>
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;background:#fff;border:1px dashed #c8cfeb;border-radius:20px;padding:24px 28px;margin-bottom:36px;">
+            <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(22px,3vw,30px);color:#161c2d;">השערה = דעה ≠ עובדה</div>
+            <div style="padding:10px 22px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-weight:700;font-size:16px;">פנייה לנתונים</div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 6px;">משפך הנתונים במקרה הבוחן</h3>
+          <p style="color:#717a90;margin:0 0 18px;">החליפו בין כלל המבוטחים לחברה הערבית — הפער נמצא בדיוק במקום אחד.</p>
+
+          <div style="background:#fff;border:1px solid #e6e9f2;border-radius:28px;padding:30px 32px;margin-bottom:20px;box-shadow:0 16px 44px -26px rgba(28,35,64,.4);">
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px;">
+              <button data-fnl="g" style="padding:10px 20px;border-radius:999px;border:1px solid #e6e9f2;background:#fff;color:#4a5468;font-family:inherit;font-weight:700;font-size:14.5px;cursor:pointer;transition:all .2s;">כלל המבוטחים</button>
+              <button data-fnl="a" style="padding:10px 20px;border-radius:999px;border:1px solid #e6e9f2;background:#fff;color:#4a5468;font-family:inherit;font-weight:700;font-size:14.5px;cursor:pointer;transition:all .2s;">חברה ערבית</button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div data-row="" data-g="100" data-a="100" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><span style="flex:0 0 180px;font-weight:600;font-size:16px;color:#2a3350;">חברי קופה</span><span style="flex:1;min-width:140px;height:26px;border-radius:999px;background:#eef0fb;overflow:hidden;"><span data-bar="" style="display:block;height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#4d63e6,#8b5cf0);transition:width .7s cubic-bezier(.2,.8,.2,1),background .3s;"></span></span><span data-val="" style="flex:0 0 62px;font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#161c2d;" dir="ltr">100%</span></div>
+              <div data-row="" data-g="98" data-a="96" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><span style="flex:0 0 180px;font-weight:600;font-size:16px;color:#2a3350;">מודעות לביטוח משלים</span><span style="flex:1;min-width:140px;height:26px;border-radius:999px;background:#eef0fb;overflow:hidden;"><span data-bar="" style="display:block;height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#4d63e6,#8b5cf0);transition:width .7s cubic-bezier(.2,.8,.2,1),background .3s;"></span></span><span data-val="" style="flex:0 0 62px;font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#161c2d;" dir="ltr">98%</span></div>
+              <div data-row="" data-g="93" data-a="49" data-gap="1" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><span style="flex:0 0 180px;font-weight:600;font-size:16px;color:#2a3350;">רצון לביטוח משלים</span><span style="flex:1;min-width:140px;height:26px;border-radius:999px;background:#eef0fb;overflow:hidden;"><span data-bar="" style="display:block;height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#4d63e6,#8b5cf0);transition:width .7s cubic-bezier(.2,.8,.2,1),background .3s;"></span></span><span data-val="" style="flex:0 0 62px;font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#161c2d;" dir="ltr">93%</span></div>
+              <div data-row="" data-g="89" data-a="42" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><span style="flex:0 0 180px;font-weight:600;font-size:16px;color:#2a3350;">התעניינות באופציות</span><span style="flex:1;min-width:140px;height:26px;border-radius:999px;background:#eef0fb;overflow:hidden;"><span data-bar="" style="display:block;height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#4d63e6,#8b5cf0);transition:width .7s cubic-bezier(.2,.8,.2,1),background .3s;"></span></span><span data-val="" style="flex:0 0 62px;font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#161c2d;" dir="ltr">89%</span></div>
+              <div data-row="" data-g="86" data-a="38" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><span style="flex:0 0 180px;font-weight:600;font-size:16px;color:#2a3350;">רכישת ביטוח משלים</span><span style="flex:1;min-width:140px;height:26px;border-radius:999px;background:#eef0fb;overflow:hidden;"><span data-bar="" style="display:block;height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#4d63e6,#8b5cf0);transition:width .7s cubic-bezier(.2,.8,.2,1),background .3s;"></span></span><span data-val="" style="flex:0 0 62px;font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#161c2d;" dir="ltr">86%</span></div>
+            </div>
+            <div id="fnlNote" style="margin-top:24px;padding:16px 20px;border-radius:16px;background:#f3f5fb;color:#4a5468;font-size:16px;"></div>
+            <div style="margin-top:14px;font-size:13.5px;color:#9aa3ba;">הנתונים מגיעים מהכלים הרבים בכל חטיבה <span dir="ltr">(PBI, Tableau, BO, Excel)</span>. הבעיה העסקית אמיתית; חלק מהנתונים אינם אמיתיים ונועדו לשם המחשת התהליך.</div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:34px 0 6px;">שלב 4 · אילו נתונים עומדים לרשותי?</h3>
+          <p style="color:#717a90;margin:0 0 18px;">מקורות הנתונים שזיהינו במקרה הבוחן.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:30px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:24px 26px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#4d63e6;margin-bottom:12px;">נתוני פנים ומקורות רשמיים</div>
+              <div style="display:flex;flex-direction:column;gap:9px;font-size:16px;color:#2a3350;"><span>נתונים דמוגרפיים של החברים בקופה</span><span>פרטי הביטוחים המשלימים השונים</span><span>נתוני הלמ"ס בתחום הבריאות</span></div>
+            </div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:24px 26px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#8b5cf0;margin-bottom:12px;">נתוני שוק ולקוחות</div>
+              <div style="display:flex;flex-direction:column;gap:9px;font-size:16px;color:#2a3350;"><span>מידע על היענות לקמפייני פרסום</span><span>סקרי שביעות רצון לקוחות מהביטוחים השונים</span><span>נתונים מביטוחים דומים</span></div>
+            </div>
+          </div>
+
+          <div style="background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:26px;padding:34px;margin-bottom:26px;box-shadow:0 22px 50px -28px rgba(28,35,64,.65);">
+            <div style="font-size:12px;font-weight:700;letter-spacing:.16em;color:#aeb6e0;margin-bottom:18px;">מה הנתונים לימדו אותנו</div>
+            <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:26px;">
+              <div style="display:flex;gap:14px;align-items:baseline;"><span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#8ea2ff;">01</span><span style="font-size:17.5px;color:#e8ebfb;">יש ירידה חדה במשפך בין המודעות לביטוח משלים לבין הרצון לביטוח משלים.</span></div>
+              <div style="display:flex;gap:14px;align-items:baseline;"><span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#a795ff;">02</span><span style="font-size:17.5px;color:#e8ebfb;">ישנו מתאם (קורלציה) שלילי בין מעמד סוציואקונומי לרכישת ביטוח משלים, בניגוד לאוכלוסייה הכללית.</span></div>
+              <div style="display:flex;gap:14px;align-items:baseline;"><span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#c9a5ff;">03</span><span style="font-size:17.5px;color:#e8ebfb;">ישנו פלח גדול יותר באוכלוסייה הערבית שיש לו ביטוח פרטי מאשר ביטוח משלים, בהשוואה לאוכלוסייה הכללית.</span></div>
+            </div>
+            <div style="padding:22px 24px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#aeb6e0;margin-bottom:8px;">ההשערה המחודדת</div>
+              <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(19px,2.4vw,26px);line-height:1.45;">ישנה היענות נמוכה בקרב כלל החברה הערבית בגלל תפיסת הערך של הביטוח המשלים.</div>
+            </div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:34px 0 6px;">כלי AI לניתוח נתונים</h3>
+          <p style="color:#717a90;margin:0 0 18px;">כלי AI מאפשרים לנו להבין, לנתח ולחלץ תובנות מתוך נתונים — בלי לכתוב נוסחאות ובלי להיות מומחי אקסל. הנדסת הפרומפט הנכון בכלי:</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;font-size:16.5px;font-weight:600;color:#2a3350;">פרקו בקשות מורכבות</div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;font-size:16.5px;font-weight:600;color:#2a3350;">פשטות ובהירות</div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;font-size:16.5px;font-weight:600;color:#2a3350;">עם מספיק הקשר</div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;font-size:16.5px;font-weight:600;color:#2a3350;">התייחסו לתובנות, לא רק לנתונים</div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;padding:22px 24px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;font-size:16.5px;font-weight:600;color:#2a3350;">בקשו פעולות</div>
+          </div>
+
+          <div data-checklist="p3" style="margin-top:26px;"></div>
+        </div>
+      </section>
+
+      <!-- ===== CH 04 ===== -->
+      <section id="ch4" data-screen-label="04" data-reveal="" style="position:relative;padding:56px 0 70px;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(77,99,230,.12);pointer-events:none;z-index:0;">04</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">שלבים 5–6</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">חלופה, אנליזה ומסקנות</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:730px;margin:0 0 26px;">אנחנו מניחים שהבעיה היא במודעות להצעת הערך. עכשיו בוחרים חלופה, בודקים אותה בשדה, ומשווים את התוצאה ליעד ההצלחה.</p>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 18px;">חלופות אפשריות</h3>
+          <div class="grid2" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:30px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:24px 26px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#4d63e6;margin-bottom:8px;">א׳</div><div style="font-size:16.5px;color:#2a3350;font-weight:600;">קמפיין כללי בשפה העברית</div></div>
+            <div class="lift" style="background:#fff;border:2px solid #4d63e6;border-radius:22px;padding:24px 26px;box-shadow:0 14px 34px -18px rgba(77,99,230,.4);transition:all .25s;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#4d63e6;">ב׳</span><span style="padding:4px 12px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-size:11.5px;font-weight:700;">נבחרה</span></div><div style="font-size:16.5px;color:#2a3350;font-weight:600;">קמפיין ספציפי בשפה הערבית ברשתות החברתיות ובאתרים שונים</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:24px 26px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#7d52e0;margin-bottom:8px;">ג׳</div><div style="font-size:16.5px;color:#2a3350;font-weight:600;">גיוס משפיעני רשת מהחברה הערבית לדבר על הערך של הביטוחים המשלימים</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:24px 26px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;color:#8b5cf0;margin-bottom:8px;">ד׳</div><div style="font-size:16.5px;color:#2a3350;font-weight:600;">שילוב של חלופות</div></div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 18px;">ביצוע האנליזה</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:30px;">
+            <div style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:28px 30px;box-shadow:0 12px 34px -22px rgba(28,35,64,.3);"><div style="display:inline-block;padding:6px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:800;font-size:14px;margin-bottom:14px;" dir="ltr">A</div><div style="font-weight:700;font-size:18px;margin-bottom:5px;">ביקורת</div><div style="color:#4a5468;font-size:16px;">המצב הקיים, ללא שינוי.</div></div>
+            <div style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:28px 30px;box-shadow:0 12px 34px -22px rgba(28,35,64,.3);"><div style="display:inline-block;padding:6px 16px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-weight:800;font-size:14px;margin-bottom:14px;" dir="ltr">B</div><div style="font-weight:700;font-size:18px;margin-bottom:5px;">וריאציה</div><div style="color:#4a5468;font-size:16px;">שינוי כלשהו שאנחנו רוצים לבחון.</div></div>
+          </div>
+
+          <div style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:30px 32px;margin-bottom:26px;box-shadow:0 12px 34px -22px rgba(28,35,64,.3);">
+            <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#717a90;margin-bottom:16px;">תוצאות אפשריות</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:16px;background:#eef7f1;border:1px solid #cde8d6;"><span style="flex:none;width:24px;height:24px;border-radius:8px;background:#2e9c5e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;">✓</span><span style="font-size:16.5px;color:#2c5e44;font-weight:600;">שיעור הביטוחים המשלימים במגזר עלה — בשיעור של 1%</span></div>
+              <div style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:16px;background:#fbfcff;border:1px solid #e6e9f2;"><span style="flex:none;width:24px;height:24px;border-radius:8px;border:2px solid #c8cfeb;"></span><span style="font-size:16.5px;color:#717a90;">שיעור הביטוחים המשלימים במגזר ירד</span></div>
+              <div style="display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:16px;background:#fbfcff;border:1px solid #e6e9f2;"><span style="flex:none;width:24px;height:24px;border-radius:8px;border:2px solid #c8cfeb;"></span><span style="font-size:16.5px;color:#717a90;">אין שום שינוי</span></div>
+            </div>
+          </div>
+
+          <div data-reveal="" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:28px;padding:40px;margin-bottom:26px;box-shadow:0 26px 60px -30px rgba(28,35,64,.7);">
+            <div style="position:absolute;top:-120px;left:-50px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,240,.26),transparent 65%);pointer-events:none;"></div>
+            <div style="position:relative;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.18em;color:#aeb6e0;margin-bottom:8px;">שלב 6 · הסקת מסקנות</div>
+              <div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(28px,4vw,42px);margin-bottom:28px;">הצלחנו?</div>
+              <div style="display:flex;flex-wrap:wrap;gap:30px 56px;align-items:flex-end;">
+                <div><div style="font-size:13px;color:#aeb6e0;margin-bottom:6px;">התוצאה בפועל</div><div class="bigNum" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(58px,8vw,92px);line-height:.9;color:#fff;">1%</div></div>
+                <div style="font-family:'Frank Ruhl Libre',serif;font-size:40px;color:#5b64a0;padding-bottom:10px;">מול</div>
+                <div><div style="font-size:13px;color:#aeb6e0;margin-bottom:6px;">יעד ההצלחה</div><div class="bigNum" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(58px,8vw,92px);line-height:.9;background:linear-gradient(135deg,#8ea2ff,#c9a5ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">3%</div></div>
+              </div>
+              <div style="margin-top:28px;font-size:17.5px;color:#dfe3fb;max-width:700px;">כאן מתברר בדיוק למה יעד הצלחה טוב הוא SMART: בלי יעד מדיד ותחום בזמן, אי אפשר היה לומר אם עלייה של 1% היא הצלחה, כישלון או כיוון נכון שדורש עוד סבב.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px;background:#fff;border:1px dashed #c8cfeb;border-radius:24px;padding:28px 32px;">
+            <span style="padding:8px 18px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-weight:700;font-size:13.5px;">מה עושים מכאן</span>
+            <span style="flex:1;min-width:260px;font-size:17.5px;color:#2a3350;font-weight:500;">תהליך קבלת החלטות מבוססות נתונים הוא תהליך אין-סופי של מעגלים: התוצאות של החלטה אחת ישמשו אותנו כבסיס לתהליך הבא.</span>
+          </div>
+
+          <div data-checklist="p4" style="margin-top:26px;"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <nav id="toc" style="flex:0 0 210px;width:210px;position:sticky;top:80px;align-self:flex-start;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.16em;color:#9aa3ba;margin-bottom:16px;padding-inline-start:14px;">תוכן הסדנה</div>
+      <ul id="toclist" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;"></ul>
+    </nav>
+  </div>
+
+  <footer style="position:relative;overflow:hidden;margin-top:20px;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;padding:70px 24px 60px;">
+    <div style="position:absolute;top:-120px;right:10%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,240,.3),transparent 65%);animation:floatOrb 16s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:relative;max-width:1060px;margin:0 auto;text-align:center;">
+      <div style="font-size:13px;letter-spacing:.2em;color:#aeb6e0;font-weight:600;margin-bottom:12px;">תודה רבה — מוזמנים להישאר בקשר</div>
+      <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:40px;margin-bottom:20px;">יפתח גפן</div>
+      <div style="display:inline-flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+        <a id="footEmail" href="#" style="padding:12px 24px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;text-decoration:none;font-weight:500;" dir="ltr"><span data-email-text="">&nbsp;</span></a>
+        <a href="tel:0524663221" style="padding:12px 24px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;text-decoration:none;font-weight:700;" dir="ltr">052-466-3221</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  const root = document;
+  const $ = (s, c) => (c || root).querySelector(s);
+  const $$ = (s, c) => Array.from((c || root).querySelectorAll(s));
+  const LS = 'ddDecisions_v1_';
+
+  const emailAddr = ['yiftahgeffen', 'gmail.com'].join('@');
+  $$('#heroEmail, #footEmail').forEach(a => {
+    a.setAttribute('href', 'mailto:' + emailAddr);
+    const span = a.querySelector('[data-email-text]');
+    if (span) span.textContent = emailAddr;
+  });
+
+  // ---------- TOC ----------
+  const chapters = [
+    { id: 'ch1', n: '01', t: 'לא רציונלי ולא במקרה' },
+    { id: 'ch2', n: '02', t: 'מבעיה עסקית ליעד' },
+    { id: 'ch3', n: '03', t: 'השערה ונתונים' },
+    { id: 'ch4', n: '04', t: 'חלופה ומסקנות' },
+  ];
+  const toclist = $('#toclist');
+  if (toclist) {
+    toclist.innerHTML = chapters.map(c =>
+      `<li><a href="#${c.id}" data-toc="${c.id}" style="display:flex;align-items:center;gap:10px;text-decoration:none;padding:9px 14px;border-radius:12px;color:#717a90;font-weight:600;font-size:14px;transition:all .2s;">
+        <span class="tocbar" style="width:3px;height:16px;border-radius:2px;background:#d8ddf0;transition:all .25s;flex:none;"></span>
+        <span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:13px;opacity:.7;">${c.n}</span>
+        <span>${c.t}</span>
+      </a></li>`).join('');
+    $$('#toclist a').forEach(a => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const t = $('#' + a.dataset.toc);
+      if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
+    }));
+  }
+  const setActive = (id) => {
+    $$('#toclist a').forEach(a => {
+      const on = a.dataset.toc === id;
+      a.style.background = on ? 'rgba(77,99,230,.08)' : 'transparent';
+      a.style.color = on ? '#1c2340' : '#717a90';
+      const bar = a.querySelector('.tocbar');
+      if (bar) { bar.style.height = on ? '26px' : '16px'; bar.style.background = on ? 'linear-gradient(#4d63e6,#8b5cf0)' : '#d8ddf0'; bar.style.boxShadow = on ? '0 0 8px rgba(77,99,230,.5)' : 'none'; }
+    });
+  };
+
+  const prog = $('#prog');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    if (prog) prog.style.width = (max > 0 ? (h.scrollTop || window.scrollY) / max * 100 : 0) + '%';
+    let cur = chapters[0].id;
+    for (const c of chapters) { const el = $('#' + c.id); if (el && el.getBoundingClientRect().top <= 140) cur = c.id; }
+    setActive(cur);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ---------- reveal ----------
+  const reveals = $$('[data-reveal]');
+  reveals.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity .7s ease, transform .7s ease'; });
+  const show = el => { el.style.opacity = '1'; el.style.transform = 'none'; };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((ents) => ents.forEach(e => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } }), { threshold: 0.06 });
+    reveals.forEach(el => io.observe(el));
+  } else reveals.forEach(show);
+  setTimeout(() => reveals.forEach(el => { if (getComputedStyle(el).opacity === '0') show(el); }), 2500);
+
+  $$('.lift').forEach(el => {
+    const base = el.style.boxShadow;
+    el.addEventListener('mouseenter', () => { el.style.transform = 'translateY(-4px)'; el.style.boxShadow = '0 22px 44px -22px rgba(28,35,64,.45)'; });
+    el.addEventListener('mouseleave', () => { el.style.transform = 'none'; el.style.boxShadow = base; });
+  });
+
+  // ---------- six-step stepper ----------
+  const steps = [
+    { t: 'הבנת הבעיה העסקית', q: 'מה הפער בין המצב הרצוי למצוי, ולמה הוא קורה?', c: 'חוסר ההצלחה לשווק ביטוח משלים למגזר הערבי מתורגם לפספוס קהל יעד ענק ולאובדן רווחיות שוטפת.' },
+    { t: 'הגדרת יעדים', q: 'איך נראית הצלחה, ואיך נמדוד אותה?', c: 'הגדלת אחוז בעלי הביטוח המשלים בחברה הערבית ב-3% בשנה הקרובה.' },
+    { t: 'העלאת השערה', q: 'מה הסיבה לבעיה?', c: 'ארבע השערות: מודעות, תפיסת ערך, נגישות ותמחור.' },
+    { t: 'זיהוי נתונים וביסוס השערה', q: 'אילו נתונים עומדים לרשותי, ומה הם אומרים?', c: 'משפך הנתונים, משוב הלקוחות ונתוני הלמ"ס — שהצביעו על נטישה בין מודעות לרצון.' },
+    { t: 'בחירת חלופה וביצוע אנליזה', q: 'איזו התערבות נבחן, ואיך נבודד את השפעתה?', c: 'קמפיין ממוקד בשפה הערבית, בבדיקת A/B מול המצב הקיים.' },
+    { t: 'הסקת מסקנות', q: 'מה התוצאה מול יעד ההצלחה, ומה עושים מכאן?', c: 'עלייה של 1% מול יעד של 3% — כיוון נכון שדורש סבב נוסף.' },
+  ];
+  const tabs = $('#steptabs'), panels = $('#steppanels');
+  if (tabs && panels) {
+    tabs.innerHTML = steps.map((s, i) =>
+      `<button data-step="${i}" style="display:flex;align-items:center;gap:9px;padding:11px 18px;border-radius:999px;border:1px solid #e6e9f2;background:#fff;color:#4a5468;font-family:inherit;font-weight:700;font-size:14.5px;cursor:pointer;transition:all .2s;">
+        <span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:14px;opacity:.75;">0${i + 1}</span><span>${s.t}</span>
+      </button>`).join('');
+    panels.innerHTML = steps.map((s, i) =>
+      `<div data-panel="${i}" style="display:none;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:40px;line-height:1;background:linear-gradient(135deg,#4d63e6,#8b5cf0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">0${i + 1}</span>
+          <span style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:26px;">${s.t}</span>
+        </div>
+        <div style="font-size:19px;color:#161c2d;font-weight:600;margin-bottom:16px;">${s.q}</div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#f3f5fb;border-radius:16px;padding:18px 20px;">
+          <span style="flex:none;padding:5px 14px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-size:12.5px;font-weight:700;color:#717a90;">במקרה הבוחן</span>
+          <span style="font-size:16.5px;color:#2a3350;">${s.c}</span>
+        </div>
+      </div>`).join('');
+    const selStep = (i) => {
+      $$('[data-step]', tabs).forEach(b => {
+        const on = +b.dataset.step === i;
+        b.style.background = on ? 'linear-gradient(135deg,#4d63e6,#8b5cf0)' : '#fff';
+        b.style.color = on ? '#fff' : '#4a5468';
+        b.style.borderColor = on ? 'transparent' : '#e6e9f2';
+      });
+      $$('[data-panel]', panels).forEach(p => { p.style.display = (+p.dataset.panel === i) ? 'block' : 'none'; });
+    };
+    $$('[data-step]', tabs).forEach(b => b.addEventListener('click', () => selStep(+b.dataset.step)));
+    selStep(0);
+  }
+
+  // ---------- funnel ----------
+  const fnlBtns = $$('[data-fnl]');
+  const fnlRows = $$('[data-row]');
+  const fnlNote = $('#fnlNote');
+  const notes = {
+    g: 'בכלל המבוטחים המשפך זורם: 98% מודעים, 93% רוצים, ו-86% בפועל רוכשים. הנטישה מדורגת ומתונה.',
+    a: 'בחברה הערבית המודעות דומה (96%) — אבל הרצון צולל ל-49%. הנטישה הגדולה נמצאת בין המודעות לרצון, ולא בשלב הרכישה.',
+  };
+  const setFnl = (mode) => {
+    fnlBtns.forEach(b => {
+      const on = b.dataset.fnl === mode;
+      b.style.background = on ? 'linear-gradient(135deg,#4d63e6,#8b5cf0)' : '#fff';
+      b.style.color = on ? '#fff' : '#4a5468';
+      b.style.borderColor = on ? 'transparent' : '#e6e9f2';
+    });
+    fnlRows.forEach(r => {
+      const v = +(mode === 'g' ? r.dataset.g : r.dataset.a);
+      const bar = $('[data-bar]', r), val = $('[data-val]', r);
+      const gap = r.dataset.gap === '1' && mode === 'a';
+      if (bar) { bar.style.width = v + '%'; bar.style.background = gap ? 'linear-gradient(90deg,#c9622f,#e08a4a)' : 'linear-gradient(90deg,#4d63e6,#8b5cf0)'; }
+      if (val) { val.textContent = v + '%'; val.style.color = gap ? '#a35c2a' : '#161c2d'; }
+    });
+    if (fnlNote) fnlNote.textContent = notes[mode];
+  };
+  fnlBtns.forEach(b => b.addEventListener('click', () => setFnl(b.dataset.fnl)));
+  setFnl('g');
+  const fnlHost = fnlRows[0] && fnlRows[0].parentElement;
+  if (fnlHost && 'IntersectionObserver' in window) {
+    let once = false;
+    const io2 = new IntersectionObserver((ents) => ents.forEach(e => {
+      if (e.isIntersecting && !once) { once = true; setTimeout(() => setFnl('a'), 900); io2.disconnect(); }
+    }), { threshold: 0.4 });
+    io2.observe(fnlHost);
+  }
+
+  // ---------- prompt builder ----------
+  const fields = [
+    { id: 'pb_role', label: 'תפקיד' },
+    { id: 'pb_ctx', label: 'הקשר וקהל יעד' },
+    { id: 'pb_task', label: 'המשימה' },
+    { id: 'pb_style', label: 'סגנון ופורמט' },
+  ];
+  const out = $('#pb_out_box');
+  const build = () => {
+    const lines = fields.map(f => { const el = $('#' + f.id); const v = el && el.value; return v && v.trim() ? `${f.label}: ${v.trim()}` : null; }).filter(Boolean);
+    if (out) out.textContent = lines.length ? lines.join('\n') : 'מלאו את השדות כדי לבנות את הפרומפט…';
+  };
+  fields.forEach(f => {
+    const el = $('#' + f.id);
+    if (el) { el.value = localStorage.getItem(LS + f.id) || ''; el.addEventListener('input', () => { localStorage.setItem(LS + f.id, el.value); build(); }); }
+  });
+  build();
+  const pbCopy = $('#pb_copy');
+  if (pbCopy) pbCopy.addEventListener('click', () => {
+    if (navigator.clipboard && out) navigator.clipboard.writeText(out.textContent);
+    pbCopy.textContent = 'הועתק ✓';
+    setTimeout(() => pbCopy.textContent = 'העתקה', 1600);
+  });
+
+  // ---------- checklists ----------
+  const lists = {
+    p1: { title: 'בדיקת הטיות לפני החלטה', time: '4 שאלות', items: [
+      'מה אני לא רואה?',
+      'שקלתי זוויות הסתכלות שונות',
+      'הטלתי ספק בהחלטה שלי',
+      'האם אני מודע לאגו שלי?',
+    ] },
+    p2: { title: 'תרגול: הבעיה העסקית ויעדי ההצלחה', time: 'דף עבודה', items: [
+      'זהו את הפער בין המצב הרצוי למצוי בארגון שלכם',
+      'נסחו את הבעיה העסקית במשפט אחד ברור וממוקד, ושאלו WHY',
+      'חישבו על יעד הצלחה לבעיה שזיהיתם',
+      'חדדו את היעד עד שהוא SMART — מדיד, בר ביצוע ותחום בזמן',
+    ] },
+    p3: { title: 'תרגול: העלאת השערות וביסוסן בנתונים', time: 'דף עבודה', items: [
+      'העלו השערות בהתאם לנתונים הראשונים להבנת הבעיה',
+      'רשמו לאילו נתונים הייתם פונים בארגון ואיזה סוג נתונים הם',
+      'חדדו את ההשערה בהתאם לנתונים הנוספים שסקרתם',
+    ] },
+    p4: { title: 'תרגול: בחירת חלופה והסקת מסקנות', time: 'דף עבודה', items: [
+      'בחרו חלופה אפשרית לפתרון — או שילוב חלופות',
+      'הגדירו את המבחן: מה A (המצב הקיים) ומה B (הוריאציה)',
+      'בהינתן תוצאות האנליזה — מה למדנו?',
+      'החליטו מה עושים מכאן והגדירו את הסבב הבא',
+    ] },
+  };
+  $$('[data-checklist]').forEach(holder => {
+    const key = holder.dataset.checklist;
+    const cfg = lists[key];
+    if (!cfg) return;
+    holder.innerHTML =
+      `<div style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:28px 30px;box-shadow:0 12px 36px -24px rgba(28,35,64,.4);">
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:4px;">
+          <span style="width:30px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>
+          <span style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#717a90;">תרגול לחזרה</span>
+          <span style="margin-inline-start:auto;padding:5px 14px;border-radius:999px;background:#eef0fb;color:#4d63e6;font-size:13px;font-weight:700;">${cfg.time}</span>
+        </div>
+        <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:23px;margin:6px 0 16px;">${cfg.title}</h3>
+        <div data-items style="display:flex;flex-direction:column;gap:10px;"></div>
+        <div style="margin-top:18px;display:flex;align-items:center;gap:12px;">
+          <div style="flex:1;height:8px;border-radius:999px;background:#eef0fb;overflow:hidden;"><div data-bar2 style="height:100%;width:0%;background:linear-gradient(90deg,#4d63e6,#8b5cf0);transition:width .35s;"></div></div>
+          <span data-count dir="ltr" style="font-weight:700;font-size:14px;color:#4a5468;white-space:nowrap;">0 / ${cfg.items.length}</span>
+        </div>
+      </div>`;
+    const itemsWrap = $('[data-items]', holder), bar = $('[data-bar2]', holder), count = $('[data-count]', holder);
+    const update = () => {
+      const boxes = $$('[data-cb]', holder);
+      const done = boxes.filter(b => b.dataset.on === '1').length;
+      bar.style.width = (done / cfg.items.length * 100) + '%';
+      count.textContent = done + ' / ' + cfg.items.length;
+    };
+    itemsWrap.innerHTML = cfg.items.map((t, i) => {
+      const on = localStorage.getItem(LS + key + '_' + i) === '1';
+      return `<button data-cb data-i="${i}" data-on="${on ? '1' : '0'}" style="display:flex;align-items:flex-start;gap:14px;text-align:right;width:100%;background:${on ? '#eef7f1' : '#fbfcff'};border:1px solid ${on ? '#cde8d6' : '#e6e9f2'};border-radius:16px;padding:15px 18px;cursor:pointer;font-family:inherit;transition:all .2s;">
+        <span data-tick style="flex:none;width:24px;height:24px;border-radius:8px;border:2px solid ${on ? '#2e9c5e' : '#c8cfeb'};background:${on ? '#2e9c5e' : '#fff'};color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;transition:all .2s;">${on ? '✓' : ''}</span>
+        <span style="font-size:16px;color:${on ? '#2c5e44' : '#2a3350'};font-weight:500;${on ? 'text-decoration:line-through;opacity:.7;' : ''}">${t}</span>
+      </button>`;
+    }).join('');
+    $$('[data-cb]', holder).forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = btn.dataset.i;
+        const on = btn.dataset.on !== '1';
+        btn.dataset.on = on ? '1' : '0';
+        localStorage.setItem(LS + key + '_' + i, on ? '1' : '0');
+        const tick = $('[data-tick]', btn), label = btn.querySelector('span:last-child');
+        btn.style.background = on ? '#eef7f1' : '#fbfcff';
+        btn.style.borderColor = on ? '#cde8d6' : '#e6e9f2';
+        tick.style.border = '2px solid ' + (on ? '#2e9c5e' : '#c8cfeb');
+        tick.style.background = on ? '#2e9c5e' : '#fff';
+        tick.textContent = on ? '✓' : '';
+        label.style.color = on ? '#2c5e44' : '#2a3350';
+        label.style.textDecoration = on ? 'line-through' : 'none';
+        label.style.opacity = on ? '.7' : '1';
+        update();
+      });
+    });
+    update();
+  });
+})();
+</script>
+</body>
+</html>
