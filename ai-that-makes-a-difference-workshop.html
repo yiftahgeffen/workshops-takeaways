@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI שעושה את ההבדל — סיכום סדנה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Frank+Ruhl+Libre:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;}
+  ::selection{background:#d7ddfb;}
+  a{color:#4d63e6;}
+  a:hover{color:#8b5cf0;}
+  @keyframes floatOrb{0%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-25px) scale(1.08);}100%{transform:translate(0,0) scale(1);}}
+  @media (max-width:999px){#toc{display:none!important;}}
+  @media (hover:none) and (pointer:coarse){#toc{display:none!important;}}
+  @media (max-width:560px){.grid2{grid-template-columns:1fr!important;}}
+  @media (max-width:760px){.heroTitle{font-size:42px!important;}.chTitle{font-size:32px!important;}.watermark{font-size:118px!important;}.bigNum{font-size:76px!important;}.bentoBig{grid-row:auto!important;}}
+  input::placeholder,textarea::placeholder{color:#9aa3ba;}
+</style>
+</head>
+<body>
+<div dir="rtl" style="position:relative;font-family:'Assistant',sans-serif;color:#161c2d;background:#f3f5fb;min-height:100vh;">
+
+  <svg style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04;z-index:9999;mix-blend-mode:multiply;" xmlns="http://www.w3.org/2000/svg"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#grainf)"></rect></svg>
+
+  <div id="progwrap" style="position:fixed;top:0;right:0;left:0;height:4px;background:transparent;z-index:10000;"><div id="prog" style="height:100%;width:0%;background:linear-gradient(90deg,#4d63e6,#8b5cf0);box-shadow:0 0 12px rgba(123,99,230,.5);"></div></div>
+
+  <header style="position:relative;overflow:hidden;padding:96px 24px 80px;">
+    <div style="position:absolute;top:-120px;right:-80px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(77,99,230,.22),transparent 65%);animation:floatOrb 14s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-160px;left:-100px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,240,.18),transparent 65%);animation:floatOrb 18s ease-in-out infinite reverse;pointer-events:none;"></div>
+
+    <div style="position:relative;max-width:1060px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+        <span style="width:42px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>
+        <span style="font-size:14px;font-weight:600;letter-spacing:.22em;color:#717a90;">סיכום סדנה</span>
+      </div>
+
+      <h1 class="heroTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(44px,7vw,74px);line-height:1.05;margin:0 0 10px;background:linear-gradient(135deg,#1c2340 0%,#4d63e6 55%,#8b5cf0 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;"><span dir="ltr">AI</span> שעושה<br>את ההבדל</h1>
+      <p style="font-size:clamp(20px,3vw,27px);font-weight:500;color:#4a5468;margin:0 0 26px;max-width:700px;">כלי <span dir="ltr">AI</span> מתקדמים לנתונים, למיילים, לקול ולמשימות שחוזרות על עצמן.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px;">
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">Copilot לניתוח נתונים</span>
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">Copilot ב-Outlook</span>
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">עיבוד קולי ופגישות</span>
+        <span style="padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6e9f2;font-weight:600;font-size:14px;box-shadow:0 2px 8px rgba(28,35,64,.04);">GEMS לפעולה חוזרת</span>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:22px;padding:20px 28px;box-shadow:0 22px 50px -20px rgba(28,35,64,.6);">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4d63e6,#8b5cf0);display:flex;align-items:center;justify-content:center;font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;flex:none;">י</div>
+          <div>
+            <div style="font-size:12px;letter-spacing:.16em;color:#aeb6e0;font-weight:600;">מנחה הסדנה</div>
+            <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:22px;">יפתח גפן</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;">
+          <a id="heroEmail" href="#" style="display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;text-decoration:none;font-weight:500;font-size:14.5px;" dir="ltr"><span style="opacity:.7;">✉</span><span data-email-text="">&nbsp;</span></a>
+          <a href="tel:0524663221" style="display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;" dir="ltr"><span style="opacity:.85;">✆</span>052-466-3221</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width:1320px;margin:0 auto;padding:0 24px 40px;display:flex;gap:34px;align-items:flex-start;flex-direction:row-reverse;">
+    <main style="flex:1 1 auto;min-width:0;max-width:1060px;margin:0 auto;">
+
+      <section id="ch1" data-screen-label="01" data-reveal="" style="position:relative;padding:56px 0 70px;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(77,99,230,.12);pointer-events:none;z-index:0;">01</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">Microsoft 365 Copilot</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">כלי <span dir="ltr">AI</span> לניתוח נתונים</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:730px;margin:0 0 26px;">שליפה, חיפוש וסיכום נתונים מתוך Excel, יצירת טבלאות וניתוח מגמות, והפקת תובנות אוטומטיות מתוך דוחות קיימים.</p>
+
+          <div style="position:relative;overflow:hidden;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:28px;padding:44px 40px;margin-bottom:34px;box-shadow:0 26px 60px -30px rgba(28,35,64,.7);">
+            <div style="position:absolute;top:-90px;left:-40px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,240,.28),transparent 65%);pointer-events:none;"></div>
+            <div style="position:relative;font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(24px,3.4vw,36px);line-height:1.4;max-width:780px;">כלי <span dir="ltr">AI</span> לניתוח נתונים מאפשרים לנו לנתח, להבין ולחלץ תובנות מתוך נתונים, <span style="background:linear-gradient(135deg,#8ea2ff,#c9a5ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">בלי לכתוב נוסחאות ובלי להיות מומחי אקסל.</span></div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 6px;">מה Copilot יודע לעשות עם נתונים</h3>
+          <p style="color:#717a90;margin:0 0 20px;">ארבעה תפקידים שהוא ממלא בעבודה מול גיליון.</p>
+          <div class="grid2" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:36px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:26px 28px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;color:#4d63e6;margin-bottom:10px;">01</div><div style="font-weight:700;font-size:19px;margin-bottom:6px;">אשף ויזואליזציה</div><div style="color:#4a5468;font-size:16px;">הופך שורות של נתונים לגרפים ותרשימים בלחיצת כפתור.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:26px 28px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;color:#6a5ae6;margin-bottom:10px;">02</div><div style="font-weight:700;font-size:19px;margin-bottom:6px;">מנקה וצייד חריגות</div><div style="color:#4a5468;font-size:16px;">מארגן דאטה מלוכלך ומאתר שגיאות נסתרות.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:26px 28px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;color:#7d52e0;margin-bottom:10px;">03</div><div style="font-weight:700;font-size:19px;margin-bottom:6px;">אנליסט שותף</div><div style="color:#4a5468;font-size:16px;">מציף מגמות ועוזר לכם להבין אילו שאלות כדאי לשאול.</div></div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:26px 28px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;"><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:22px;color:#8b5cf0;margin-bottom:10px;">04</div><div style="font-weight:700;font-size:19px;margin-bottom:6px;">תשובות עסקיות, לא רק נוסחאות</div><div style="color:#4a5468;font-size:16px;">מעבר משאילתות טכניות לפתרון בעיות בשפה טבעית.</div></div>
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px;background:#fff;border:1px dashed #c8cfeb;border-radius:22px;padding:22px 28px;margin:-14px 0 36px;">
+            <span style="flex:none;padding:7px 16px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-weight:700;font-size:13px;">שימו לב</span>
+            <span style="flex:1;min-width:240px;font-size:17px;color:#2a3350;font-weight:500;">כדי לעבוד עם Copilot באקסל, לפעמים נדרש לפתוח את הקובץ באקסל <b>דרך הדפדפן</b> <span dir="ltr" style="color:#717a90;">(Excel for the web)</span>.</span>
+          </div>
+
+          <div data-reveal="" style="background:#fff;border:1px solid #e6e9f2;border-radius:28px;padding:34px;margin-bottom:10px;box-shadow:0 16px 44px -26px rgba(28,35,64,.4);">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
+              <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:28px;margin:0;">בנו פרומפט מנצח</h3>
+              <span style="padding:5px 14px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;">תרגול חי</span>
+            </div>
+            <p style="color:#4a5468;margin:0 0 18px;">הנדסת הפרומפט הנכון בכלי <span dir="ltr">AI</span> לניתוח נתונים:</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+              <span style="padding:8px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:600;font-size:14.5px;">פרקו בקשות מורכבות</span>
+              <span style="padding:8px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:600;font-size:14.5px;">פשטות ובהירות, עם מספיק הקשר</span>
+              <span style="padding:8px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:600;font-size:14.5px;">התייחסו לתובנות, לא רק לנתונים</span>
+              <span style="padding:8px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:600;font-size:14.5px;">בקשו פעולות</span>
+            </div>
+
+            <div style="background:#f3f5fb;border:1px dashed #c8cfeb;border-radius:18px;padding:18px 20px;margin-bottom:26px;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#717a90;margin-bottom:6px;">דוגמה לפרומפט טוב</div>
+              <p style="margin:0;color:#2a3350;font-size:15.5px;line-height:1.7;">"פעל כאנליסט/ית נתונים. ההקשר: מצורף קובץ המכירות החודשיות של הצוות שלי לשנה האחרונה, והתוצר מיועד לישיבת הנהלה. המשימה: זהה את שלוש המגמות הבולטות בנתונים, סמן שורות עם ערכים חריגים או חסרים, והצע גרף אחד שממחיש את המגמה המרכזית."</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;">
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#4d63e6;">תפקיד</span><input id="pb_role" type="text" placeholder="פעל כ…" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#6d5ce6;">הקשר וקהל יעד</span><input id="pb_ctx" type="text" placeholder="איזה קובץ, מה הרקע, למי התוצר" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#7d52e0;">המשימה</span><input id="pb_task" type="text" placeholder="איזו פעולה או תובנה לקבל" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#8b5cf0;">סגנון ופורמט</span><input id="pb_style" type="text" placeholder="טבלה, גרף, נקודות, אורך" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+            </div>
+
+            <div style="margin-top:22px;background:linear-gradient(135deg,#1c2340,#2a2f5c);border-radius:18px;padding:22px 24px;color:#fff;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#aeb6e0;margin-bottom:8px;">הפרומפט שלכם</div>
+              <div id="pb_out_box" style="font-size:16px;line-height:1.8;white-space:pre-wrap;min-height:28px;color:#e8ebfb;">מלאו את השדות כדי לבנות את הפרומפט…</div>
+              <button id="pb_copy" style="margin-top:16px;padding:10px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;">העתקה</button>
+            </div>
+          </div>
+
+          <div data-checklist="p1" style="margin-top:26px;"></div>
+        </div>
+      </section>
+
+      <section id="ch2" data-screen-label="02" data-reveal="" style="position:relative;padding:56px 0 70px;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(77,99,230,.12);pointer-events:none;z-index:0;">02</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">Copilot ב-Outlook</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">ניהול מיילים ותקשורת עסקית</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:730px;margin:0 0 26px;">כלי <span dir="ltr">AI</span> לניהול תקשורת עסקית מבינים את ההקשר, ועוזרים לנו לנסח, לסכם ולתאם בקלות.</p>
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:22px 40px;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:26px;padding:34px 38px;margin-bottom:34px;box-shadow:0 22px 50px -28px rgba(28,35,64,.65);">
+            <div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(28px,4vw,42px);line-height:1.15;">פחות התעסקות.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <span style="padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-weight:700;font-size:16px;">יותר בהירות</span>
+              <span style="padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-weight:700;font-size:16px;">יותר דיוק</span>
+              <span style="padding:10px 20px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);font-weight:700;font-size:16px;">יותר זמן פנוי</span>
+            </div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 6px;">איך Copilot עוזר לנהל תקשורת עסקית</h3>
+          <p style="color:#717a90;margin:0 0 20px;">היכולות שראינו, מקובצות לפי שלב העבודה עם תיבת הדואר.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:36px;">
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:26px 28px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#4d63e6;margin-bottom:14px;">קוראים ומבינים</div>
+              <div style="display:flex;flex-direction:column;gap:10px;font-size:16.5px;color:#2a3350;font-weight:500;"><span>תקציר מהיר של שיחה</span><span>סיכום מיילים ארוכים</span></div>
+            </div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:26px 28px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#6d5ce6;margin-bottom:14px;">כותבים ועונים</div>
+              <div style="display:flex;flex-direction:column;gap:10px;font-size:16.5px;color:#2a3350;font-weight:500;"><span>ניסוח מיילים מקצועיים</span><span>התאמה לטון ולסגנון</span><span>הצעות מענה מהירות ורלוונטיות</span><span>תשובות חכמות</span></div>
+            </div>
+            <div class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:26px 28px;box-shadow:0 10px 30px -18px rgba(28,35,64,.25);transition:all .25s;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#8b5cf0;margin-bottom:14px;">עוקבים ומתאמים</div>
+              <div style="display:flex;flex-direction:column;gap:10px;font-size:16.5px;color:#2a3350;font-weight:500;"><span>זיהוי מיילים שדורשים מענה או פעולה</span><span>מעקב אחר משימות</span><span>שמירה ביומן בלחיצת כפתור</span></div>
+            </div>
+          </div>
+
+          <div data-reveal="" style="background:#fff;border:1px solid #e6e9f2;border-radius:28px;padding:30px 32px;margin-bottom:10px;box-shadow:0 16px 44px -26px rgba(28,35,64,.4);">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
+              <span style="width:30px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>
+              <span style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#717a90;">ההנחיה הראשונה מהתרגול</span>
+            </div>
+            <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(20px,2.6vw,26px);line-height:1.5;color:#161c2d;margin-bottom:18px;">"תן לי רשימת 15 המיילים האחרונים שדורשים ממני תשובה או התייחסות, ותן הצעה למענה בכל אחד מהם."</div>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;">
+              <button data-copy="תן לי רשימת 15 המיילים האחרונים שדורשים ממני תשובה או התייחסות, ותן הצעה למענה בכל אחד מהם." style="padding:10px 22px;border:none;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;">העתקה</button>
+              <span style="font-size:14.5px;color:#717a90;">הדביקו באפליקציית Copilot שבתוך Outlook.</span>
+            </div>
+          </div>
+
+          <div data-checklist="p2" style="margin-top:26px;"></div>
+        </div>
+      </section>
+
+      <section id="ch3" data-screen-label="03" data-reveal="" style="position:relative;padding:56px 0 70px;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(77,99,230,.12);pointer-events:none;z-index:0;">03</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">קול ואודיו</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">עיבוד קולי וניהול פגישות</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:730px;margin:0 0 30px;"><span dir="ltr">AI</span> משנה את הדרך שבה אנחנו עובדים עם קול: הוא מאפשר לנו לערוך, לשפר ולייצר סאונד ודיבור בצורה חכמה, מהירה ואוטומטית, בקלות שלא הייתה אפשרית בעבר.</p>
+
+          <div data-reveal="" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;border-radius:28px;padding:40px;margin-bottom:36px;box-shadow:0 26px 60px -30px rgba(28,35,64,.7);">
+            <div style="position:absolute;bottom:-140px;right:-60px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(77,99,230,.3),transparent 65%);pointer-events:none;"></div>
+            <div style="position:relative;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.18em;color:#aeb6e0;margin-bottom:24px;">ארבע היכולות של כלי עיבוד קולי</div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px 30px;">
+                <div><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:54px;line-height:.9;background:linear-gradient(135deg,#8ea2ff,#c9a5ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;">01</div><div style="font-size:18px;font-weight:700;color:#fff;">תמלול אוטומטי</div></div>
+                <div><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:54px;line-height:.9;background:linear-gradient(135deg,#8ea2ff,#c9a5ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;">02</div><div style="font-size:18px;font-weight:700;color:#fff;">עריכת אודיו חכמה</div></div>
+                <div><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:54px;line-height:.9;background:linear-gradient(135deg,#8ea2ff,#c9a5ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;">03</div><div style="font-size:18px;font-weight:700;color:#fff;">יצירת דיבור סינתטי</div><div style="font-size:14px;color:#aeb6e0;margin-top:4px;" dir="ltr">Text-to-Speech</div></div>
+                <div><div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:54px;line-height:.9;background:linear-gradient(135deg,#8ea2ff,#c9a5ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;">04</div><div style="font-size:18px;font-weight:700;color:#fff;">זיהוי דוברים וניתוח שיחה</div></div>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 6px;">איך זה משפר את היומיום שלנו</h3>
+          <p style="color:#717a90;margin:0 0 20px;">לחצו על כרטיס כדי לפתוח אותו.</p>
+          <div id="voiceacc" style="display:flex;flex-direction:column;gap:12px;margin-bottom:36px;"></div>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 6px;">הכלים שעבדנו איתם</h3>
+          <p style="color:#717a90;margin:0 0 20px;">שני כלים להקלטה, תמלול וסיכום של פגישות.</p>
+          <div class="grid2" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;">
+            <div class="lift" style="display:flex;flex-direction:column;background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:28px 30px;box-shadow:0 12px 34px -22px rgba(28,35,64,.3);transition:all .25s;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#4d63e6;margin-bottom:10px;">הקלטה וסיכום פגישות</div>
+              <div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:30px;margin-bottom:10px;" dir="ltr">Timeless</div>
+              <div style="color:#4a5468;font-size:16px;margin-bottom:22px;flex:1;">מקליט פגישות ב-Zoom, Google Meet ו-Teams, וגם שיחות טלפון ופגישות פנים אל פנים, והופך אותן לסיכומים, משימות ומיילי המשך. תומך ביותר מ-60 שפות.</div>
+              <a href="https://www.timeless.day" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;">לאתר Timeless <span>←</span></a>
+            </div>
+            <div class="lift" style="display:flex;flex-direction:column;background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:28px 30px;box-shadow:0 12px 34px -22px rgba(28,35,64,.3);transition:all .25s;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#8b5cf0;margin-bottom:10px;">תמלול אודיו ווידאו</div>
+              <div style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:30px;margin-bottom:10px;" dir="ltr">TurboScribe</div>
+              <div style="color:#4a5468;font-size:16px;margin-bottom:22px;flex:1;">מתמלל קבצי אודיו ווידאו לטקסט ביותר מ-98 שפות, עם זיהוי דוברים, וייצוא ל-DOCX, PDF, TXT וכתוביות. בגרסה החינמית: 3 תמלולים ביום.</div>
+              <a href="https://turboscribe.ai" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;">לאתר TurboScribe <span>←</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ch4" data-screen-label="04" data-reveal="" style="position:relative;padding:56px 0 70px;">
+        <div class="watermark" style="position:absolute;top:8px;left:0;font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:190px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(77,99,230,.12);pointer-events:none;z-index:0;">04</div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><span style="width:32px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span><span style="font-size:13px;font-weight:600;letter-spacing:.2em;color:#717a90;">Google Gemini</span></div>
+          <h2 class="chTitle" style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:clamp(34px,5vw,52px);margin:0 0 14px;line-height:1.1;">GEMS לפעולה חוזרת</h2>
+          <p style="font-size:19px;color:#4a5468;max-width:730px;margin:0 0 26px;">GEM הוא "עובד דיגיטלי" שמתכנתים פעם אחת ומשתמשים בו שוב ושוב: GEM אישי, או GEM המבוסס על תבנית הוראות מלאה למשימות קבועות.</p>
+
+          <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:27px;margin:0 0 6px;">עקרונות לכתיבת <span dir="ltr">Instructions</span></h3>
+          <p style="color:#717a90;margin:0 0 20px;">לחצו על כל עיקרון כדי לראות מה כותבים בו ודוגמה לניסוח.</p>
+          <div id="gemblocks" style="display:flex;flex-direction:column;gap:12px;"></div>
+
+          <div data-reveal="" style="background:#fff;border:1px solid #e6e9f2;border-radius:28px;padding:34px;margin-top:26px;box-shadow:0 16px 44px -26px rgba(28,35,64,.4);">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
+              <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:28px;margin:0;">בנו GEM לפעולה חוזרת</h3>
+              <span style="padding:5px 14px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;">תרגול חי</span>
+            </div>
+            <p style="color:#4a5468;margin:0 0 22px;">חברו את ארבעת העקרונות ל-Instructions מוכן. לא חייבים למלא הכל — מלאו את מה שמתאים למשימה החוזרת שלכם.</p>
+
+            <div style="background:#f3f5fb;border:1px dashed #c8cfeb;border-radius:18px;padding:18px 20px;margin-bottom:26px;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#717a90;margin-bottom:6px;">דוגמה ל-Instructions שלם</div>
+              <p style="margin:0;color:#2a3350;font-size:15.5px;line-height:1.7;">"פעל כעוזר/ת מטה המתמחה בכתיבת תקצירי ישיבות. תהליך העבודה: קבל פרוטוקול גולמי, זהה החלטות, משימות ואחראים. הנחיות: שמור על שפה עניינית, אל תמציא פרטים שלא נאמרו וסמן סוגיות פתוחות. תבנית הפלט: כותרת, רשימת החלטות, טבלת משימות (משימה · אחראי · יעד), וסעיף סוגיות להמשך."</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;">
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#4d63e6;">תפקיד</span><input id="gb_role" type="text" placeholder="פעל כ…" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#6d5ce6;">תהליך העבודה</span><input id="gb_proc" type="text" placeholder="קבל… זהה… בצע…" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#7d52e0;">הנחיות (גבולות גזרה)</span><input id="gb_rules" type="text" placeholder="מה מותר, מה אסור, מה לא להמציא" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+              <label style="display:block;"><span style="display:block;font-weight:700;margin-bottom:6px;color:#8b5cf0;">תבנית הפלט</span><input id="gb_out" type="text" placeholder="המבנה הקבוע של התוצר" style="width:100%;padding:12px 14px;border:1px solid #e6e9f2;border-radius:14px;font-family:inherit;font-size:15px;background:#fbfcff;outline:none;"></label>
+            </div>
+
+            <div style="margin-top:22px;background:linear-gradient(135deg,#1c2340,#2a2f5c);border-radius:18px;padding:22px 24px;color:#fff;">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#aeb6e0;margin-bottom:8px;">ה-Instructions שלכם</div>
+              <div id="gb_out_box" style="font-size:16px;line-height:1.8;white-space:pre-wrap;min-height:28px;color:#e8ebfb;">מלאו את השדות כדי לבנות את ה-Instructions…</div>
+              <button id="gb_copy" style="margin-top:16px;padding:10px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;">העתקה</button>
+            </div>
+          </div>
+
+          <div data-checklist="p4" style="margin-top:26px;"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <nav id="toc" style="flex:0 0 210px;width:210px;position:sticky;top:80px;align-self:flex-start;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.16em;color:#9aa3ba;margin-bottom:16px;padding-inline-start:14px;">תוכן הסדנה</div>
+      <ul id="toclist" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;"></ul>
+    </nav>
+  </div>
+
+  <footer style="position:relative;overflow:hidden;margin-top:20px;background:linear-gradient(135deg,#1c2340,#2a2f5c);color:#fff;padding:70px 24px 60px;">
+    <div style="position:absolute;top:-120px;right:10%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,240,.3),transparent 65%);animation:floatOrb 16s ease-in-out infinite;pointer-events:none;"></div>
+    <div style="position:relative;max-width:1060px;margin:0 auto;text-align:center;">
+      <div style="font-size:13px;letter-spacing:.2em;color:#aeb6e0;font-weight:600;margin-bottom:12px;">תודה רבה — מוזמנים להיות בקשר</div>
+      <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:40px;margin-bottom:20px;">יפתח גפן</div>
+      <div style="display:inline-flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+        <a id="footEmail" href="#" style="padding:12px 24px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;text-decoration:none;font-weight:500;" dir="ltr"><span data-email-text="">&nbsp;</span></a>
+        <a href="tel:0524663221" style="padding:12px 24px;border-radius:999px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);color:#fff;text-decoration:none;font-weight:700;" dir="ltr">052-466-3221</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  const root = document;
+  const $ = (s, c) => (c || root).querySelector(s);
+  const $$ = (s, c) => Array.from((c || root).querySelectorAll(s));
+  const LS = 'aiAdvanced_v1_';
+
+  const emailAddr = ['yiftahgeffen', 'gmail.com'].join('@');
+  $$('#heroEmail, #footEmail').forEach(a => {
+    a.setAttribute('href', 'mailto:' + emailAddr);
+    const span = a.querySelector('[data-email-text]');
+    if (span) span.textContent = emailAddr;
+  });
+
+  const chapters = [
+    { id: 'ch1', n: '01', t: 'ניתוח נתונים' },
+    { id: 'ch2', n: '02', t: 'מיילים ותקשורת' },
+    { id: 'ch3', n: '03', t: 'קול ופגישות' },
+    { id: 'ch4', n: '04', t: 'GEMS' },
+  ];
+  const toclist = $('#toclist');
+  if (toclist) {
+    toclist.innerHTML = chapters.map(c =>
+      `<li><a href="#${c.id}" data-toc="${c.id}" style="display:flex;align-items:center;gap:10px;text-decoration:none;padding:9px 14px;border-radius:12px;color:#717a90;font-weight:600;font-size:14px;transition:all .2s;">
+        <span class="tocbar" style="width:3px;height:16px;border-radius:2px;background:#d8ddf0;transition:all .25s;flex:none;"></span>
+        <span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:13px;opacity:.7;">${c.n}</span>
+        <span>${c.t}</span>
+      </a></li>`).join('');
+    $$('#toclist a').forEach(a => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const t = $('#' + a.dataset.toc);
+      if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
+    }));
+  }
+  const setActive = (id) => {
+    $$('#toclist a').forEach(a => {
+      const on = a.dataset.toc === id;
+      a.style.background = on ? 'rgba(77,99,230,.08)' : 'transparent';
+      a.style.color = on ? '#1c2340' : '#717a90';
+      const bar = a.querySelector('.tocbar');
+      if (bar) { bar.style.height = on ? '26px' : '16px'; bar.style.background = on ? 'linear-gradient(#4d63e6,#8b5cf0)' : '#d8ddf0'; bar.style.boxShadow = on ? '0 0 8px rgba(77,99,230,.5)' : 'none'; }
+    });
+  };
+  const prog = $('#prog');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    if (prog) prog.style.width = (max > 0 ? (h.scrollTop || window.scrollY) / max * 100 : 0) + '%';
+    let cur = chapters[0].id;
+    for (const c of chapters) { const el = $('#' + c.id); if (el && el.getBoundingClientRect().top <= 140) cur = c.id; }
+    setActive(cur);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const reveals = $$('[data-reveal]');
+  reveals.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity .7s ease, transform .7s ease'; });
+  const show = el => { el.style.opacity = '1'; el.style.transform = 'none'; };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((ents) => ents.forEach(e => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } }), { threshold: 0.06 });
+    reveals.forEach(el => io.observe(el));
+  } else reveals.forEach(show);
+  setTimeout(() => reveals.forEach(el => { if (getComputedStyle(el).opacity === '0') show(el); }), 2500);
+
+  const wireLift = () => $$('.lift').forEach(el => {
+    if (el.dataset.lw) return; el.dataset.lw = '1';
+    const base = el.style.boxShadow;
+    el.addEventListener('mouseenter', () => { el.style.transform = 'translateY(-4px)'; el.style.boxShadow = '0 22px 44px -22px rgba(28,35,64,.45)'; });
+    el.addEventListener('mouseleave', () => { el.style.transform = 'none'; el.style.boxShadow = base; });
+  });
+
+  const accordion = (host, items, numbered) => {
+    if (!host) return;
+    host.innerHTML = items.map((p, i) =>
+      `<div data-acc class="lift" style="background:#fff;border:1px solid #e6e9f2;border-radius:20px;overflow:hidden;box-shadow:0 6px 20px -16px rgba(28,35,64,.3);transition:all .25s;">
+        <button data-acc-btn style="width:100%;display:flex;align-items:center;gap:14px;background:none;border:none;cursor:pointer;padding:20px 24px;text-align:right;font-family:inherit;">
+          <span style="font-family:'Frank Ruhl Libre',serif;font-weight:800;font-size:20px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;flex:none;">0${i + 1}</span>
+          <span style="flex:1;font-weight:700;font-size:18px;color:#161c2d;">${p.t}</span>
+          <span data-chev style="flex:none;color:#8b5cf0;font-size:22px;transition:transform .3s;">+</span>
+        </button>
+        <div data-acc-body style="max-height:0;overflow:hidden;transition:max-height .35s ease;">
+          <div style="padding:0 24px 22px;">
+            ${p.d ? `<p style="margin:0 0 ${p.ex || p.list ? 16 : 0}px;color:#4a5468;">${p.d}</p>` : ''}
+            ${p.list ? `<div style="display:flex;flex-wrap:wrap;gap:8px;">${p.list.map(x => `<span style="padding:8px 16px;border-radius:999px;background:#eef0fb;color:#3a49b8;font-weight:600;font-size:14.5px;">${x}</span>`).join('')}</div>` : ''}
+            ${p.ex ? `<div style="background:#eef7f1;border:1px solid #cde8d6;border-radius:14px;padding:14px 16px;"><div style="font-size:12px;font-weight:700;color:#2e9c5e;margin-bottom:5px;">✓ דוגמה לניסוח</div><div style="font-size:14.5px;color:#2c5e44;">${p.ex}</div></div>` : ''}
+          </div>
+        </div>
+      </div>`).join('');
+    $$('[data-acc]', host).forEach(acc => {
+      const btn = $('[data-acc-btn]', acc), body = $('[data-acc-body]', acc), chev = $('[data-chev]', acc);
+      btn.addEventListener('click', () => {
+        const open = body.style.maxHeight && body.style.maxHeight !== '0px';
+        body.style.maxHeight = open ? '0px' : body.scrollHeight + 'px';
+        chev.style.transform = open ? 'none' : 'rotate(45deg)';
+      });
+    });
+  };
+
+  accordion($('#voiceacc'), [
+    { t: 'תרגום והקראת טקסטים בשפות שונות', d: 'הופכים טקסט כתוב לדיבור, ומתרגמים אותו לשפה אחרת.' },
+    { t: 'שירותי מענה קולי חכמים', d: 'מענה קולי אוטומטי שמבין את הפונה ומגיב לו.' },
+    { t: 'יצירת פודקאסטים וקריינות לסרטונים', d: 'דיבור סינתטי שמחליף הקלטה באולפן.' },
+    { t: 'פגישות: מהקלטה לסיכום', list: ['הקלטת פגישות והפיכתן לטקסט', 'יצירת סיכומי פגישות', 'שליחת הערות מפגישות'] },
+  ]);
+
+  accordion($('#gemblocks'), [
+    { t: 'תפקיד', d: 'מי ה-GEM ובאיזו מומחיות הוא פועל. ההגדרה קובעת את הטון, אוצר המילים והזווית המקצועית של כל תוצר.', ex: 'פעל כעוזר/ת מטה המתמחה בכתיבת תקצירי ישיבות.' },
+    { t: 'תהליך העבודה', d: 'מה ה-GEM עושה עם הקלט, צעד אחר צעד. תיאור ברור של התהליך מבטיח עקביות בכל הרצה.', ex: 'קבל פרוטוקול גולמי ← זהה החלטות, משימות ואחראים ← ארגן לפי סדר חשיבות.' },
+    { t: 'הנחיות (גבולות גזרה)', d: 'מה מותר ומה אסור. כאן מונעים "המצאות" ומוודאים שה-GEM נשאר בגבולות הרצויים.', ex: 'שמור על שפה עניינית, אל תמציא פרטים שלא נאמרו וסמן סוגיות פתוחות בנפרד.' },
+    { t: 'תבנית הפלט', d: 'המבנה הקבוע של התוצר, כדי שכל פעם ייצא אחיד ומוכן לשימוש מיידי.', ex: 'כותרת · רשימת החלטות · טבלת משימות (משימה · אחראי · יעד) · סוגיות להמשך.' },
+  ]);
+  wireLift();
+
+  const wireBuilder = (fields, outId, copyId, emptyMsg) => {
+    const out = $('#' + outId);
+    const build = () => {
+      const lines = fields.map(f => { const v = ($('#' + f.id) || {}).value; return v && v.trim() ? `${f.label}: ${v.trim()}` : null; }).filter(Boolean);
+      if (out) out.textContent = lines.length ? lines.join('\n') : emptyMsg;
+    };
+    fields.forEach(f => { const el = $('#' + f.id); if (el) { el.value = localStorage.getItem(LS + f.id) || ''; el.addEventListener('input', () => { localStorage.setItem(LS + f.id, el.value); build(); }); } });
+    build();
+    const copyBtn = $('#' + copyId);
+    if (copyBtn) copyBtn.addEventListener('click', () => {
+      navigator.clipboard && navigator.clipboard.writeText(out.textContent);
+      copyBtn.textContent = 'הועתק ✓';
+      setTimeout(() => copyBtn.textContent = 'העתקה', 1600);
+    });
+  };
+  wireBuilder([
+    { id: 'pb_role', label: 'תפקיד' }, { id: 'pb_ctx', label: 'הקשר וקהל יעד' },
+    { id: 'pb_task', label: 'המשימה' }, { id: 'pb_style', label: 'סגנון ופורמט' },
+  ], 'pb_out_box', 'pb_copy', 'מלאו את השדות כדי לבנות את הפרומפט…');
+  wireBuilder([
+    { id: 'gb_role', label: 'תפקיד' }, { id: 'gb_proc', label: 'תהליך העבודה' },
+    { id: 'gb_rules', label: 'הנחיות' }, { id: 'gb_out', label: 'תבנית הפלט' },
+  ], 'gb_out_box', 'gb_copy', 'מלאו את השדות כדי לבנות את ה-Instructions…');
+
+  $$('[data-copy]').forEach(b => b.addEventListener('click', () => {
+    navigator.clipboard && navigator.clipboard.writeText(b.dataset.copy);
+    b.textContent = 'הועתק ✓';
+    setTimeout(() => b.textContent = 'העתקה', 1600);
+  }));
+
+  const lists = {
+    p1: { title: 'תרגול: עבודה עם Copilot על קובצי אקסל', time: '15 דק׳', items: [
+      'בחרו קובץ או שני קבצי אקסל שאתם מרבים לעבוד איתם — רצוי כזה שיש לכם משימה רלוונטית לבצע איתו',
+      'בחרו 3 שאלות עסקיות שהייתם רוצים לענות עליהן מתוך הנתונים שבקבצים',
+      'השתמשו ב-Copilot כדי לנתח את הקבצים ולייצר הנחות מבוססות נתונים לשאלות העסקיות',
+      'בקשו מה-AI לשנות נתונים, לזהות שגיאות, ליצור נתונים חדשים על בסיס הקיימים, גרפים, ויזואליזציות, תובנות וזיהוי מגמות',
+      'הקפידו על כללי כתיבת הנחיה והיו מפורטים — כך יש יותר סיכוי לקבל תשובות איכותיות',
+      'שתפו עם חברים או בקבוצת עבודה, וקבלו פידבק על איך לשפר עוד יותר',
+    ] },
+    p2: { title: 'תרגול: עבודה עם Copilot בתוך Outlook', time: '15 דק׳', items: [
+      'היכנסו לאפליקציית Copilot בתוך Outlook וכתבו את ההנחיה שלמעלה',
+      'עבדו עם Copilot כעוזר חכם: מענה אוטומטי, סיכום שרשורי מיילים ומיילים ארוכים, ואימון על תשובות שאתם לא בטוחים בהן',
+      'בחרו קובץ אחד או יותר מענן OneDrive ובקשו מ-Copilot לבצע עליו עבודה (איחוד, יצירת עותק לפי פרמטרים, שינוי קבצים)',
+      'לחצו על "תציג הנחיות" ומצאו לפחות 2 הנחיות שרלוונטיות לעבודה היום-יומית שלכם',
+      'שתפו עם חברים או בקבוצת עבודה, וקבלו פידבק',
+    ] },
+    p4: { title: 'תרגול: בניית GEM למשימה חוזרת', time: '20 דק׳', items: [
+      'בחרו משימה חוזרת שאתם מבצעים במשרד',
+      'בצ׳אט Gemini הרגיל בקשו לנסח את ה-Instructions לפי 4 העקרונות: תפקיד, תהליך העבודה, הנחיות, תבנית הפלט',
+      'הקימו את ה-GEM החדש והעלו מסמך מדיניות רלוונטי ל-Knowledge (במידת הצורך)',
+      'הזינו חומר גלם ובדקו את איכות הפלט',
+      'שתפו את היושבים לצידכם: האם ה"עובד הדיגיטלי" שמר על גבולות הגזרה והפיק תוצר מדויק שחוסך זמן?',
+    ] },
+  };
+  $$('[data-checklist]').forEach(holder => {
+    const key = holder.dataset.checklist;
+    const cfg = lists[key];
+    if (!cfg) return;
+    holder.innerHTML =
+      `<div style="background:#fff;border:1px solid #e6e9f2;border-radius:24px;padding:28px 30px;box-shadow:0 12px 36px -24px rgba(28,35,64,.4);">
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:4px;">
+          <span style="width:30px;height:3px;border-radius:2px;background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>
+          <span style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#717a90;">תרגול לחזרה</span>
+          <span style="margin-inline-start:auto;padding:5px 14px;border-radius:999px;background:#eef0fb;color:#4d63e6;font-size:13px;font-weight:700;">${cfg.time}</span>
+        </div>
+        <h3 style="font-family:'Frank Ruhl Libre',serif;font-size:23px;margin:6px 0 16px;">${cfg.title}</h3>
+        <div data-items style="display:flex;flex-direction:column;gap:10px;"></div>
+        <div style="margin-top:18px;display:flex;align-items:center;gap:12px;">
+          <div style="flex:1;height:8px;border-radius:999px;background:#eef0fb;overflow:hidden;"><div data-bar2 style="height:100%;width:0%;background:linear-gradient(90deg,#4d63e6,#8b5cf0);transition:width .35s;"></div></div>
+          <span data-count dir="ltr" style="font-weight:700;font-size:14px;color:#4a5468;white-space:nowrap;">0 / ${cfg.items.length}</span>
+        </div>
+      </div>`;
+    const itemsWrap = $('[data-items]', holder), bar = $('[data-bar2]', holder), count = $('[data-count]', holder);
+    const update = () => {
+      const done = $$('[data-cb]', holder).filter(b => b.dataset.on === '1').length;
+      bar.style.width = (done / cfg.items.length * 100) + '%';
+      count.textContent = done + ' / ' + cfg.items.length;
+    };
+    itemsWrap.innerHTML = cfg.items.map((t, i) => {
+      const on = localStorage.getItem(LS + key + '_' + i) === '1';
+      return `<button data-cb data-i="${i}" data-on="${on ? '1' : '0'}" style="display:flex;align-items:flex-start;gap:14px;text-align:right;width:100%;background:${on ? '#eef7f1' : '#fbfcff'};border:1px solid ${on ? '#cde8d6' : '#e6e9f2'};border-radius:16px;padding:15px 18px;cursor:pointer;font-family:inherit;transition:all .2s;">
+        <span data-tick style="flex:none;width:24px;height:24px;border-radius:8px;border:2px solid ${on ? '#2e9c5e' : '#c8cfeb'};background:${on ? '#2e9c5e' : '#fff'};color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;transition:all .2s;">${on ? '✓' : ''}</span>
+        <span style="font-size:16px;color:${on ? '#2c5e44' : '#2a3350'};font-weight:500;${on ? 'text-decoration:line-through;opacity:.7;' : ''}">${t}</span>
+      </button>`;
+    }).join('');
+    $$('[data-cb]', holder).forEach(btn => {
+      btn.addEventListener('click', () => {
+        const on = btn.dataset.on !== '1';
+        btn.dataset.on = on ? '1' : '0';
+        localStorage.setItem(LS + key + '_' + btn.dataset.i, on ? '1' : '0');
+        const tick = $('[data-tick]', btn), label = btn.querySelector('span:last-child');
+        btn.style.background = on ? '#eef7f1' : '#fbfcff';
+        btn.style.borderColor = on ? '#cde8d6' : '#e6e9f2';
+        tick.style.border = '2px solid ' + (on ? '#2e9c5e' : '#c8cfeb');
+        tick.style.background = on ? '#2e9c5e' : '#fff';
+        tick.textContent = on ? '✓' : '';
+        label.style.color = on ? '#2c5e44' : '#2a3350';
+        label.style.textDecoration = on ? 'line-through' : 'none';
+        label.style.opacity = on ? '.7' : '1';
+        update();
+      });
+    });
+    update();
+  });
+})();
+</script>
+</body>
+</html>
