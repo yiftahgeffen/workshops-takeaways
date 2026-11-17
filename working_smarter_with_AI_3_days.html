@@ -296,6 +296,8 @@ a{color:inherit;}
 @keyframes floatOrb2{0%,100%{transform:translate(0,0) scale(1);}40%{transform:translate(16px,20px) scale(1.03);}70%{transform:translate(-14px,-18px) scale(.98);}}
 @keyframes softPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.85);}}
 @keyframes scrollNudge{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+[data-ws]:focus{border-color:#4d63e6!important;box-shadow:0 0 0 4px rgba(77,99,230,.12);}
+[data-ws-export]:hover{transform:translateY(-2px);box-shadow:0 16px 34px -10px rgba(139,92,240,.95)!important;}
 </style>
 </head>
 <body>
@@ -490,28 +492,23 @@ a{color:inherit;}
         <div style="position:relative; z-index:1;">
           <div style="display:inline-flex; align-items:center; gap:10px;"><span style="width:30px; height:2px; border-radius:2px; background:linear-gradient(90deg,#4d63e6,#8b5cf0);"></span><span style="font-size:12.5px; font-weight:700; letter-spacing:2px; color:#4d63e6;">פרק 03 · יום 1</span></div>
           <h2 style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:clamp(30px,4vw,46px); margin-top:10px; line-height:1.1;">החלטות מבוססות נתונים</h2>
-          <p style="color:#4a5468; font-size:18px; margin-top:8px; max-width:600px; text-wrap:pretty;">תהליך מסודר ב-6 שלבים — דרך מקרה הבוחן של מוקד הפניות לתושב.</p>
+          <p style="color:#4a5468; font-size:18px; margin-top:8px; max-width:600px; text-wrap:pretty;">תהליך מסודר ב-6 שלבים: הסבר, דוגמה ממקרה הבוחן של מוקד הפניות לתושב, ודף עבודה למקרה שלכם.</p>
         </div>
       </div>
 
-      <!-- case + funnel -->
-      <div data-reveal="" data-funnel="" data-lift="" style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s, box-shadow .3s; margin-top:28px; background:linear-gradient(135deg,#1c2340,#2a2f5c); border-radius:28px; padding:34px; color:#fff; position:relative; overflow:hidden;">
-        <div style="position:absolute; bottom:-80px; left:-50px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(77,99,230,.4), transparent 70%);"></div>
-        <div style="position:relative; display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px;">
-          <div style="flex:1; min-width:220px;">
-            <div style="font-size:13px; font-weight:700; color:#aeb6d8; letter-spacing:.6px;">מקרה בוחן · מוקד פניות לתושב</div>
-            <div style="display:flex; align-items:baseline; gap:12px; margin-top:10px;"><span style="font-family:'Frank Ruhl Libre',serif; font-weight:800; font-size:clamp(56px,9vw,90px); line-height:.9; background:linear-gradient(135deg,#9db0ff,#c4a9ff); -webkit-background-clip:text; background-clip:text; color:transparent;">45%</span><span style="font-size:17px; color:#cfd5ee; max-width:200px;">בלבד מהפניות מגיעות לכדי פתרון</span></div>
-            <p style="font-size:15px; color:#aeb6d8; margin-top:12px; max-width:300px;">לאורך המשפך, היכן בדיוק "נופלים" האחוזים? שם נמצא הכאב.</p>
+      <!-- workbook header -->
+      <div data-reveal="" style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; margin-top:28px; background:#fff; border:1px solid #e6e9f2; border-radius:24px; box-shadow:0 12px 44px rgba(22,28,45,.08); padding:26px 28px; position:relative; overflow:hidden;">
+        <div aria-hidden="true" style="position:absolute; top:-110px; left:-70px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,240,.13), transparent 70%); pointer-events:none;"></div>
+        <div style="position:relative; display:flex; flex-wrap:wrap; align-items:flex-end; gap:18px 28px;">
+          <div style="flex:1 1 300px; min-width:0;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;"><span style="font-size:13px; font-weight:700; color:#8b5cf0; letter-spacing:.3px;">דף עבודה</span><span style="display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px; background:rgba(77,99,230,.1); color:#4d63e6; font-size:12.5px; font-weight:700;"><span style="width:7px; height:7px; border-radius:50%; background:#4d63e6; animation:softPulse 1.6s infinite;"></span>נשמר אוטומטית</span></div>
+            <label for="ws-case" style="display:block; font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:clamp(22px,2.6vw,27px); margin-top:8px; line-height:1.2;">על איזה מקרה אתם עובדים?</label>
+            <p style="color:#4a5468; font-size:15px; margin-top:6px; max-width:560px;">פתחו כל שלב, קראו את ההסבר והדוגמה ממקרה הבוחן, ומלאו את החלק שלכם. בסוף אפשר לייצא הכול למסמך.</p>
+            <input id="ws-case" data-ws="case" type="text" placeholder="שם המקרה או הבעיה שבחרתם לעבוד עליה" style="width:100%; margin-top:14px; padding:13px 16px; border-radius:14px; border:1px solid #dfe3f0; background:#fbfbfe; font-family:'Assistant',sans-serif; font-size:16px; color:#161c2d; outline:none; transition:border-color .2s, box-shadow .2s;">
           </div>
-          <!-- mini funnel -->
-          <div style="flex:1; min-width:280px;">
-            <div style="display:flex; align-items:flex-end; gap:10px; height:180px;">
-              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;"><div style="font-size:13px; font-weight:700; color:#dfe4f7;">100%</div><div data-bar-h="100%" style="width:100%; height:0; background:linear-gradient(180deg,#6b7ff0,#4d63e6); border-radius:10px 10px 0 0; transition:height 1s cubic-bezier(.2,.7,.2,1); margin-top:6px;"></div><div style="font-size:11px; color:#aeb6d8; margin-top:8px; text-align:center; line-height:1.3;">פנייה<br>מתקבלת</div></div>
-              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;"><div style="font-size:13px; font-weight:700; color:#dfe4f7;">95%</div><div data-bar-h="92%" style="width:100%; height:0; background:linear-gradient(180deg,#6b7ff0,#4d63e6); border-radius:10px 10px 0 0; transition:height 1s cubic-bezier(.2,.7,.2,1) .08s; margin-top:6px;"></div><div style="font-size:11px; color:#aeb6d8; margin-top:8px; text-align:center; line-height:1.3;">נקלטת<br>אצל נציג</div></div>
-              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;"><div style="font-size:13px; font-weight:700; color:#dfe4f7;">90%</div><div data-bar-h="86%" style="width:100%; height:0; background:linear-gradient(180deg,#6b7ff0,#4d63e6); border-radius:10px 10px 0 0; transition:height 1s cubic-bezier(.2,.7,.2,1) .16s; margin-top:6px;"></div><div style="font-size:11px; color:#aeb6d8; margin-top:8px; text-align:center; line-height:1.3;">מועברת<br>למחלקה</div></div>
-              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;"><div style="font-size:13px; font-weight:700; color:#dfe4f7;">50%</div><div data-bar-h="48%" style="width:100%; height:0; background:linear-gradient(180deg,#6b7ff0,#4d63e6); border-radius:10px 10px 0 0; transition:height 1s cubic-bezier(.2,.7,.2,1) .24s; margin-top:6px;"></div><div style="font-size:11px; color:#aeb6d8; margin-top:8px; text-align:center; line-height:1.3;">מטופלת<br>בשטח</div></div>
-              <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;"><div style="font-size:13px; font-weight:800; color:#c4a9ff;">45%</div><div data-bar-h="43%" style="width:100%; height:0; background:linear-gradient(180deg,#a98cf5,#8b5cf0); border-radius:10px 10px 0 0; box-shadow:0 0 18px rgba(139,92,240,.6); transition:height 1s cubic-bezier(.2,.7,.2,1) .32s; margin-top:6px;"></div><div style="font-size:11px; color:#c4a9ff; font-weight:700; margin-top:8px; text-align:center; line-height:1.3;">נסגרת<br>בהצלחה</div></div>
-            </div>
+          <div style="flex:none; padding-bottom:4px;">
+            <div data-ws-segs="" aria-hidden="true" style="display:flex; gap:6px;"><span style="width:30px; height:8px; border-radius:999px; background:#e3e7f3; transition:background .35s;"></span><span style="width:30px; height:8px; border-radius:999px; background:#e3e7f3; transition:background .35s;"></span><span style="width:30px; height:8px; border-radius:999px; background:#e3e7f3; transition:background .35s;"></span><span style="width:30px; height:8px; border-radius:999px; background:#e3e7f3; transition:background .35s;"></span><span style="width:30px; height:8px; border-radius:999px; background:#e3e7f3; transition:background .35s;"></span><span style="width:30px; height:8px; border-radius:999px; background:#e3e7f3; transition:background .35s;"></span></div>
+            <div data-ws-count="" style="font-size:14px; font-weight:700; color:#4d63e6; margin-top:9px;">0 / 6 שלבים מולאו</div>
           </div>
         </div>
       </div>
@@ -519,28 +516,41 @@ a{color:inherit;}
       <!-- 6 steps accordion -->
       <div style="margin-top:22px; display:flex; flex-direction:column; gap:12px;">
         <div data-reveal="" data-lift="" style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
-          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">01</span><span style="font-size:18px; font-weight:700; flex:1;">הבנת הבעיה העסקית</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
-          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">בעיה עסקית היא פער בין המצב הרצוי למצוי. כדי להגדיר אותה נכון: זיהוי הפער ← הצגת ההשלכות ← ניסוח הבעיה והשאלה ← שאלת ה-WHY.<div style="margin-top:12px; padding:12px 14px; border-radius:12px; background:#f6f7fc; border-inline-start:3px solid #4d63e6; font-size:14px; color:#34405c;"><b>השאלה העסקית בבוחן:</b> האם שיפור הטיפול בפניות התושב יכול להפחית הגירה שלילית של אוכלוסייה איכותית מהעיר?</div></div></div>
+          <div data-acc="" data-acc-open="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span data-ws-num="s1" style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px; transition:color .3s;">01</span><span style="font-size:18px; font-weight:700; flex:1;">הבנת הבעיה העסקית</span><span data-ws-pill="s1" style="flex:none; white-space:nowrap; font-size:12px; font-weight:700; padding:4px 11px; border-radius:999px; background:#f1f3fa; color:#8a93ad; transition:all .3s;">למילוי</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">בעיה עסקית היא פער בין המצב הרצוי למצוי. כדי להגדיר אותה נכון: זיהוי הפער ← הצגת ההשלכות ← ניסוח הבעיה והשאלה ← שאלת ה-WHY.<div style="margin-top:12px; padding:12px 14px; border-radius:12px; background:#f6f7fc; border-inline-start:3px solid #4d63e6; font-size:14px; color:#34405c;"><b>השאלה העסקית בבוחן:</b> האם שיפור הטיפול בפניות התושב יכול להפחית הגירה שלילית של אוכלוסייה איכותית מהעיר?</div><div style="margin-top:16px; padding:16px 16px 14px; border-radius:16px; background:linear-gradient(135deg,rgba(77,99,230,.06),rgba(139,92,240,.05)); border:1px solid #e1e5f5;"><label for="ws-s1" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4d63e6; letter-spacing:.3px;"><span style="width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>המקרה שלכם · שלב 01</label><textarea id="ws-s1" data-ws="s1" data-ws-title="הבנת הבעיה העסקית" rows="4" placeholder="מה המצב הרצוי ומה המצב המצוי? מה הפער ביניהם?&#10;מה ההשלכות של הפער?&#10;נסחו את הבעיה ואת השאלה העסקית, ושאלו: למה זה חשוב?" style="display:block; width:100%; margin-top:10px; padding:14px 16px; border-radius:14px; border:1px solid #dfe3f0; background:#fff; font-family:'Assistant',sans-serif; font-size:15.5px; line-height:1.7; color:#161c2d; min-height:118px; resize:vertical; outline:none; transition:border-color .2s, box-shadow .2s;"></textarea></div></div></div>
         </div>
         <div data-reveal="" data-lift="" style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
-          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">02</span><span style="font-size:18px; font-weight:700; flex:1;">הגדרת יעדים</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
-          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">יעדים מספקים פוקוס, שקיפות ומחויבות, ונמדדים באמצעות KPIs. KPI טוב הוא <b>SMART</b>: פשוט, מדיד, בר-ביצוע, רלוונטי, תחום בזמן ותואם.<div style="margin-top:12px; padding:12px 14px; border-radius:12px; background:#f1f8f3; border-inline-start:3px solid #2e8a5a; font-size:14px; color:#34405c;"><b>היעד שנבחר:</b> הגדלת אחוז פניות התושב שנסגרות בהצלחה ל-60% ברבעון הקרוב.</div></div></div>
+          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span data-ws-num="s2" style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px; transition:color .3s;">02</span><span style="font-size:18px; font-weight:700; flex:1;">הגדרת יעדים</span><span data-ws-pill="s2" style="flex:none; white-space:nowrap; font-size:12px; font-weight:700; padding:4px 11px; border-radius:999px; background:#f1f3fa; color:#8a93ad; transition:all .3s;">למילוי</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">יעדים מספקים פוקוס, שקיפות ומחויבות, ונמדדים באמצעות KPIs. KPI טוב הוא <b>SMART</b>: פשוט, מדיד, בר-ביצוע, רלוונטי, תחום בזמן ותואם.<div style="margin-top:12px; padding:12px 14px; border-radius:12px; background:#f1f8f3; border-inline-start:3px solid #2e8a5a; font-size:14px; color:#34405c;"><b>היעד שנבחר:</b> הגדלת אחוז פניות התושב שנסגרות בהצלחה ל-60% ברבעון הקרוב.</div><div style="margin-top:16px; padding:16px 16px 14px; border-radius:16px; background:linear-gradient(135deg,rgba(77,99,230,.06),rgba(139,92,240,.05)); border:1px solid #e1e5f5;"><label for="ws-s2" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4d63e6; letter-spacing:.3px;"><span style="width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>המקרה שלכם · שלב 02</label><textarea id="ws-s2" data-ws="s2" data-ws-title="הגדרת יעדים" rows="4" placeholder="מה היעד שלכם, ואיזה KPI ימדוד אותו?&#10;בדקו שהוא SMART: פשוט, מדיד, בר-ביצוע, רלוונטי ותחום בזמן." style="display:block; width:100%; margin-top:10px; padding:14px 16px; border-radius:14px; border:1px solid #dfe3f0; background:#fff; font-family:'Assistant',sans-serif; font-size:15.5px; line-height:1.7; color:#161c2d; min-height:118px; resize:vertical; outline:none; transition:border-color .2s, box-shadow .2s;"></textarea></div></div></div>
         </div>
         <div data-reveal="" data-lift="" style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
-          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">03</span><span style="font-size:18px; font-weight:700; flex:1;">העלאת השערה</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
-          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">ממפים את משפך השירות (תושב מצלצל ← נציג ← מחלקה מטפלת ← סגירה) ומאתרים היכן "נופלים" האחוזים. השערות אפשריות: עומס על המחלקה, דיווחי סרק, חוסר כלים/ידע, אי-איתור מיקום הליקוי, או משיכת קהל לא נכון לטופס.</div></div>
+          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span data-ws-num="s3" style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px; transition:color .3s;">03</span><span style="font-size:18px; font-weight:700; flex:1;">העלאת השערה</span><span data-ws-pill="s3" style="flex:none; white-space:nowrap; font-size:12px; font-weight:700; padding:4px 11px; border-radius:999px; background:#f1f3fa; color:#8a93ad; transition:all .3s;">למילוי</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">ממפים את משפך השירות (תושב מצלצל ← נציג ← מחלקה מטפלת ← סגירה) ומאתרים היכן "נופלים" האחוזים. השערות אפשריות: עומס על המחלקה, דיווחי סרק, חוסר כלים/ידע, אי-איתור מיקום הליקוי, או משיכת קהל לא נכון לטופס.<div style="margin-top:16px; padding:16px 16px 14px; border-radius:16px; background:linear-gradient(135deg,rgba(77,99,230,.06),rgba(139,92,240,.05)); border:1px solid #e1e5f5;"><label for="ws-s3" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4d63e6; letter-spacing:.3px;"><span style="width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>המקרה שלכם · שלב 03</label><textarea id="ws-s3" data-ws="s3" data-ws-title="העלאת השערה" rows="4" placeholder="מפו את התהליך שלב אחר שלב. איפה &quot;נופלים&quot;?&#10;רשמו כמה השערות אפשריות לנקודת הכאב." style="display:block; width:100%; margin-top:10px; padding:14px 16px; border-radius:14px; border:1px solid #dfe3f0; background:#fff; font-family:'Assistant',sans-serif; font-size:15.5px; line-height:1.7; color:#161c2d; min-height:118px; resize:vertical; outline:none; transition:border-color .2s, box-shadow .2s;"></textarea></div></div></div>
         </div>
         <div data-reveal="" data-lift="" style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
-          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">04</span><span style="font-size:18px; font-weight:700; flex:1;">זיהוי נתונים וביסוס השערה</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
-          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">אוספים נתונים ממערכות (ERP/CRM) כדי לאשש או להפריך. בבוחן התברר שאין עומס ואין דיווחי סרק נרחבים — אבל סקר חשף שב-<b>25%</b> מהמקרים המיקום מגיע ככתובת בלבד ואינו מאפשר איתור מדויק.<div style="margin-top:14px; padding:14px 16px; border-radius:12px; background:#f6f7fc; border:1px solid #eceef6;"><div style="font-weight:700; color:#4d63e6; font-size:14px; margin-bottom:8px;">כלי: 5 ה-"למה"</div><ol style="margin:0; padding-inline-start:20px; font-size:14px; color:#34405c; line-height:1.9;"><li>למה הפנייה לא טופלה? המחלקה לא איתרה את מקום הליקוי.</li><li>למה לא איתרה? דיווח המיקום לא ספציפי מספיק.</li><li>למה לא ספציפי? הדיווח מכיל כתובת בלבד.</li><li>למה רק כתובת? כך מוגדר ה-API בין המערכות.</li><li>למה? איש לא העריך שכתובת אינה ציון מיקום מספיק.</li></ol><div style="margin-top:8px; font-size:13px; color:#717a90;">→ פתרון אפשרי: סימון מיקום על מפה ו/או שדה הערות בדיווח.</div></div></div></div>
+          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span data-ws-num="s4" style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px; transition:color .3s;">04</span><span style="font-size:18px; font-weight:700; flex:1;">זיהוי נתונים וביסוס השערה</span><span data-ws-pill="s4" style="flex:none; white-space:nowrap; font-size:12px; font-weight:700; padding:4px 11px; border-radius:999px; background:#f1f3fa; color:#8a93ad; transition:all .3s;">למילוי</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">אוספים נתונים ממערכות (ERP/CRM) כדי לאשש או להפריך. בבוחן התברר שאין עומס ואין דיווחי סרק נרחבים — אבל סקר חשף שב-<b>25%</b> מהמקרים המיקום מגיע ככתובת בלבד ואינו מאפשר איתור מדויק.<div style="margin-top:14px; padding:14px 16px; border-radius:12px; background:#f6f7fc; border:1px solid #eceef6;"><div style="font-weight:700; color:#4d63e6; font-size:14px; margin-bottom:8px;">כלי: 5 ה-"למה"</div><ol style="margin:0; padding-inline-start:20px; font-size:14px; color:#34405c; line-height:1.9;"><li>למה הפנייה לא טופלה? המחלקה לא איתרה את מקום הליקוי.</li><li>למה לא איתרה? דיווח המיקום לא ספציפי מספיק.</li><li>למה לא ספציפי? הדיווח מכיל כתובת בלבד.</li><li>למה רק כתובת? כך מוגדר ה-API בין המערכות.</li><li>למה? איש לא העריך שכתובת אינה ציון מיקום מספיק.</li></ol><div style="margin-top:8px; font-size:13px; color:#717a90;">→ פתרון אפשרי: סימון מיקום על מפה ו/או שדה הערות בדיווח.</div></div><div style="margin-top:16px; padding:16px 16px 14px; border-radius:16px; background:linear-gradient(135deg,rgba(77,99,230,.06),rgba(139,92,240,.05)); border:1px solid #e1e5f5;"><label for="ws-s4" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4d63e6; letter-spacing:.3px;"><span style="width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>המקרה שלכם · שלב 04</label><textarea id="ws-s4" data-ws="s4" data-ws-title="זיהוי נתונים וביסוס השערה" rows="4" placeholder="אילו נתונים יאששו או יפריכו כל השערה, ומאיזו מערכת?&#10;מה גיליתם?&#10;שאלו &quot;למה&quot; חמש פעמים, עד שמגיעים לשורש הסיבה." style="display:block; width:100%; margin-top:10px; padding:14px 16px; border-radius:14px; border:1px solid #dfe3f0; background:#fff; font-family:'Assistant',sans-serif; font-size:15.5px; line-height:1.7; color:#161c2d; min-height:118px; resize:vertical; outline:none; transition:border-color .2s, box-shadow .2s;"></textarea></div></div></div>
         </div>
         <div data-reveal="" data-lift="" style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
-          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">05</span><span style="font-size:18px; font-weight:700; flex:1;">בחירת חלופה וביצוע אנליזה</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
-          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">מגבשים חלופות פתרון — סימון נקודה על מפה, שדה הערות, טלפון המדווח, דירוג טופס הדיווח — ובוחנים אותן במבחן <b>A/B</b> מבוקר (A = המצב הקיים, B = הווריאציה החדשה).</div></div>
+          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span data-ws-num="s5" style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px; transition:color .3s;">05</span><span style="font-size:18px; font-weight:700; flex:1;">בחירת חלופה וביצוע אנליזה</span><span data-ws-pill="s5" style="flex:none; white-space:nowrap; font-size:12px; font-weight:700; padding:4px 11px; border-radius:999px; background:#f1f3fa; color:#8a93ad; transition:all .3s;">למילוי</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">מגבשים חלופות פתרון — סימון נקודה על מפה, שדה הערות, טלפון המדווח, דירוג טופס הדיווח — ובוחנים אותן במבחן <b>A/B</b> מבוקר (A = המצב הקיים, B = הווריאציה החדשה).<div style="margin-top:16px; padding:16px 16px 14px; border-radius:16px; background:linear-gradient(135deg,rgba(77,99,230,.06),rgba(139,92,240,.05)); border:1px solid #e1e5f5;"><label for="ws-s5" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4d63e6; letter-spacing:.3px;"><span style="width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>המקרה שלכם · שלב 05</label><textarea id="ws-s5" data-ws="s5" data-ws-title="בחירת חלופה וביצוע אנליזה" rows="4" placeholder="אילו חלופות פתרון עולות?&#10;איך תבחנו אותן? למשל במבחן A/B, שמשווה בין המצב הקיים לבין הווריאציה החדשה." style="display:block; width:100%; margin-top:10px; padding:14px 16px; border-radius:14px; border:1px solid #dfe3f0; background:#fff; font-family:'Assistant',sans-serif; font-size:15.5px; line-height:1.7; color:#161c2d; min-height:118px; resize:vertical; outline:none; transition:border-color .2s, box-shadow .2s;"></textarea></div></div></div>
         </div>
         <div data-reveal="" data-lift="" style="opacity:0; transform:translateY(20px); transition:opacity .55s, transform .55s, box-shadow .3s; background:#fff; border:1px solid #e6e9f2; border-radius:18px; box-shadow:0 5px 22px rgba(22,28,45,.05); overflow:hidden;">
-          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px;">06</span><span style="font-size:18px; font-weight:700; flex:1;">הסקת מסקנות</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
-          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">מנתחים את תוצאות האנליזה ומחליטים. חשוב לזכור — זהו תהליך <b>מעגלי ואינסופי</b>: תוצאות החלטה אחת הן הבסיס לתהליך ההחלטה הבא.</div></div>
+          <div data-acc="" style="display:flex; align-items:center; gap:14px; padding:18px 22px; cursor:pointer;"><span data-ws-num="s6" style="font-family:'Frank Ruhl Libre',serif; font-size:27px; font-weight:800; color:#c3cae6; min-width:40px; transition:color .3s;">06</span><span style="font-size:18px; font-weight:700; flex:1;">הסקת מסקנות</span><span data-ws-pill="s6" style="flex:none; white-space:nowrap; font-size:12px; font-weight:700; padding:4px 11px; border-radius:999px; background:#f1f3fa; color:#8a93ad; transition:all .3s;">למילוי</span><span data-chev="" style="color:#9aa2bd; transition:transform .35s;">▾</span></div>
+          <div data-acc-body="" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .35s;"><div style="padding:0 22px 22px; color:#4a5468;">מנתחים את תוצאות האנליזה ומחליטים. חשוב לזכור — זהו תהליך <b>מעגלי ואינסופי</b>: תוצאות החלטה אחת הן הבסיס לתהליך ההחלטה הבא.<div style="margin-top:16px; padding:16px 16px 14px; border-radius:16px; background:linear-gradient(135deg,rgba(77,99,230,.06),rgba(139,92,240,.05)); border:1px solid #e1e5f5;"><label for="ws-s6" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4d63e6; letter-spacing:.3px;"><span style="width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg,#4d63e6,#8b5cf0);"></span>המקרה שלכם · שלב 06</label><textarea id="ws-s6" data-ws="s6" data-ws-title="הסקת מסקנות" rows="4" placeholder="מה הראו התוצאות, ומה ההחלטה?&#10;מה לוקחים מכאן לסבב ההחלטה הבא?" style="display:block; width:100%; margin-top:10px; padding:14px 16px; border-radius:14px; border:1px solid #dfe3f0; background:#fff; font-family:'Assistant',sans-serif; font-size:15.5px; line-height:1.7; color:#161c2d; min-height:118px; resize:vertical; outline:none; transition:border-color .2s, box-shadow .2s;"></textarea></div></div></div>
+        </div>
+      </div>
+
+      <!-- workbook export -->
+      <div data-reveal="" style="opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; margin-top:18px; background:linear-gradient(135deg,#1c2340,#2a2f5c); border-radius:24px; padding:28px 30px; color:#fff; position:relative; overflow:hidden;">
+        <div aria-hidden="true" style="position:absolute; top:-90px; left:-60px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,240,.42), transparent 70%); pointer-events:none;"></div>
+        <div style="position:relative; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px 24px;">
+          <div style="flex:1 1 300px; min-width:0;">
+            <div style="font-size:13px; font-weight:700; color:#aeb6d8; letter-spacing:.6px;">דף העבודה שלכם</div>
+            <div style="font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:clamp(22px,2.8vw,28px); margin-top:6px; line-height:1.2;">סיימתם? קחו את זה איתכם</div>
+            <p style="color:#aeb6d8; font-size:15px; margin-top:8px; max-width:520px;">התשובות נשמרות רק בדפדפן הזה. ייצאו אותן למסמך Word כדי לשמור, לשתף או להמשיך לעבוד עליהן.</p>
+          </div>
+          <button data-ws-export="" type="button" style="flex:none; display:inline-flex; align-items:center; gap:9px; border:none; cursor:pointer; padding:14px 24px; border-radius:999px; background:linear-gradient(135deg,#4d63e6,#8b5cf0); color:#fff; font-family:'Assistant',sans-serif; font-size:16px; font-weight:700; box-shadow:0 12px 28px -10px rgba(139,92,240,.8); transition:transform .2s, box-shadow .2s;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span data-ws-export-label="">ייצוא למסמך Word</span></button>
         </div>
       </div>
 
@@ -815,9 +825,19 @@ a{color:inherit;}
       var chev = head.querySelector('[data-chev]');
       if(!body) return;
       var open = body.style.maxHeight && body.style.maxHeight !== '0px';
-      if(open){ body.style.maxHeight='0'; body.style.opacity='0'; if(chev) chev.style.transform=''; }
-      else { body.style.maxHeight=body.scrollHeight+'px'; body.style.opacity='1'; if(chev) chev.style.transform='rotate(180deg)'; }
+      if(open){
+        if(body.style.maxHeight==='none'){ body.style.maxHeight=body.scrollHeight+'px'; void body.offsetHeight; }
+        body.style.maxHeight='0'; body.style.opacity='0'; if(chev) chev.style.transform='';
+      } else {
+        body.style.maxHeight=body.scrollHeight+'px'; body.style.opacity='1'; if(chev) chev.style.transform='rotate(180deg)';
+        var done=function(ev){ if(ev.target!==body||ev.propertyName!=='max-height') return; body.removeEventListener('transitionend',done); if(body.style.maxHeight!=='0px') body.style.maxHeight='none'; };
+        body.addEventListener('transitionend',done);
+      }
     });
+    if(head.hasAttribute('data-acc-open')){
+      var b0=head.parentElement.querySelector('[data-acc-body]'), c0=head.querySelector('[data-chev]');
+      if(b0){ b0.style.maxHeight='none'; b0.style.opacity='1'; if(c0) c0.style.transform='rotate(180deg)'; }
+    }
   });
   var LS_KEY = 'aiws3_checks_v1';
   var checks = {};
@@ -896,13 +916,106 @@ a{color:inherit;}
   if(sixBtn){ sixBtn.addEventListener('click', function(){ sixHighlight=!sixHighlight; sixBtn.textContent=sixHighlight?'חזרה למצב רגיל':'הדגישו את כל ה־6'; renderSix(); }); }
   window.addEventListener('resize', renderSix);
   renderSix();
-  if('IntersectionObserver' in window){
-    var fio=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ e.target.querySelectorAll('[data-bar-h]').forEach(function(b){ setTimeout(function(){ b.style.height=b.getAttribute('data-bar-h'); },100); }); fio.unobserve(e.target); } });
-    },{threshold:.2});
-    document.querySelectorAll('[data-funnel]').forEach(function(f){ fio.observe(f); });
-  } else {
-    document.querySelectorAll('[data-bar-h]').forEach(function(b){ b.style.height=b.getAttribute('data-bar-h'); });
+  var WS_KEY = 'aiws3_workbook_v1';
+  var ws = {};
+  try { ws = JSON.parse(localStorage.getItem(WS_KEY)||'{}') || {}; } catch(e){ ws = {}; }
+  var wsFields = Array.prototype.slice.call(document.querySelectorAll('[data-ws]'));
+  var wsSteps = wsFields.filter(function(f){ return f.tagName==='TEXTAREA'; });
+  function wsGrow(ta){ ta.style.height='auto'; ta.style.height=Math.max(ta.scrollHeight+2,118)+'px'; }
+  function wsRender(){
+    var filled = 0;
+    wsSteps.forEach(function(ta){
+      var key = ta.getAttribute('data-ws'), has = !!(ws[key]||'').trim();
+      if(has) filled++;
+      var pill = document.querySelector('[data-ws-pill="'+key+'"]'), num = document.querySelector('[data-ws-num="'+key+'"]');
+      if(pill){ pill.textContent = has ? 'מולא ✓' : 'למילוי'; pill.style.background = has ? 'rgba(77,99,230,.1)' : '#f1f3fa'; pill.style.color = has ? '#4d63e6' : '#8a93ad'; }
+      if(num) num.style.color = has ? '#4d63e6' : '#c3cae6';
+    });
+    var segs = document.querySelectorAll('[data-ws-segs] span');
+    segs.forEach(function(s,i){ s.style.background = i<filled ? 'linear-gradient(135deg,#4d63e6,#8b5cf0)' : '#e3e7f3'; });
+    var cnt = document.querySelector('[data-ws-count]');
+    if(cnt) cnt.textContent = filled+' / '+wsSteps.length+' שלבים מולאו';
+  }
+  wsFields.forEach(function(f){
+    var key = f.getAttribute('data-ws');
+    if(ws[key]) f.value = ws[key];
+    if(f.tagName==='TEXTAREA') wsGrow(f);
+    f.addEventListener('input', function(){
+      ws[key] = f.value;
+      try { localStorage.setItem(WS_KEY, JSON.stringify(ws)); } catch(e){}
+      if(f.tagName==='TEXTAREA') wsGrow(f);
+      wsRender();
+    });
+  });
+  wsRender();
+
+  var crcT = null;
+  function crc32(b){
+    if(!crcT){ crcT=[]; for(var n=0;n<256;n++){ var c=n; for(var k=0;k<8;k++) c = c&1 ? 0xEDB88320^(c>>>1) : c>>>1; crcT[n]=c>>>0; } }
+    var crc = 0xFFFFFFFF;
+    for(var i=0;i<b.length;i++) crc = crcT[(crc^b[i])&0xFF]^(crc>>>8);
+    return (crc^0xFFFFFFFF)>>>0;
+  }
+  function zipStore(files, mime){
+    var enc = new TextEncoder(), parts = [], central = [], offset = 0, cdSize = 0;
+    files.forEach(function(f){
+      var name = enc.encode(f.name), data = enc.encode(f.text), crc = crc32(data);
+      var lh = new DataView(new ArrayBuffer(30));
+      lh.setUint32(0,0x04034b50,true); lh.setUint16(4,20,true); lh.setUint16(12,33,true);
+      lh.setUint32(14,crc,true); lh.setUint32(18,data.length,true); lh.setUint32(22,data.length,true); lh.setUint16(26,name.length,true);
+      parts.push(new Uint8Array(lh.buffer), name, data);
+      var ch = new DataView(new ArrayBuffer(46));
+      ch.setUint32(0,0x02014b50,true); ch.setUint16(4,20,true); ch.setUint16(6,20,true); ch.setUint16(14,33,true);
+      ch.setUint32(16,crc,true); ch.setUint32(20,data.length,true); ch.setUint32(24,data.length,true); ch.setUint16(28,name.length,true); ch.setUint32(42,offset,true);
+      central.push(new Uint8Array(ch.buffer), name);
+      cdSize += 46+name.length;
+      offset += 30+name.length+data.length;
+    });
+    var end = new DataView(new ArrayBuffer(22));
+    end.setUint32(0,0x06054b50,true); end.setUint16(8,files.length,true); end.setUint16(10,files.length,true); end.setUint32(12,cdSize,true); end.setUint32(16,offset,true);
+    return new Blob(parts.concat(central,[new Uint8Array(end.buffer)]),{type:mime});
+  }
+  function xesc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,''); }
+  function wRun(t,o){
+    o=o||{}; var sz=o.sz||24;
+    return '<w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>'+(o.b?'<w:b/><w:bCs/>':'')+(o.i?'<w:i/><w:iCs/>':'')+'<w:color w:val="'+(o.color||'161C2D')+'"/><w:sz w:val="'+sz+'"/><w:szCs w:val="'+sz+'"/><w:rtl/><w:lang w:bidi="he-IL"/></w:rPr><w:t xml:space="preserve">'+xesc(t)+'</w:t></w:r>';
+  }
+  function wPara(runs,o){
+    o=o||{};
+    return '<w:p><w:pPr>'+(o.keep?'<w:keepNext/>':'')+(o.line?'<w:pBdr><w:bottom w:val="single" w:sz="8" w:space="6" w:color="'+o.line+'"/></w:pBdr>':'')+'<w:bidi/><w:spacing w:before="'+(o.before||0)+'" w:after="'+(o.after==null?120:o.after)+'" w:line="300" w:lineRule="auto"/></w:pPr>'+runs+'</w:p>';
+  }
+  function buildDocx(){
+    var caseName = (ws['case']||'').trim();
+    var body = wPara(wRun('דף עבודה: החלטות מבוססות נתונים',{b:true,sz:40,color:'1C2340'}),{after:80});
+    if(caseName) body += wPara(wRun('המקרה: ',{b:true,sz:26,color:'4D63E6'})+wRun(caseName,{sz:26}),{after:60});
+    body += wPara(wRun('סדנת עובדים חכם עם AI · '+new Date().toLocaleDateString('he-IL'),{sz:20,color:'717A90'}),{after:240,line:'D7DDF5'});
+    wsSteps.forEach(function(ta,i){
+      var key = ta.getAttribute('data-ws'), val = (ws[key]||'').trim();
+      body += wPara(wRun('0'+(i+1)+'  ',{b:true,sz:30,color:'8B5CF0'})+wRun(ta.getAttribute('data-ws-title'),{b:true,sz:30,color:'1C2340'}),{before:280,after:60,keep:true});
+      body += wPara(wRun(ta.placeholder.replace(/\s*\n\s*/g,' '),{i:true,sz:19,color:'8A93AD'}),{after:120,keep:!!val});
+      if(val) val.split(/\r?\n/).forEach(function(line){ body += wPara(wRun(line),{after:80}); });
+      else body += wPara(wRun('לא מולא',{i:true,color:'9AA3BA'}));
+    });
+    var doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+body+'<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1300" w:right="1300" w:bottom="1300" w:left="1300" w:header="708" w:footer="708" w:gutter="0"/><w:bidi/></w:sectPr></w:body></w:document>';
+    return zipStore([
+      {name:'[Content_Types].xml', text:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>'},
+      {name:'_rels/.rels', text:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>'},
+      {name:'word/document.xml', text:doc}
+    ],'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+  }
+  var exBtn = document.querySelector('[data-ws-export]'), exLbl = document.querySelector('[data-ws-export-label]');
+  if(exBtn){
+    exBtn.addEventListener('click', function(){
+      var any = wsSteps.some(function(ta){ return !!(ws[ta.getAttribute('data-ws')]||'').trim(); });
+      if(!any){ exLbl.textContent='מלאו לפחות שלב אחד'; setTimeout(function(){ exLbl.textContent='ייצוא למסמך Word'; },2200); return; }
+      var caseName = (ws['case']||'').trim().replace(/[\\\/:*?"<>|]+/g,' ').slice(0,60);
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(buildDocx());
+      a.download = 'דף עבודה - החלטות מבוססות נתונים'+(caseName?' - '+caseName:'')+'.docx';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(a.href); },4000);
+      exLbl.textContent='המסמך ירד ✓'; setTimeout(function(){ exLbl.textContent='ייצוא למסמך Word'; },2500);
+    });
   }
   window.addEventListener('scroll', function(){ updatePbar(); updateTOC(); },{passive:true});
   updatePbar(); updateTOC();
