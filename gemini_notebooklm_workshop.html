@@ -200,7 +200,7 @@
               <!-- fixed presentation prompt -->
               <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:20px 22px;margin-bottom:14px;">
                 <div style="font-size:12px;font-weight:700;letter-spacing:.12em;color:#aeb6e0;margin-bottom:8px;">תפקיד · משימה — קבוע (העתיקו והדביקו)</div>
-                <div id="deck_prompt" style="font-size:15.5px;line-height:1.8;color:#eef0fb;">אתה מומחה לבניית מצגות המתמחה בשימוש בכלי AI ליצירת מצגות. המטרה שלך היא לכתוב עבורי הנחיה (טקסט בלבד) מפורטת ומדויקת בעברית, שאותה אעתיק לתוך הכלי עיצוב כדי ליצור מצגת מנצחת. הפרומפט צריך להיות בנוי שקף אחר שקף. עבור כל שקף, הגדר לכלי העיצוב את כל המאפיינים שדרושים על מנת שיוכל להבין בדיוק כיצד לבנות את השקף.</div>
+                <div id="deck_prompt" style="font-size:15.5px;line-height:1.8;color:#eef0fb;">אתה מומחה לבניית מצגות המתמחה בשימוש בכלי AI ליצירת מצגות. המטרה שלך היא לכתוב עבורי הנחיה (טקסט בלבד) מפורטת ומדויקת בעברית, שאותה אעתיק לתוך כלי העיצוב כדי ליצור מצגת מנצחת. הפרומפט צריך להיות בנוי שקף אחר שקף. עבור כל שקף, הגדר לכלי העיצוב את כל המאפיינים שדרושים על מנת שיוכל להבין בדיוק כיצד לבנות את השקף.</div>
                 <button id="deck_copy" style="margin-top:14px;padding:9px 18px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.1);color:#fff;font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;">העתקת שלב התפקיד</button>
               </div>
               <div style="text-align:center;color:#8a92c4;font-size:22px;line-height:1;margin:2px 0 6px;">+</div>
@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const o = btn.textContent; btn.textContent = label || 'הועתק ✓';
     setTimeout(() => btn.textContent = o, 1600);
   };
-  const DECK_FIXED = 'אתה מומחה לבניית מצגות המתמחה בשימוש בכלי AI ליצירת מצגות. המטרה שלך היא לכתוב עבורי הנחיה (טקסט בלבד) מפורטת ומדויקת בעברית, שאותה אעתיק לתוך הכלי עיצוב כדי ליצור מצגת מנצחת. הפרומפט צריך להיות בנוי שקף אחר שקף. עבור כל שקף, הגדר לכלי העיצוב את כל המאפיינים שדרושים על מנת שיוכל להבין בדיוק כיצד לבנות את השקף.';
+  const DECK_FIXED = 'אתה מומחה לבניית מצגות המתמחה בשימוש בכלי AI ליצירת מצגות. המטרה שלך היא לכתוב עבורי הנחיה (טקסט בלבד) מפורטת ומדויקת בעברית, שאותה אעתיק לתוך כלי העיצוב כדי ליצור מצגת מנצחת. הפרומפט צריך להיות בנוי שקף אחר שקף. עבור כל שקף, הגדר לכלי העיצוב את כל המאפיינים שדרושים על מנת שיוכל להבין בדיוק כיצד לבנות את השקף.';
   const deckCopy = $('#deck_copy');
   if (deckCopy) deckCopy.addEventListener('click', () => copyWithFeedback(deckCopy, DECK_FIXED));
 
